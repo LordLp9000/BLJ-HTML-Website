@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOAT Sports - Der beste Teamsportler aller Zeiten</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+        <header>
+        <nav>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">GOAT SPORTS</div>
+            
+            <!-- Slide-out menu -->
+            <div class="slide-menu" id="slideMenu">
+                <div class="menu-header">
+                    <span data-lang-de="Navigation" data-lang-en="Navigation">Navigation</span>
+                    <button class="close-menu" onclick="toggleMenu()">×</button>
+                </div>
+                <ul class="menu-links">
+                    <li><a href="#home" class="menu-link active" data-lang-de="🏠 Startseite" data-lang-en="🏠 Home">🏠 Startseite</a></li>
+                    <li><a href="#rankings" class="menu-link" data-lang-de="🏆 Top 50 Gesamt" data-lang-en="🏆 Top 50 Overall">🏆 Top 50 Gesamt</a></li>
+                    <li><a href="#football-top10" class="menu-link" data-lang-de="⚽ Top 10 Fußball" data-lang-en="⚽ Top 10 Football">⚽ Top 10 Fußball</a></li>
+                    <li><a href="#basketball-top10" class="menu-link" data-lang-de="🏀 Top 10 Basketball" data-lang-en="🏀 Top 10 Basketball">🏀 Top 10 Basketball</a></li>
+                    <li><a href="#american-football-top10" class="menu-link" data-lang-de="🏈 Top 10 American Football" data-lang-en="🏈 Top 10 American Football">🏈 Top 10 American Football</a></li>
+                    <li><a href="#hockey-top10" class="menu-link" data-lang-de="🏒 Top 10 Eishockey" data-lang-en="🏒 Top 10 Ice Hockey">🏒 Top 10 Eishockey</a></li>
+                    <li><a href="#formula1-top10" class="menu-link" data-lang-de="🏎️ Top 10 Formula 1" data-lang-en="🏎️ Top 10 Formula 1">🏎️ Top 10 Formula 1</a></li>
+                    <li><a href="#volleyball-top10" class="menu-link" data-lang-de="🏐 Top 10 Volleyball" data-lang-en="🏐 Top 10 Volleyball">🏐 Top 10 Volleyball</a></li>
+                    <li><a href="#cricket-top10" class="menu-link" data-lang-de="🏏 Top 10 Cricket" data-lang-en="🏏 Top 10 Cricket">🏏 Top 10 Cricket</a></li>
+                    <li><a href="#handball-top10" class="menu-link" data-lang-de="🤾 Top 10 Handball" data-lang-en="🤾 Top 10 Handball">🤾 Top 10 Handball</a></li>
+                    <li><a href="#baseball-top10" class="menu-link" data-lang-de="⚾ Top 10 Baseball" data-lang-en="⚾ Top 10 Baseball">⚾ Top 10 Baseball</a></li>
+                    <li><a href="#rugby-top10" class="menu-link" data-lang-de="🏉 Top 10 Rugby" data-lang-en="🏉 Top 10 Rugby">🏉 Top 10 Rugby</a></li>
+                    <li><a href="#methodology" class="menu-link" data-lang-de="📊 Bewertungssystem" data-lang-en="📊 Rating System">📊 Bewertungssystem</a></li>
+                    <li><a href="#calculator" class="menu-link" data-lang-de="⚡ GOAT Rechner" data-lang-en="⚡ GOAT Calculator">⚡ GOAT Rechner</a></li>
+                    <li><a href="#about" class="menu-link" data-lang-de="ℹ️ Über uns" data-lang-en="ℹ️ About">ℹ️ Über uns</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button onclick="switchLanguage('de')" class="lang-btn active" id="lang-de">DE</button>
+                    <button onclick="switchLanguage('en')" class="lang-btn" id="lang-en">EN</button>
+                </div>
+            </div>
+            
+            <!-- Overlay for mobile menu -->
+            <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1 data-lang-de="Der beste Teamsportler aller Zeiten" data-lang-en="The Greatest Team Sport Athlete of All Time">Der beste Teamsportler aller Zeiten</h1>
+                <p data-lang-de="Statistisch fundierte Analyse der größten Athleten aus Fußball, Basketball, American Football, Eishockey und mehr" data-lang-en="Statistically based analysis of the greatest athletes from football, basketball, American football, ice hockey and more">Statistisch fundierte Analyse der größten Athleten aus Fußball, Basketball, American Football, Eishockey und mehr</p>
+                <p><strong data-lang-de="Datengetrieben • Objektiv • Sportartenübergreifend" data-lang-en="Data-driven • Objective • Cross-sport">Datengetrieben • Objektiv • Sportartenübergreifend</strong></p>
+            </div>
+
+            <div class="section">
+                <h2 data-lang-de="📊 Unterstützte Sportarten" data-lang-en="📊 Supported Sports">📊 Unterstützte Sportarten</h2>
+                <p data-lang-de="Unser System analysiert Spieler aus folgenden Teamsportarten:" data-lang-en="Our system analyzes players from the following team sports:">Unser System analysiert Spieler aus folgenden Teamsportarten:</p>
+                <div class="sports-grid">
+                    <div class="sport-card">⚽ <span data-lang-de="Fußball" data-lang-en="Football/Soccer">Fußball</span></div>
+                    <div class="sport-card">🏀 Basketball</div>
+                    <div class="sport-card">🏈 American Football</div>
+                    <div class="sport-card">🏒 <span data-lang-de="Eishockey" data-lang-en="Ice Hockey">Eishockey</span></div>
+                    <div class="sport-card">🏐 Volleyball</div>
+                    <div class="sport-card">🏏 Cricket</div>
+                    <div class="sport-card">🤾 Handball</div>
+                    <div class="sport-card">⚾ Baseball</div>
+                    <div class="sport-card">🏉 Rugby</div>
+                    <div class="sport-card">🏎️ Formula 1</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rankings Section -->
+        <section id="rankings" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏆 Top 50 GOAT Rankings" data-lang-en="🏆 Top 50 GOAT Rankings">🏆 Top 50 GOAT Rankings</h2>
+                
+                <div class="ranking-filters">
+                    <button class="filter-btn active" onclick="filterBySport('all')" data-lang-de="Alle Sportarten" data-lang-en="All Sports">Alle Sportarten</button>
+                    <button class="filter-btn" onclick="filterBySport('football')" data-lang-de="Fußball" data-lang-en="Football">Fußball</button>
+                    <button class="filter-btn" onclick="filterBySport('basketball')">Basketball</button>
+                    <button class="filter-btn" onclick="filterBySport('american-football')">American Football</button>
+                    <button class="filter-btn" onclick="filterBySport('hockey')" data-lang-de="Eishockey" data-lang-en="Ice Hockey">Eishockey</button>
+                    <button class="filter-btn" onclick="filterBySport('formula1')">Formula 1</button>
+                    <button class="filter-btn" onclick="filterBySport('volleyball')">Volleyball</button>
+                    <button class="filter-btn" onclick="filterBySport('cricket')">Cricket</button>
+                    <button class="filter-btn" onclick="filterBySport('handball')">Handball</button>
+                    <button class="filter-btn" onclick="filterBySport('baseball')">Baseball</button>
+                    <button class="filter-btn" onclick="filterBySport('rugby')">Rugby</button>
+                </div>
+
+                <div class="rankings-grid" id="rankings-grid">
+                    <!-- Top 50 players will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏆 Bewertungsformel & Methodik" data-lang-en="🏆 Rating Formula & Methodology">🏆 Bewertungsformel & Methodik</h2>
+                <p data-lang-de="Unsere wissenschaftliche Formel normalisiert Leistungsdaten verschiedener Sportarten mit Z-Score-Berechnungen:" data-lang-en="Our scientific formula normalizes performance data from different sports using Z-score calculations:">Unsere wissenschaftliche Formel normalisiert Leistungsdaten verschiedener Sportarten mit Z-Score-Berechnungen:</p>
+                
+                <div class="formula-container">
+                    <div class="formula">
+                        <strong>GOAT Score = </strong><br>
+                        (Offensive Performance Z-Score × 0.25) +<br>
+                        (Defensive Performance Z-Score × 0.20) +<br>
+                        (Achievements Z-Score × 0.25) +<br>
+                        (Longevity Z-Score × 0.15) +<br>
+                        (Impact/Leadership Z-Score × 0.15)
+                    </div>
+                </div>
+
+                <p><strong data-lang-de="Erklärung der Kategorien:" data-lang-en="Category Explanations:">Erklärung der Kategorien:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong data-lang-de="Offensive Performance (25%): Tore, Assists, Punkte pro Spiel" data-lang-en="Offensive Performance (25%): Goals, Assists, Points per Game">Offensive Performance (25%):</strong> <span data-lang-de="Tore, Assists, Punkte pro Spiel" data-lang-en="Goals, Assists, Points per Game">Tore, Assists, Punkte pro Spiel</span></li>
+                    <li><strong data-lang-de="Defensive Performance (20%): Tackles, Blocks, Saves" data-lang-en="Defensive Performance (20%): Tackles, Blocks, Saves">Defensive Performance (20%):</strong> <span data-lang-de="Tackles, Blocks, Saves" data-lang-en="Tackles, Blocks, Saves">Tackles, Blocks, Saves</span></li>
+                    <li><strong data-lang-de="Achievements (25%): Meisterschaften, individuelle Auszeichnungen" data-lang-en="Achievements (25%): Championships, Individual Awards">Achievements (25%):</strong> <span data-lang-de="Meisterschaften, individuelle Auszeichnungen" data-lang-en="Championships, Individual Awards">Meisterschaften, individuelle Auszeichnungen</span></li>
+                    <li><strong data-lang-de="Longevity (15%): Karrierelänge, Konstanz über Jahre" data-lang-en="Longevity (15%): Career Length, Consistency Over Years">Longevity (15%):</strong> <span data-lang-de="Karrierelänge, Konstanz über Jahre" data-lang-en="Career Length, Consistency Over Years">Karrierelänge, Konstanz über Jahre</span></li>
+                    <li><strong data-lang-de="Impact/Leadership (15%): Team-Erfolg, Führungsqualitäten" data-lang-en="Impact/Leadership (15%): Team Success, Leadership Qualities">Impact/Leadership (15%):</strong> <span data-lang-de="Team-Erfolg, Führungsqualitäten" data-lang-en="Team Success, Leadership Qualities">Team-Erfolg, Führungsqualitäten</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="⚡ GOAT Score Rechner" data-lang-en="⚡ GOAT Score Calculator">⚡ GOAT Score Rechner</h2>
+                <p data-lang-de="Berechnen Sie den GOAT Score für jeden Spieler:" data-lang-en="Calculate the GOAT Score for any player:">Berechnen Sie den GOAT Score für jeden Spieler:</p>
+                
+                <div class="calculator">
+                    <div class="input-group">
+                        <label for="offensive" data-lang-de="Offensive Leistung (0-10):" data-lang-en="Offensive Performance (0-10):">Offensive Leistung (0-10):</label>
+                        <input type="number" id="offensive" min="0" max="10" step="0.1" placeholder="z.B. 8.5">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="defensive" data-lang-de="Defensive Leistung (0-10):" data-lang-en="Defensive Performance (0-10):">Defensive Leistung (0-10):</label>
+                        <input type="number" id="defensive" min="0" max="10" step="0.1" placeholder="z.B. 7.2">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="achievements" data-lang-de="Erfolge & Auszeichnungen (0-10):" data-lang-en="Achievements & Awards (0-10):">Erfolge & Auszeichnungen (0-10):</label>
+                        <input type="number" id="achievements" min="0" max="10" step="0.1" placeholder="z.B. 9.0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="longevity" data-lang-de="Langlebigkeit & Konstanz (0-10):" data-lang-en="Longevity & Consistency (0-10):">Langlebigkeit & Konstanz (0-10):</label>
+                        <input type="number" id="longevity" min="0" max="10" step="0.1" placeholder="z.B. 8.8">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="impact" data-lang-de="Einfluss & Führung (0-10):" data-lang-en="Impact & Leadership (0-10):">Einfluss & Führung (0-10):</label>
+                        <input type="number" id="impact" min="0" max="10" step="0.1" placeholder="z.B. 9.5">
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculateGOATScore()" data-lang-de="GOAT Score berechnen" data-lang-en="Calculate GOAT Score">GOAT Score berechnen</button>
+                    
+                    <div id="result" class="result" style="display: none;">
+                        <div id="score-display"></div>
+                        <div id="ranking-display"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="ℹ️ Über das Projekt" data-lang-en="ℹ️ About the Project">ℹ️ Über das Projekt</h2>
+                <p data-lang-de="GOAT Sports ist ein datengetriebenes Projekt zur objektiven Bewertung der besten Teamsportler aller Zeiten. Durch die Verwendung von Z-Score-Normalisierung können wir Athleten verschiedener Sportarten fair miteinander vergleichen." data-lang-en="GOAT Sports is a data-driven project for the objective evaluation of the best team sport athletes of all time. By using Z-score normalization, we can fairly compare athletes from different sports.">GOAT Sports ist ein datengetriebenes Projekt zur objektiven Bewertung der besten Teamsportler aller Zeiten. Durch die Verwendung von Z-Score-Normalisierung können wir Athleten verschiedener Sportarten fair miteinander vergleichen.</p>
+                
+                <h3 data-lang-de="Zielsetzung" data-lang-en="Objectives">Zielsetzung</h3>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li data-lang-de="Nur mit Statistiken und vergleichen ermitteln wir Sportartenübergreifend den beste Sportler/Spieler ist" data-lang-en="Using only statistics and comparisons, we determine the best athlete/player across sports">Nur mit Statistiken und vergleichen ermitteln wir Sportartenübergreifend den beste Sportler/Spieler ist</li>
+                    <li data-lang-de="Eine top 50 der besten Spieler" data-lang-en="A top 50 of the best players">Eine top 50 der besten Spieler</li>
+                    <li data-lang-de="Deutsch und Englisch für mehr Reichweite" data-lang-en="German and English for greater reach">Deutsch und Englisch für mehr Reichweite</li>
+                    <li data-lang-de="Optional: Kommentarsektion" data-lang-en="Optional: Comment section">Optional: Kommentarsektion</li>
+                </ul>
+                
+                <h3 data-lang-de="Zielgruppe" data-lang-en="Target Audience">Zielgruppe</h3>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li data-lang-de="Sportfans aus allen Altersgruppen, die sich für Rankings, Statistiken und Vergleiche interessieren" data-lang-en="Sports fans of all ages interested in rankings, statistics and comparisons">Sportfans aus allen Altersgruppen, die sich für Rankings, Statistiken und Vergleiche interessieren</li>
+                    <li data-lang-de="Trainer und Analysten, die sportartenübergreifende Leistungsmetriken nutzen" data-lang-en="Coaches and analysts using cross-sport performance metrics">Trainer und Analysten, die sportartenübergreifende Leistungsmetriken nutzen</li>
+                    <li data-lang-de="Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren" data-lang-en="Students learning about sports science or data analysis">Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren</li>
+                    <li data-lang-de="Diskussionsfreudige Community, die immer über den 'GOAT' debattiert" data-lang-en="Discussion-loving community always debating about the 'GOAT'">Diskussionsfreudige Community, die immer über den "GOAT" debattiert</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Football Top 10 Section -->
+        <section id="football-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="⚽ Top 10 Fußball Legenden" data-lang-en="⚽ Top 10 Football Legends">⚽ Top 10 Fußball Legenden</h2>
+                <p data-lang-de="Die besten Fußballer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest football players of all time based on our GOAT rating system:">Die besten Fußballer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="football-rankings-grid">
+                    <!-- Football top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Basketball Top 10 Section -->
+        <section id="basketball-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏀 Top 10 Basketball Legenden" data-lang-en="🏀 Top 10 Basketball Legends">🏀 Top 10 Basketball Legenden</h2>
+                <p data-lang-de="Die besten Basketballer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest basketball players of all time based on our GOAT rating system:">Die besten Basketballer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="basketball-rankings-grid">
+                    <!-- Basketball top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- American Football Top 10 Section -->
+        <section id="american-football-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏈 Top 10 American Football Legenden" data-lang-en="🏈 Top 10 American Football Legends">🏈 Top 10 American Football Legenden</h2>
+                <p data-lang-de="Die besten American Football Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest American football players of all time based on our GOAT rating system:">Die besten American Football Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="american-football-rankings-grid">
+                    <!-- American football top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hockey Top 10 Section -->
+        <section id="hockey-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏒 Top 10 Eishockey Legenden" data-lang-en="🏒 Top 10 Ice Hockey Legends">🏒 Top 10 Eishockey Legenden</h2>
+                <p data-lang-de="Die besten Eishockey Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest ice hockey players of all time based on our GOAT rating system:">Die besten Eishockey Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="hockey-rankings-grid">
+                    <!-- Hockey top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Formula 1 Top 10 Section -->
+        <section id="formula1-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏎️ Top 10 Formula 1 Legenden" data-lang-en="🏎️ Top 10 Formula 1 Legends">🏎️ Top 10 Formula 1 Legenden</h2>
+                <p data-lang-de="Die besten Formula 1 Fahrer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest Formula 1 drivers of all time based on our GOAT rating system:">Die besten Formula 1 Fahrer aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="formula1-rankings-grid">
+                    <!-- Formula 1 top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Volleyball Top 10 Section -->
+        <section id="volleyball-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏐 Top 10 Volleyball Legenden" data-lang-en="🏐 Top 10 Volleyball Legends">🏐 Top 10 Volleyball Legenden</h2>
+                <p data-lang-de="Die besten Volleyball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest volleyball players of all time based on our GOAT rating system:">Die besten Volleyball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="volleyball-rankings-grid">
+                    <!-- Volleyball top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Cricket Top 10 Section -->
+        <section id="cricket-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏏 Top 10 Cricket Legenden" data-lang-en="🏏 Top 10 Cricket Legends">🏏 Top 10 Cricket Legenden</h2>
+                <p data-lang-de="Die besten Cricket Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest cricket players of all time based on our GOAT rating system:">Die besten Cricket Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="cricket-rankings-grid">
+                    <!-- Cricket top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Handball Top 10 Section -->
+        <section id="handball-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🤾 Top 10 Handball Legenden" data-lang-en="🤾 Top 10 Handball Legends">🤾 Top 10 Handball Legenden</h2>
+                <p data-lang-de="Die besten Handball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest handball players of all time based on our GOAT rating system:">Die besten Handball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="handball-rankings-grid">
+                    <!-- Handball top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Baseball Top 10 Section -->
+        <section id="baseball-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="⚾ Top 10 Baseball Legenden" data-lang-en="⚾ Top 10 Baseball Legends">⚾ Top 10 Baseball Legenden</h2>
+                <p data-lang-de="Die besten Baseball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest baseball players of all time based on our GOAT rating system:">Die besten Baseball Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="baseball-rankings-grid">
+                    <!-- Baseball top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Rugby Top 10 Section -->
+        <section id="rugby-top10" class="page-section">
+            <div class="section">
+                <h2 data-lang-de="🏉 Top 10 Rugby Legenden" data-lang-en="🏉 Top 10 Rugby Legends">🏉 Top 10 Rugby Legenden</h2>
+                <p data-lang-de="Die besten Rugby Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:" data-lang-en="The greatest rugby players of all time based on our GOAT rating system:">Die besten Rugby Spieler aller Zeiten basierend auf unserem GOAT-Bewertungssystem:</p>
+                <div class="rankings-grid" id="rugby-rankings-grid">
+                    <!-- Rugby top 10 will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="top50" class="section" style="display: none;">
+            <h2>🥇 Top 10 Vorschau - Die Besten aller Zeiten</h2>
+            
+            <div class="player-card">
+                <div class="player-info">
+                    <h3>1. Lionel Messi</h3>
+                    <p><strong>Sport:</strong> Fußball | <strong>Position:</strong> Stürmer</p>
+                    <p><strong>Karriere:</strong> 2004-2023 | <strong>Titel:</strong> 7x Ballon d'Or, WM 2022</p>
+                </div>
+                <div class="player-score">98.7</div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-info">
+                    <h3>2. Michael Jordan</h3>
+                    <p><strong>Sport:</strong> Basketball | <strong>Position:</strong> Shooting Guard</p>
+                    <p><strong>Karriere:</strong> 1984-2003 | <strong>Titel:</strong> 6x NBA Champion, 5x MVP</p>
+                </div>
+                <div class="player-score">97.2</div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-info">
+                    <h3>3. Wayne Gretzky</h3>
+                    <p><strong>Sport:</strong> Eishockey | <strong>Position:</strong> Center</p>
+                    <p><strong>Karriere:</strong> 1978-1999 | <strong>Titel:</strong> 4x Stanley Cup, 9x Hart Trophy</p>
+                </div>
+                <div class="player-score">96.8</div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-info">
+                    <h3>4. Tom Brady</h3>
+                    <p><strong>Sport:</strong> American Football | <strong>Position:</strong> Quarterback</p>
+                    <p><strong>Karriere:</strong> 2000-2022 | <strong>Titel:</strong> 7x Super Bowl, 5x MVP</p>
+                </div>
+                <div class="player-score">95.9</div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-info">
+                    <h3>5. Cristiano Ronaldo</h3>
+                    <p><strong>Sport:</strong> Fußball | <strong>Position:</strong> Stürmer</p>
+                    <p><strong>Karriere:</strong> 2002-Aktiv | <strong>Titel:</strong> 5x Ballon d'Or, 5x Champions League</p>
+                </div>
+                <div class="player-score">95.1</div>
+            </div>
+        </section>
+
+        <section class="section" style="display: none;">
+            <h2>📊 Unterstützte Sportarten</h2>
+            <p>Unser System analysiert Spieler aus folgenden Teamsportarten:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">⚽ Fußball</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏀 Basketball</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏈 American Football</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏒 Eishockey</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏐 Volleyball</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏏 Cricket</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🤾 Handball</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">⚾ Baseball</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏉 Rugby</div>
+                <div style="background-color: #6f00ff; padding: 1rem; border-radius: 5px; text-align: center;">🏎️ Formel 1</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GOAT Sports - Laurent & Dario.K | Projektarbeit HTML</p>
+        <p>Kontakt: <a href="mailto:info@goat-sports.com" style="color: #ffbf00;">info@goat-sports.com</a></p>
+    </footer>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = 'de';
+        
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            
+            // Update all elements with language attributes
+            document.querySelectorAll('[data-lang-de]').forEach(element => {
+                if (lang === 'de') {
+                    element.textContent = element.getAttribute('data-lang-de');
+                } else {
+                    element.textContent = element.getAttribute('data-lang-en');
+                }
+            });
+            
+            // Update document language
+            document.documentElement.lang = lang;
+            
+            // Update page title
+            if (lang === 'de') {
+                document.title = 'GOAT Sports - Der beste Teamsportler aller Zeiten';
+            } else {
+                document.title = 'GOAT Sports - The Greatest Team Sport Athlete of All Time';
+            }
+            
+            // Re-render rankings with new language
+            if (document.getElementById('rankings-grid')) {
+                displayRankings();
+            }
+            
+            // Re-render sport-specific rankings if they're currently visible
+            const currentSection = document.querySelector('.page-section.active');
+            if (currentSection) {
+                const sectionId = currentSection.id;
+                switch(sectionId) {
+                    case 'football-top10':
+                        displaySportRankings('football', 'football-rankings-grid');
+                        break;
+                    case 'basketball-top10':
+                        displaySportRankings('basketball', 'basketball-rankings-grid');
+                        break;
+                    case 'american-football-top10':
+                        displaySportRankings('american-football', 'american-football-rankings-grid');
+                        break;
+                    case 'hockey-top10':
+                        displaySportRankings('hockey', 'hockey-rankings-grid');
+                        break;
+                    case 'formula1-top10':
+                        displaySportRankings('formula1', 'formula1-rankings-grid');
+                        break;
+                    case 'volleyball-top10':
+                        displaySportRankings('volleyball', 'volleyball-rankings-grid');
+                        break;
+                    case 'cricket-top10':
+                        displaySportRankings('cricket', 'cricket-rankings-grid');
+                        break;
+                    case 'handball-top10':
+                        displaySportRankings('handball', 'handball-rankings-grid');
+                        break;
+                    case 'baseball-top10':
+                        displaySportRankings('baseball', 'baseball-rankings-grid');
+                        break;
+                    case 'rugby-top10':
+                        displaySportRankings('rugby', 'rugby-rankings-grid');
+                        break;
+                }
+            }
+        }
+
+        // Top 50 Players Data - Now includes all sports
+        const playersData = [
+            { rank: 1, name: "Lionel Messi", sport: "football", position: "Forward", career: "2004-2023", achievements: "7x Ballon d'Or, World Cup 2022", score: 98.7, country: "Argentina" },
+            { rank: 2, name: "Michael Jordan", sport: "basketball", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion, 5x MVP", score: 97.2, country: "USA" },
+            { rank: 3, name: "Tom Brady", sport: "american-football", position: "Quarterback", career: "2000-2022", achievements: "7x Super Bowl Champion", score: 96.8, country: "USA" },
+            { rank: 4, name: "Wayne Gretzky", sport: "hockey", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup, 9x MVP", score: 95.9, country: "Canada" },
+            { rank: 5, name: "Lewis Hamilton", sport: "formula1", position: "Driver", career: "2007-present", achievements: "7x World Champion", score: 95.1, country: "UK" },
+            { rank: 6, name: "Cristiano Ronaldo", sport: "football", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or, 5x UCL", score: 94.8, country: "Portugal" },
+            { rank: 7, name: "LeBron James", sport: "basketball", position: "Forward", career: "2003-present", achievements: "4x NBA Champion, 4x MVP", score: 94.3, country: "USA" },
+            { rank: 8, name: "Giba", sport: "volleyball", position: "Outside Hitter", career: "1995-2012", achievements: "Olympic Gold 2004, World Champion 2002", score: 93.9, country: "Brazil" },
+            { rank: 9, name: "Magic Johnson", sport: "basketball", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion, 3x MVP", score: 93.5, country: "USA" },
+            { rank: 10, name: "Joe Montana", sport: "american-football", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion", score: 93.2, country: "USA" },
+            { rank: 11, name: "Sachin Tendulkar", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "World Cup 2011, 100 International Centuries", score: 92.8, country: "India" },
+            { rank: 12, name: "Kareem Abdul-Jabbar", sport: "basketball", position: "Center", career: "1969-1989", achievements: "6x NBA Champion, 6x MVP", score: 92.5, country: "USA" },
+            { rank: 13, name: "Babe Ruth", sport: "baseball", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series, 714 Home Runs", score: 92.1, country: "USA" },
+            { rank: 14, name: "Mario Lemieux", sport: "hockey", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup, 3x MVP", score: 91.8, country: "Canada" },
+            { rank: 15, name: "Ayrton Senna", sport: "formula1", position: "Driver", career: "1984-1994", achievements: "3x World Champion", score: 91.5, country: "Brazil" },
+            { rank: 16, name: "Jonah Lomu", sport: "rugby", position: "Winger", career: "1994-2002", achievements: "2x World Cup Final, 63 Tries", score: 91.2, country: "New Zealand" },
+            { rank: 17, name: "Jerry Rice", sport: "american-football", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion", score: 90.9, country: "USA" },
+            { rank: 18, name: "Zinedine Zidane", sport: "football", position: "Attacking Midfielder", career: "1989-2006", achievements: "World Cup 1998, Ballon d'Or", score: 90.6, country: "France" },
+            { rank: 19, name: "Tim Duncan", sport: "basketball", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion, 3x MVP", score: 90.3, country: "USA" },
+            { rank: 20, name: "Nikola Karabatic", sport: "handball", position: "Playmaker", career: "2002-2022", achievements: "3x Olympic Gold, 4x World Champion", score: 90.0, country: "France" },
+            { rank: 21, name: "Michael Schumacher", sport: "formula1", position: "Driver", career: "1991-2012", achievements: "7x World Champion", score: 89.7, country: "Germany" },
+            { rank: 22, name: "Shaquille O'Neal", sport: "basketball", position: "Center", career: "1992-2011", achievements: "4x NBA Champion, 1x MVP", score: 89.4, country: "USA" },
+            { rank: 23, name: "Karch Kiraly", sport: "volleyball", position: "Outside Hitter", career: "1981-1996", achievements: "3x Olympic Gold, Beach Volleyball Champion", score: 89.1, country: "USA" },
+            { rank: 24, name: "Ronaldinho", sport: "football", position: "Attacking Midfielder", career: "1998-2015", achievements: "Ballon d'Or 2005, World Cup 2002", score: 88.8, country: "Brazil" },
+            { rank: 25, name: "Kobe Bryant", sport: "basketball", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion, 1x MVP", score: 88.5, country: "USA" },
+            { rank: 26, name: "Willie Mays", sport: "baseball", position: "Center Field", career: "1951-1973", achievements: "2x MVP, 660 Home Runs", score: 88.2, country: "USA" },
+            { rank: 27, name: "Maurice Richard", sport: "hockey", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup", score: 87.9, country: "Canada" },
+            { rank: 28, name: "Dan Carter", sport: "rugby", position: "Fly-half", career: "2003-2015", achievements: "2x World Cup, All Blacks Legend", score: 87.6, country: "New Zealand" },
+            { rank: 29, name: "Pelé", sport: "football", position: "Forward", career: "1956-1977", achievements: "3x World Cup", score: 87.3, country: "Brazil" },
+            { rank: 30, name: "Bill Russell", sport: "basketball", position: "Center", career: "1956-1969", achievements: "11x NBA Champion", score: 87.0, country: "USA" },
+            { rank: 31, name: "Magnus Wislander", sport: "handball", position: "Playmaker", career: "1985-2001", achievements: "3x World Champion, Olympic Silver", score: 86.7, country: "Sweden" },
+            { rank: 32, name: "Bobby Orr", sport: "hockey", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup, 3x MVP", score: 86.4, country: "Canada" },
+            { rank: 33, name: "Viv Richards", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "2x World Cup, Fastest Century", score: 86.1, country: "West Indies" },
+            { rank: 34, name: "Johan Cruyff", sport: "football", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or", score: 85.8, country: "Netherlands" },
+            { rank: 35, name: "Wilt Chamberlain", sport: "basketball", position: "Center", career: "1959-1973", achievements: "2x NBA Champion, 4x MVP", score: 85.5, country: "USA" },
+            { rank: 36, name: "Sergio Llull", sport: "volleyball", position: "Setter", career: "2004-2020", achievements: "Olympic Bronze, European Champion", score: 85.2, country: "Spain" },
+            { rank: 37, name: "Mark Messier", sport: "hockey", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup, 2x MVP", score: 84.9, country: "Canada" },
+            { rank: 38, name: "Alain Prost", sport: "formula1", position: "Driver", career: "1980-1993", achievements: "4x World Champion", score: 84.6, country: "France" },
+            { rank: 39, name: "Hank Aaron", sport: "baseball", position: "Right Field", career: "1954-1976", achievements: "755 Home Runs, MVP 1957", score: 84.3, country: "USA" },
+            { rank: 40, name: "Hakeem Olajuwon", sport: "basketball", position: "Center", career: "1984-2002", achievements: "2x NBA Champion, 1x MVP", score: 84.0, country: "Nigeria/USA" },
+            { rank: 41, name: "Thierry Omeyer", sport: "handball", position: "Goalkeeper", career: "1997-2017", achievements: "2x Olympic Gold, 3x World Champion", score: 83.7, country: "France" },
+            { rank: 42, name: "Richie McCaw", sport: "rugby", position: "Flanker", career: "2001-2015", achievements: "2x World Cup Captain, 148 Caps", score: 83.4, country: "New Zealand" },
+            { rank: 43, name: "Niki Lauda", sport: "formula1", position: "Driver", career: "1971-1985", achievements: "3x World Champion", score: 83.1, country: "Austria" },
+            { rank: 44, name: "Ted Williams", sport: "baseball", position: "Left Field", career: "1939-1960", achievements: ".406 Average, 2x MVP", score: 82.8, country: "USA" },
+            { rank: 45, name: "Oscar Robertson", sport: "basketball", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion, 1x MVP", score: 82.5, country: "USA" },
+            { rank: 46, name: "Brian Lara", sport: "cricket", position: "Batsman", career: "1990-2007", achievements: "400* Test Score, World Record", score: 82.2, country: "West Indies" },
+            { rank: 47, name: "Jaromir Jagr", sport: "hockey", position: "Right Wing", career: "1990-2018", achievements: "2x Stanley Cup, 1x MVP", score: 81.9, country: "Czech Republic" },
+            { rank: 48, name: "Bernardo Rezende", sport: "volleyball", position: "Coach/Former Player", career: "1975-1987", achievements: "2x Olympic Gold as Coach", score: 81.6, country: "Brazil" },
+            { rank: 49, name: "Garrincha", sport: "football", position: "Right Winger", career: "1953-1972", achievements: "2x World Cup", score: 81.3, country: "Brazil" },
+            { rank: 50, name: "Lou Gehrig", sport: "baseball", position: "First Base", career: "1923-1939", achievements: "6x World Series, Iron Horse", score: 81.0, country: "USA" }
+        ];
+
+        // Navigation functionality with hamburger menu
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation - remove active from all menu links
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Set active state for the correct menu item
+            const targetLink = document.querySelector(`[href="#${sectionId}"]`);
+            if (targetLink) targetLink.classList.add('active');
+            
+            // Close menu on mobile after navigation
+            toggleMenu(false);
+        }
+
+        // Toggle hamburger menu
+        function toggleMenu(force = null) {
+            const slideMenu = document.getElementById('slideMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const isOpen = slideMenu.classList.contains('open');
+            
+            if (force === false || (force === null && isOpen)) {
+                slideMenu.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            } else if (force === true || (force === null && !isOpen)) {
+                slideMenu.classList.add('open');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Filter rankings by sport
+        function filterBySport(sport) {
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter players
+            let filteredPlayers = sport === 'all' ? playersData : playersData.filter(player => player.sport === sport);
+            displayRankings(filteredPlayers);
+        }
+
+        // Display rankings
+        function displayRankings(players = playersData) {
+            const grid = document.getElementById('rankings-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            players.forEach(player => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.onclick = () => togglePlayerDetails(player.rank);
+                
+                const sportEmojis = {
+                    'football': '⚽',
+                    'basketball': '🏀',
+                    'american-football': '🏈',
+                    'hockey': '🏒',
+                    'formula1': '🏎️',
+                    'volleyball': '🏐',
+                    'cricket': '🏏',
+                    'handball': '🤾',
+                    'baseball': '⚾',
+                    'rugby': '🏉'
+                };
+                
+                const sportName = getSportName(player.sport);
+                
+                playerCard.innerHTML = `
+                    <div class="player-info">
+                        <h3>${player.rank}. ${player.name} ${sportEmojis[player.sport] || '🏆'}</h3>
+                        <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                    </div>
+                    <div class="player-score">${player.score}</div>
+                    <div id="details-${player.rank}" class="player-details">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${(Math.random() * 10 + 5).toFixed(1)}</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Offensive' : 'Offensive'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${(Math.random() * 10 + 5).toFixed(1)}</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Defensive' : 'Defensive'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${(Math.random() * 10 + 7).toFixed(1)}</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Erfolge' : 'Achievements'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${(Math.random() * 5 + 7).toFixed(1)}</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Langlebigkeit' : 'Longevity'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(playerCard);
+            });
+        }
+
+        // Get sport name in current language
+        function getSportName(sport) {
+            const sportNames = {
+                'football': currentLanguage === 'de' ? 'Fußball' : 'Football',
+                'basketball': 'Basketball',
+                'american-football': 'American Football',
+                'hockey': currentLanguage === 'de' ? 'Eishockey' : 'Ice Hockey',
+                'formula1': 'Formula 1',
+                'volleyball': 'Volleyball',
+                'cricket': 'Cricket',
+                'handball': 'Handball',
+                'baseball': 'Baseball',
+                'rugby': 'Rugby'
+            };
+            return sportNames[sport] || sport;
+        }
+
+        // Toggle player details
+        function togglePlayerDetails(rank) {
+            const details = document.getElementById(`details-${rank}`);
+            if (details) details.classList.toggle('show');
+        }
+
+        // Display sport-specific top 10 rankings
+        function displaySportRankings(sport, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const sportPlayers = playersData.filter(player => player.sport === sport).slice(0, 10);
+            container.innerHTML = '';
+            
+            sportPlayers.forEach((player, index) => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.onclick = () => togglePlayerDetails(`${sport}-${index + 1}`);
+                
+                const sportEmojis = {
+                    'football': '⚽',
+                    'basketball': '🏀',
+                    'american-football': '🏈',
+                    'hockey': '🏒',
+                    'formula1': '🏎️',
+                    'volleyball': '🏐',
+                    'cricket': '🏏',
+                    'handball': '🤾',
+                    'baseball': '⚾',
+                    'rugby': '🏉'
+                };
+                
+                playerCard.innerHTML = `
+                    <div class="player-info">
+                        <h3>${sportEmojis[sport]} #${index + 1} ${player.name}</h3>
+                        <p><strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                    </div>
+                    <div class="player-score">${player.score}</div>
+                    <div class="player-details" id="details-${sport}-${index + 1}">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${player.score}</div>
+                                <div class="stat-label">GOAT Score</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">#${player.rank}</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Gesamt Rang' : 'Overall Rank'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(playerCard);
+            });
+        }
+
+        function calculateGOATScore() {
+            const offensive = parseFloat(document.getElementById('offensive').value) || 0;
+            const defensive = parseFloat(document.getElementById('defensive').value) || 0;
+            const achievements = parseFloat(document.getElementById('achievements').value) || 0;
+            const longevity = parseFloat(document.getElementById('longevity').value) || 0;
+            const impact = parseFloat(document.getElementById('impact').value) || 0;
+
+            // GOAT Score Formula
+            const goatScore = (offensive * 0.25) + (defensive * 0.20) + (achievements * 0.25) + (longevity * 0.15) + (impact * 0.15);
+            
+            // Convert to 0-100 scale and normalize
+            const normalizedScore = Math.max(0, Math.min(100, (goatScore + 5) * 10));
+            
+            let ranking = currentLanguage === 'de' ? "Nicht eingestuft" : "Unranked";
+            if (normalizedScore >= 95) ranking = currentLanguage === 'de' ? "GOAT Level (Top 5)" : "GOAT Level (Top 5)";
+            else if (normalizedScore >= 90) ranking = currentLanguage === 'de' ? "Legende (Top 10)" : "Legend (Top 10)";
+            else if (normalizedScore >= 85) ranking = currentLanguage === 'de' ? "All-Time Great (Top 25)" : "All-Time Great (Top 25)";
+            else if (normalizedScore >= 80) ranking = currentLanguage === 'de' ? "Hall of Fame (Top 50)" : "Hall of Fame (Top 50)";
+            else if (normalizedScore >= 70) ranking = currentLanguage === 'de' ? "Elite Spieler" : "Elite Player";
+            else if (normalizedScore >= 60) ranking = currentLanguage === 'de' ? "Sehr guter Spieler" : "Very Good Player";
+            else if (normalizedScore >= 50) ranking = currentLanguage === 'de' ? "Guter Spieler" : "Good Player";
+            else ranking = currentLanguage === 'de' ? "Durchschnittlicher Spieler" : "Average Player";
+
+            const scoreText = currentLanguage === 'de' ? "GOAT Score:" : "GOAT Score:";
+            const rankingText = currentLanguage === 'de' ? "Einschätzung:" : "Rating:";
+            
+            document.getElementById('score-display').innerHTML = `<strong>${scoreText} ${normalizedScore.toFixed(1)}/100</strong>`;
+            document.getElementById('ranking-display').innerHTML = `<strong>${rankingText} ${ranking}</strong>`;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation - handle both main nav and dropdown links
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    
+                    // Load sport-specific rankings when navigating to them
+                    switch(targetId) {
+                        case 'football-top10':
+                            displaySportRankings('football', 'football-rankings-grid');
+                            break;
+                        case 'basketball-top10':
+                            displaySportRankings('basketball', 'basketball-rankings-grid');
+                            break;
+                        case 'american-football-top10':
+                            displaySportRankings('american-football', 'american-football-rankings-grid');
+                            break;
+                        case 'hockey-top10':
+                            displaySportRankings('hockey', 'hockey-rankings-grid');
+                            break;
+                        case 'formula1-top10':
+                            displaySportRankings('formula1', 'formula1-rankings-grid');
+                            break;
+                        case 'volleyball-top10':
+                            displaySportRankings('volleyball', 'volleyball-rankings-grid');
+                            break;
+                        case 'cricket-top10':
+                            displaySportRankings('cricket', 'cricket-rankings-grid');
+                            break;
+                        case 'handball-top10':
+                            displaySportRankings('handball', 'handball-rankings-grid');
+                            break;
+                        case 'baseball-top10':
+                            displaySportRankings('baseball', 'baseball-rankings-grid');
+                            break;
+                        case 'rugby-top10':
+                            displaySportRankings('rugby', 'rugby-rankings-grid');
+                            break;
+                    }
+                });
+            });
+
+            // Initialize rankings if on rankings page
+            if (document.getElementById('rankings-grid')) {
+                displayRankings();
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const slideMenu = document.getElementById('slideMenu');
+                const hamburger = document.querySelector('.hamburger-menu');
+                
+                if (!slideMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    toggleMenu(false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
