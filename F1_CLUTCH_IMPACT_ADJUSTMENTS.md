@@ -30,12 +30,18 @@ In Formula 1, car performance often masks true driver ability. Our clutch impact
 - **Inferior Maserati Wins**: Beat superior Ferraris through strategic brilliance
 - **Era Mastery**: Dominated across different F1 technological eras
 
+### **Fernando Alonso**: 9/10 → **Score: 85.3** (NEW ENTRY)
+**Clutch Impact Evidence:**
+- **2012 Ferrari Season**: Nearly won championship in clearly inferior car to Red Bull
+- **McLaren Years (2015-2018)**: Extracted podiums and points from backmarker cars
+- **Hungary 2009**: Rain masterclass, won in inferior Renault
+- **Ferrari Years**: Consistently outperformed car's potential, lost championships due to strategy/reliability
+
 ### **Michael Schumacher**: 9/10 → **Score: 87.2 → 88.7**
 **Clutch Impact Evidence:**
 - **Spain 1996 Rain**: Masterclass performance showing wet weather skill
-- **1995-96 Ferrari**: Carried mediocre car to wins before Ferrari dominance
+ **1996 Ferrari**: Carried a non-dominant car to three wins and set the foundation for later dominance
 - **Strategic Genius**: Made average cars championship contenders
-
 ### **Alain Prost**: 8/10 → **Score: 84.1 → 85.6**
 **Clutch Impact Evidence:**
 - **"The Professor"**: Maximized every car's potential regardless of speed

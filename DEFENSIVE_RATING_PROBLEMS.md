@@ -65,19 +65,7 @@ Looking at the current system, attacking players like Messi, Ronaldo, and other 
 
 ## ✅ **How to Fix Defensive Ratings:**
 
-### **Position Multipliers for Defense:**
-```
-Goalkeepers: N/A (separate category)
-Center-Backs: × 1.0 (full weight)
-Fullbacks: × 0.9
-Defensive Midfielders: × 0.95
-Central Midfielders: × 0.8
-Attacking Midfielders: × 0.6
-Wingers: × 0.5
-Forwards/Strikers: × 0.4
-```
-
-### **Corrected Defensive Scores:**
+### **Position Multipliers for Defense:**### **Corrected Defensive Scores:**
 
 | Player | Position | Corrected Defensive | Explanation |
 |--------|----------|-------------------|-------------|

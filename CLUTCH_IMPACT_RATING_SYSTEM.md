@@ -69,12 +69,9 @@
 
 ### **10/10 - Legendary Clutch:**
 - **Wayne Gretzky**: 4 Stanley Cups, playoff point records
-- **Mario Lemieux**: Comeback from cancer to win Stanley Cup
-
-### **9/10 - Elite Clutch:**
-- **Mark Messier**: "The Guarantee" 1994, captain of 6 Stanley Cups
+- **Mario Lemieux**: Returned from cancer to win scoring titles and MVP; two Stanley Cups (1991–92) pre-diagnosis### **9/10 - Elite Clutch:**
+- **Mark Messier**: "The Guarantee" 1994; 6 Stanley Cups—captain for two (1990 Oilers, 1994 Rangers)
 - **Maurice Richard**: "Rocket" - first 50-goal scorer, 8 Stanley Cups
-
 ### **8/10 - Very Clutch:**
 - **Bobby Orr**: "The Goal" 1970 Stanley Cup winner
 - **Jaromir Jagr**: 1991-92 Stanley Cups as young star
@@ -109,6 +106,7 @@
 ### **9/10 - Elite Clutch:**
 - **Juan Manuel Fangio**: 5 titles with 4 teams, legendary drives in inferior Maserati vs. superior Ferraris
 - **Michael Schumacher**: Spain 1996 rain masterclass, 1995-96 carrying mediocre Ferrari to wins, made average cars championship contenders
+- **Fernando Alonso**: 2012 Ferrari season (nearly won title in inferior car), McLaren years extracting podiums from backmarkers, Hungary 2009 rain masterclass
 
 ### **8/10 - Very Clutch:**
 - **Alain Prost**: "The Professor" - maximized every car's potential, strategic genius who won with inferior machinery
