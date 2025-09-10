@@ -543,127 +543,186 @@
             }
         }
 
-        // Top 50 Players Data - Exactly 50 athletes with STATISTICALLY ACCURATE rankings
+        // Clean sport-specific databases - exactly 10 players per sport
+        const sportDatabases = {
+            football: [
+                { name: "Lionel Messi", nickname: "La Pulga (The Flea)", position: "Forward", career: "2004-present", achievements: "8x Ballon d'Or (2009, 2010, 2011, 2012, 2015, 2019, 2021, 2023), FIFA World Cup Winner (2022), Copa América Winner (2021), 4x UEFA Champions League, 10x La Liga, 1x Ligue 1, 3x FIFA Club World Cup, Olympic Gold Medal (2008)", score: 98.1, country: "Argentina", offensive: 10.0, defensive: 4.2, achievementsRating: 10.0, longevity: 9.8, clutchImpact: 10.0 },
+                { name: "Cristiano Ronaldo", nickname: "CR7", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or (2008, 2013, 2014, 2016, 2017), 5x UEFA Champions League, 3x Premier League, 2x La Liga, 2x Serie A, UEFA European Championship (2016), UEFA Nations League (2019), FIFA Club World Cup (4x)", score: 94.2, country: "Portugal", offensive: 9.8, defensive: 5.1, achievementsRating: 9.8, longevity: 10.0, clutchImpact: 10.0 },
+                { name: "Zinedine Zidane", nickname: "Zizou", position: "Attacking Midfielder", career: "1989-2006", achievements: "1x FIFA World Cup (1998), 1x UEFA European Championship (2000), 1x UEFA Champions League (2002), 1x Ballon d'Or (1998), FIFA World Player of the Year (1998, 2000, 2003), 3x UEFA Champions League as coach", score: 88.4, country: "France", offensive: 9.5, defensive: 6.2, achievementsRating: 9.2, longevity: 8.2, clutchImpact: 9.0 },
+                { name: "Pelé", nickname: "The King", position: "Forward", career: "1956-1977", achievements: "3x FIFA World Cup (1958, 1962, 1970), 2x Copa Libertadores (1962, 1963), 6x Brasileirão, 1,283 Career Goals, FIFA Player of the Century, Order of Merit (1995)", score: 86.8, country: "Brazil", offensive: 9.8, defensive: 4.0, achievementsRating: 9.8, longevity: 9.5, clutchImpact: 8.0 },
+                { name: "Johan Cruyff", nickname: "El Salvador", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or (1971, 1973, 1974), 1x European Cup (1971, 1972, 1973), Father of Total Football, 9x Eredivisie, 1x La Liga, FIFA World Cup Runner-up (1974)", score: 84.9, country: "Netherlands", offensive: 9.6, defensive: 5.5, achievementsRating: 8.8, longevity: 8.8, clutchImpact: 6.0 },
+                { name: "Ronaldinho", nickname: "Ronaldinho Gaúcho", position: "Attacking Midfielder", career: "1998-2015", achievements: "Ballon d'Or 2005, World Cup 2002", score: 82.9, country: "Brazil", offensive: 9.8, defensive: 4.8, achievementsRating: 8.2, longevity: 8.0, clutchImpact: 8.0 },
+                { name: "Diego Maradona", nickname: "El Pibe de Oro", position: "Attacking Midfielder", career: "1976-1997", achievements: "World Cup 1986, Golden Ball", score: 80.9, country: "Argentina", offensive: 9.9, defensive: 4.5, achievementsRating: 8.5, longevity: 8.5, clutchImpact: 9.0 },
+                { name: "Franz Beckenbauer", nickname: "Der Kaiser", position: "Sweeper", career: "1964-1983", achievements: "World Cup 1974, 2x Ballon d'Or", score: 80.6, country: "Germany", offensive: 7.5, defensive: 9.8, achievementsRating: 9.0, longevity: 8.8, clutchImpact: 7.5 },
+                { name: "Ronaldo Nazário", nickname: "O Fenômeno", position: "Striker", career: "1993-2011", achievements: "2x World Cup, 2x Ballon d'Or", score: 80.3, country: "Brazil", offensive: 9.9, defensive: 3.8, achievementsRating: 8.8, longevity: 7.5, clutchImpact: 8.5 },
+                { name: "Alfredo Di Stéfano", nickname: "La Saeta Rubia", position: "Forward", career: "1945-1966", achievements: "5x European Cup, 2x Ballon d'Or", score: 80.0, country: "Argentina/Spain", offensive: 9.2, defensive: 6.8, achievementsRating: 9.2, longevity: 9.0, clutchImpact: 7.8 }
+            ],
+            basketball: [
+                { name: "Michael Jordan", nickname: "His Airness", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion (1991, 1992, 1993, 1996, 1997, 1998), 6x NBA Finals MVP, 5x NBA MVP (1988, 1991, 1992, 1996, 1998), 14x NBA All-Star, 10x NBA All-Star Game MVP, NBA Defensive Player of the Year (1988), Olympic Gold Medals (1984, 1992)", score: 97.2, country: "USA", offensive: 10.0, defensive: 8.8, achievementsRating: 10.0, longevity: 8.5, clutchImpact: 10.0 },
+                { name: "LeBron James", nickname: "The King", position: "Forward", career: "2003-present", achievements: "4x NBA Champion (2012, 2013, 2016, 2020), 4x NBA Finals MVP, 4x NBA MVP (2009, 2010, 2012, 2013), 19x NBA All-Star, 3x NBA All-Star Game MVP, 2x Olympic Gold Medals (2008, 2012), NBA Rookie of the Year (2004)", score: 94.8, country: "USA", offensive: 9.5, defensive: 8.7, achievementsRating: 9.2, longevity: 10.0, clutchImpact: 9.0 },
+                { name: "Tim Duncan", nickname: "The Big Fundamental", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion (1999, 2003, 2005, 2007, 2014), 3x NBA Finals MVP, 2x NBA MVP (2002, 2003), 15x NBA All-Star, 15x All-NBA Team, 15x NBA All-Defensive Team, NBA Rookie of the Year (1998)", score: 92.1, country: "USA", offensive: 8.8, defensive: 9.8, achievementsRating: 9.5, longevity: 9.2, clutchImpact: 9.0 },
+                { name: "Bill Russell", nickname: "Mr. Clutch", position: "Center", career: "1956-1969", achievements: "11x NBA Champion (1957, 1959-1966, 1968, 1969), 5x NBA MVP (1958, 1961-1963, 1965), 12x NBA All-Star, 3x NBA All-Star Game MVP, Olympic Gold Medal (1956), Presidential Medal of Freedom (2011)", score: 91.5, country: "USA", offensive: 7.2, defensive: 10.0, achievementsRating: 10.0, longevity: 8.5, clutchImpact: 8.5 },
+                { name: "Magic Johnson", nickname: "Magic", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion (1980, 1982, 1985, 1987, 1988), 3x NBA Finals MVP, 3x NBA MVP (1987, 1989, 1990), 12x NBA All-Star, 2x NBA All-Star Game MVP, Olympic Gold Medal (1992)", score: 91.2, country: "USA", offensive: 9.8, defensive: 6.5, achievementsRating: 9.5, longevity: 7.8, clutchImpact: 8.0 },
+                { name: "Kareem Abdul-Jabbar", nickname: "The Captain", position: "Center", career: "1969-1989", achievements: "6x NBA Champion (1971, 1980, 1982, 1985, 1987, 1988), 2x NBA Finals MVP, 6x NBA MVP (1971, 1972, 1974, 1976, 1977, 1980), 19x NBA All-Star, 15x All-NBA Team, 11x NBA All-Defensive Team", score: 90.1, country: "USA", offensive: 9.0, defensive: 8.5, achievementsRating: 9.5, longevity: 10.0, clutchImpact: 7.0 },
+                { name: "Shaquille O'Neal", nickname: "Shaq", position: "Center", career: "1992-2011", achievements: "4x NBA Champion (2000, 2001, 2002, 2006), 3x NBA Finals MVP, 1x NBA MVP (2000), 15x NBA All-Star, 3x NBA All-Star Game MVP, 8x All-NBA First Team, 3x All-Defensive Second Team", score: 88.2, country: "USA", offensive: 9.8, defensive: 8.2, achievementsRating: 8.8, longevity: 9.0, clutchImpact: 7.0 },
+                { name: "Kobe Bryant", nickname: "Black Mamba", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion (2000, 2001, 2002, 2009, 2010), 2x NBA Finals MVP, 1x NBA MVP (2008), 18x NBA All-Star, 4x NBA All-Star Game MVP, 11x All-NBA First Team, 9x All-Defensive First Team", score: 88.0, country: "USA", offensive: 9.5, defensive: 8.1, achievementsRating: 9.0, longevity: 9.5, clutchImpact: 10.0 },
+                { name: "Oscar Robertson", nickname: "The Big O", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion (1971), 1x NBA MVP (1964), 12x NBA All-Star, 3x NBA All-Star Game MVP, First Triple-Double Season (1961-62), 9x All-NBA First Team, 6x NBA Assists Leader", score: 86.4, country: "USA", offensive: 9.2, defensive: 6.8, achievementsRating: 8.5, longevity: 8.2, clutchImpact: 7.5 },
+                { name: "Hakeem Olajuwon", nickname: "The Dream", position: "Center", career: "1984-2002", achievements: "2x NBA Champion, 1x MVP, DPOY", score: 83.2, country: "Nigeria/USA", offensive: 8.5, defensive: 9.8, achievementsRating: 8.2, longevity: 8.8, clutchImpact: 8.0 }
+            ],
+            'american-football': [
+                { name: "Tom Brady", nickname: "TB12", position: "Quarterback", career: "2000-2023", achievements: "7x Super Bowl Champion (2001, 2003, 2004, 2014, 2016, 2018, 2020), 5x Super Bowl MVP, 3x NFL MVP (2007, 2010, 2017), 15x Pro Bowl, 6x All-Pro First Team, NFL Comeback Player of the Year (2009), 2x AP Male Athlete of the Year", score: 95.8, country: "USA", offensive: 9.8, defensive: 6.5, achievementsRating: 10.0, longevity: 10.0, clutchImpact: 10.0 },
+                { name: "Joe Montana", nickname: "Joe Cool", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion (1981, 1984, 1988, 1989), 3x Super Bowl MVP, 2x NFL MVP (1989, 1990), 8x Pro Bowl, 3x All-Pro First Team, Associated Press Male Athlete of the Year (1989, 1990)", score: 89.7, country: "USA", offensive: 9.5, defensive: 6.2, achievementsRating: 9.8, longevity: 8.8, clutchImpact: 9.5 },
+                { name: "Johnny Unitas", nickname: "Johnny U", position: "Quarterback", career: "1956-1973", achievements: "3x NFL Champion (1958, 1959, 1970), 3x NFL MVP (1959, 1964, 1967), 10x Pro Bowl, 5x All-Pro First Team, 47 Consecutive Games with TD Pass Record, Pro Football Hall of Fame (1979)", score: 87.2, country: "USA", offensive: 9.2, defensive: 6.0, achievementsRating: 9.0, longevity: 8.5, clutchImpact: 8.8 },
+                { name: "Jim Brown", nickname: "The Brown Bomber", position: "Running Back", career: "1957-1965", achievements: "1x NFL Champion (1964), 3x NFL MVP (1957, 1958, 1965), 9x Pro Bowl, 8x All-Pro First Team, 8x NFL Rushing Leader, Pro Football Hall of Fame (1971), Lacrosse Hall of Fame", score: 86.9, country: "USA", offensive: 10.0, defensive: 5.5, achievementsRating: 8.8, longevity: 7.5, clutchImpact: 8.2 },
+                { name: "Jerry Rice", nickname: "The GOAT", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion (1988, 1989, 1994), 1x Super Bowl MVP (1988), 13x Pro Bowl, 10x All-Pro First Team, 6x NFL Receptions Leader, 6x NFL Receiving Yards Leader, Pro Football Hall of Fame (2010)", score: 85.1, country: "USA", offensive: 9.8, defensive: 4.2, achievementsRating: 9.2, longevity: 9.5, clutchImpact: 8.0 },
+                { name: "Lawrence Taylor", nickname: "LT", position: "Linebacker", career: "1981-1993", achievements: "2x Super Bowl Champion (1986, 1990), 3x NFL Defensive Player of the Year (1981, 1982, 1986), 1x NFL MVP (1986), 10x Pro Bowl, 8x All-Pro First Team, Pro Football Hall of Fame (1999)", score: 84.8, country: "USA", offensive: 6.0, defensive: 10.0, achievementsRating: 9.0, longevity: 8.5, clutchImpact: 8.8 },
+                { name: "Peyton Manning", nickname: "The Sheriff", position: "Quarterback", career: "1998-2015", achievements: "2x Super Bowl Champion (2006, 2015), 1x Super Bowl MVP (2006), 5x NFL MVP (1999, 2003, 2004, 2008, 2013), 14x Pro Bowl, 7x All-Pro First Team, Pro Football Hall of Fame (2021)", score: 83.9, country: "USA", offensive: 9.5, defensive: 6.0, achievementsRating: 9.2, longevity: 9.0, clutchImpact: 8.0 },
+                { name: "Aaron Donald", nickname: "AD99", position: "Defensive Tackle", career: "2014-present", achievements: "Super Bowl Champion 2022, 3x NFL Defensive Player of the Year (2017, 2018, 2020), 8x Pro Bowl, 7x All-Pro First Team, NFL Defensive Rookie of the Year (2014)", score: 82.4, country: "USA", offensive: 5.0, defensive: 10.0, achievementsRating: 8.0, longevity: 7.8, clutchImpact: 8.5 },
+                { name: "Randy Moss", nickname: "The Freak", position: "Wide Receiver", career: "1998-2012", achievements: "156 Career TDs, 6x Pro Bowl, 4x All-Pro First Team, NFL Offensive Rookie of the Year (1998), Pro Football Hall of Fame (2018)", score: 81.7, country: "USA", offensive: 9.8, defensive: 3.5, achievementsRating: 8.5, longevity: 8.2, clutchImpact: 7.8 },
+                { name: "Joe Greene", nickname: "Mean Joe Greene", position: "Defensive Tackle", career: "1969-1981", achievements: "4x Super Bowl Champion (1974, 1975, 1978, 1979), 2x NFL Defensive Player of the Year (1972, 1974), 10x Pro Bowl, 5x All-Pro First Team, Pro Football Hall of Fame (1987)", score: 81.2, country: "USA", offensive: 4.5, defensive: 10.0, achievementsRating: 8.8, longevity: 8.8, clutchImpact: 8.0 }
+            ],
+            hockey: [
+                { name: "Wayne Gretzky", nickname: "The Great One", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup Champion (1984, 1985, 1987, 1988), 9x Hart Memorial Trophy (NHL MVP), 2x Conn Smythe Trophy (Playoff MVP), 10x Art Ross Trophy (scoring leader), 5x Lady Byng Trophy, 894 career goals, 1,963 assists, 2,857 career points, Hockey Hall of Fame (1999)", score: 97.8, country: "Canada", offensive: 10.0, defensive: 7.5, achievementsRating: 10.0, longevity: 10.0, clutchImpact: 9.8 },
+                { name: "Gordie Howe", nickname: "Mr. Hockey", position: "Right Wing", career: "1946-1980", achievements: "4x Stanley Cup Champion (1950, 1952, 1954, 1955), 6x Hart Memorial Trophy, 6x Art Ross Trophy, 801 career goals, 1,049 assists, 1,850 career points, played professional hockey across 5 decades, Hockey Hall of Fame (1972)", score: 89.3, country: "Canada", offensive: 9.5, defensive: 8.8, achievementsRating: 9.2, longevity: 10.0, clutchImpact: 8.8 },
+                { name: "Mario Lemieux", nickname: "Super Mario", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup Champion (1991, 1992), 3x Hart Memorial Trophy, 2x Conn Smythe Trophy, 6x Art Ross Trophy, 4x scoring champion, 690 career goals, 1,033 assists, Hockey Hall of Fame (1997), Calder Trophy (1985)", score: 87.6, country: "Canada", offensive: 10.0, defensive: 7.0, achievementsRating: 9.5, longevity: 8.0, clutchImpact: 9.8 },
+                { name: "Maurice Richard", nickname: "Rocket Richard", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup Champion (1944, 1946, 1953, 1956, 1957, 1958, 1959, 1960), Hart Memorial Trophy (1947), first player to score 50 goals in 50 games, 544 career goals, Hockey Hall of Fame (1961)", score: 85.4, country: "Canada", offensive: 9.8, defensive: 7.2, achievementsRating: 9.0, longevity: 8.5, clutchImpact: 9.2 },
+                { name: "Bobby Orr", nickname: "Number 4", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup Champion (1970, 1972), 3x Hart Memorial Trophy, 2x Conn Smythe Trophy, 8x James Norris Memorial Trophy (best defenseman), Calder Memorial Trophy (1967), 270 career goals as defenseman, revolutionized defenseman position, Hockey Hall of Fame (1979)", score: 84.7, country: "Canada", offensive: 9.0, defensive: 10.0, achievementsRating: 9.0, longevity: 7.5, clutchImpact: 9.5 },
+                { name: "Mark Messier", nickname: "The Captain", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup Champion (1984, 1985, 1987, 1988, 1990, 1994), 2x Hart Memorial Trophy, Conn Smythe Trophy (1984), 694 career goals, 1,193 assists, only player to captain two different teams to Stanley Cup victory, Hockey Hall of Fame (2007)", score: 83.8, country: "Canada", offensive: 9.2, defensive: 8.5, achievementsRating: 9.0, longevity: 9.5, clutchImpact: 9.8 },
+                { name: "Patrick Roy", nickname: "Saint Patrick", position: "Goaltender", career: "1984-2003", achievements: "4x Stanley Cup Champion (1986, 1993, 1996, 2001), 3x Conn Smythe Trophy, 3x Vezina Trophy (best goaltender), 551 career wins, 2.54 career GAA, Hockey Hall of Fame (2006)", score: 82.9, country: "Canada", offensive: 5.0, defensive: 10.0, achievementsRating: 9.0, longevity: 9.0, clutchImpact: 9.5 },
+                { name: "Jean Béliveau", nickname: "Le Gros Bill", position: "Center", career: "1950-1971", achievements: "10x Stanley Cup Champion (1956, 1957, 1958, 1959, 1960, 1965, 1966, 1968, 1969, 1971), 2x Hart Memorial Trophy, Conn Smythe Trophy (1965), 507 career goals, 712 assists, Hockey Hall of Fame (1972)", score: 82.1, country: "Canada", offensive: 9.0, defensive: 8.0, achievementsRating: 9.5, longevity: 9.0, clutchImpact: 8.8 },
+                { name: "Sidney Crosby", nickname: "Sid the Kid", position: "Center", career: "2005-present", achievements: "3x Stanley Cup Champion (2009, 2016, 2017), 2x Conn Smythe Trophy, 3x Hart Memorial Trophy, 2x Art Ross Trophy, 2x Olympic Gold Medal (2010, 2014), Hart Memorial Trophy (2007, 2013, 2014), Hockey Hall of Fame eligible", score: 81.5, country: "Canada", offensive: 9.5, defensive: 8.2, achievementsRating: 8.8, longevity: 8.8, clutchImpact: 9.5 },
+                { name: "Bobby Hull", nickname: "The Golden Jet", position: "Left Wing", career: "1957-1980", achievements: "Stanley Cup Champion (1961), 2x Hart Memorial Trophy, 3x Art Ross Trophy, 7x Lady Byng Trophy, first NHL player to exceed 50 goals in a season, 610 career goals, Hockey Hall of Fame (1983)", score: 80.8, country: "Canada", offensive: 9.8, defensive: 6.8, achievementsRating: 8.2, longevity: 9.0, clutchImpact: 8.0 }
+            ],
+            formula1: [
+                { name: "Fernando Alonso", nickname: "El Nano", position: "Driver", career: "2001-present", achievements: "2x Formula 1 World Champion (2005, 2006), 32+ Grand Prix Wins, 22 Pole Positions, 98 Podium Finishes, Master of Inferior Machinery, 24 Hours of Le Mans Winner (2018, 2019)", score: 93.2, country: "Spain", offensive: 9.3, defensive: 10.0, achievementsRating: 8.2, longevity: 9.5, clutchImpact: 10.0 },
+                { name: "Ayrton Senna", nickname: "The Rain Master", position: "Driver", career: "1984-1994", achievements: "3x Formula 1 World Champion (1988, 1990, 1991), 41 Grand Prix Wins, 65 Pole Positions, Master of Wet Weather Conditions, Monaco Grand Prix Specialist (6 wins)", score: 91.2, country: "Brazil", offensive: 9.8, defensive: 8.5, achievementsRating: 8.9, longevity: 7.8, clutchImpact: 10.0 },
+                { name: "Michael Schumacher", nickname: "The Red Baron", position: "Driver", career: "1991-2012", achievements: "7x Formula 1 World Champion (1994, 1995, 2000-2004), 91 Grand Prix Wins, 68 Pole Positions, Most Consecutive Championships (5), Ferrari Legend", score: 89.8, country: "Germany", offensive: 9.5, defensive: 8.2, achievementsRating: 9.8, longevity: 9.2, clutchImpact: 9.0 },
+                { name: "Lewis Hamilton", nickname: "Still I Rise", position: "Driver", career: "2007-present", achievements: "7x Formula 1 World Champion (2008, 2014, 2015, 2017, 2018, 2019, 2020), 103+ Grand Prix Wins, 104+ Pole Positions, MBE (2009), Knighted (2021), Laureus World Sportsman of the Year (2020)", score: 89.7, country: "UK", offensive: 9.2, defensive: 7.8, achievementsRating: 9.8, longevity: 9.0, clutchImpact: 8.0 },
+                { name: "Max Verstappen", nickname: "Mad Max", position: "Driver", career: "2015-present", achievements: "3x Formula 1 World Champion (2021, 2022, 2023), 56+ Grand Prix Wins, 32+ Pole Positions, Youngest Race Winner (18 years), Most Wins in a Season (19 in 2023)", score: 87.5, country: "Netherlands", offensive: 9.6, defensive: 8.0, achievementsRating: 8.8, longevity: 7.2, clutchImpact: 8.2 },
+                { name: "Alain Prost", nickname: "The Professor", position: "Driver", career: "1980-1993", achievements: "4x Formula 1 World Champion (1985, 1986, 1989, 1993), 51 Grand Prix Wins, 33 Pole Positions, 106 Podium Finishes, Most Calculated and Strategic Driver", score: 86.9, country: "France", offensive: 8.8, defensive: 9.0, achievementsRating: 9.2, longevity: 8.8, clutchImpact: 8.5 },
+                { name: "Sebastian Vettel", nickname: "Seb", position: "Driver", career: "2007-2022", achievements: "4x Formula 1 World Champion (2010, 2011, 2012, 2013), 53 Grand Prix Wins, 57 Pole Positions, Youngest World Champion (23 years), 122 Podium Finishes", score: 84.2, country: "Germany", offensive: 9.0, defensive: 7.5, achievementsRating: 9.0, longevity: 8.5, clutchImpact: 7.8 },
+                { name: "Juan Manuel Fangio", nickname: "El Maestro", position: "Driver", career: "1950-1958", achievements: "5x Formula 1 World Champion (1951, 1954, 1955, 1956, 1957), 24 Grand Prix Wins, 29 Pole Positions, 35 Podium Finishes, Most Championships in F1 History for 46 Years", score: 83.6, country: "Argentina", offensive: 9.1, defensive: 8.3, achievementsRating: 9.5, longevity: 6.8, clutchImpact: 9.2 },
+                { name: "Jim Clark", nickname: "The Flying Scotsman", position: "Driver", career: "1960-1968", achievements: "2x Formula 1 World Champion (1963, 1965), 25 Grand Prix Wins, Indianapolis 500 Winner (1965), Tasman Series Champion, Pure Speed Legend", score: 82.4, country: "UK", offensive: 9.2, defensive: 8.0, achievementsRating: 8.5, longevity: 6.5, clutchImpact: 9.8 },
+                { name: "Niki Lauda", nickname: "The Rat", position: "Driver", career: "1971-1985", achievements: "3x Formula 1 World Champion (1975, 1977, 1984), 25 Grand Prix Wins, Legendary Comeback from Near-Fatal 1976 Crash, 54 Podium Finishes", score: 81.7, country: "Austria", offensive: 8.5, defensive: 8.8, achievementsRating: 8.8, longevity: 8.2, clutchImpact: 8.5 }
+            ],
+            volleyball: [
+                { name: "Karch Kiraly", nickname: "The Thunder", position: "Outside Hitter", career: "1981-1996", achievements: "3x Olympic Gold Medal (1984, 1988 indoor, 1996 beach), 1x World Championship (1986), 148 career wins in beach volleyball, only player to win Olympic gold in both indoor and beach volleyball, Volleyball Hall of Fame (2001)", score: 85.7, country: "USA", offensive: 9.5, defensive: 8.2, achievementsRating: 9.0, longevity: 8.8, clutchImpact: 9.0 },
+                { name: "Gilberto Godoy Filho", nickname: "Giba", position: "Setter", career: "1975-1995", achievements: "Olympic Gold Medal (1992), World Championship (1982), South American Championship (1983, 1985, 1987, 1989, 1991), Pan American Games Gold (1983, 1987, 1991), FIVB World League (1993)", score: 82.4, country: "Brazil", offensive: 8.8, defensive: 8.5, achievementsRating: 8.5, longevity: 9.0, clutchImpact: 8.2 },
+                { name: "Lorenzo Bernardi", nickname: "Lo Zar", position: "Outside Hitter", career: "1987-2000", achievements: "3x World Championship (1990, 1994, 1998), Olympic Silver Medal (1996), European Championship (1989, 1993, 1995, 1999), World Cup (1989, 1995), FIVB World League (1990, 1991, 1992, 1994, 1995, 1997, 1999)", score: 81.3, country: "Italy", offensive: 9.2, defensive: 8.0, achievementsRating: 8.8, longevity: 8.5, clutchImpact: 8.5 },
+                { name: "Samuele Papi", nickname: "The Libero Legend", position: "Libero", career: "1996-2012", achievements: "World Championship (1998), Olympic Bronze Medal (2000), European Championship (1999, 2003, 2005), World Cup (1995, 2007), FIVB World League (1999, 2000), revolutionized libero position", score: 80.8, country: "Italy", offensive: 6.0, defensive: 10.0, achievementsRating: 8.2, longevity: 8.8, clutchImpact: 8.0 },
+                { name: "Kerri Walsh Jennings", nickname: "Six Feet of Sunshine", position: "Beach Volleyball", career: "1999-2016", achievements: "3x Olympic Gold Medal (2004, 2008, 2012), 1x Olympic Bronze Medal (2016), FIVB World Championship (2003, 2005, 2007), 133 international tournament victories, Beach Volleyball GOAT", score: 80.1, country: "USA", offensive: 9.0, defensive: 8.8, achievementsRating: 8.8, longevity: 8.5, clutchImpact: 9.2 },
+                { name: "Renan Dal Zotto", nickname: "The Professor", position: "Outside Hitter", career: "1980-1996", achievements: "Olympic Silver Medal (1984), World Championship (1982), South American Championship (1983, 1985, 1987, 1989, 1991, 1993, 1995), Pan American Games Gold (1983, 1987, 1991)", score: 79.6, country: "Brazil", offensive: 8.8, defensive: 7.8, achievementsRating: 8.0, longevity: 8.5, clutchImpact: 8.2 },
+                { name: "Hugo Conte", nickname: "The Wall", position: "Middle Blocker", career: "1988-2004", achievements: "Olympic Bronze Medal (1988), World Championship (1982), South American Championship (1989, 1991, 1993, 1995, 1997, 1999, 2001, 2003), Pan American Games Gold (1991, 1995, 1999, 2003)", score: 78.9, country: "Argentina", offensive: 7.5, defensive: 9.5, achievementsRating: 7.8, longevity: 8.8, clutchImpact: 7.8 },
+                { name: "Misty May-Treanor", nickname: "The Dancing Queen", position: "Beach Volleyball", career: "1999-2012", achievements: "3x Olympic Gold Medal (2004, 2008, 2012), FIVB World Championship (2003, 2005, 2007), 112 international tournament victories, Beach Volleyball Hall of Fame", score: 78.5, country: "USA", offensive: 8.5, defensive: 8.8, achievementsRating: 8.5, longevity: 8.0, clutchImpact: 8.8 },
+                { name: "Bernardo Rezende", nickname: "Bernardinho", position: "Outside Hitter", career: "1980-1996", achievements: "Olympic Silver Medal (1984), World Championship (1982), South American Championship (1983, 1985, 1987, 1989, 1991), Pan American Games Gold (1983, 1987, 1991), legendary coach post-playing career", score: 77.8, country: "Brazil", offensive: 8.5, defensive: 7.8, achievementsRating: 7.8, longevity: 8.2, clutchImpact: 8.0 },
+                { name: "Steve Timmons", nickname: "The Terminator", position: "Outside Hitter", career: "1983-1992", achievements: "2x Olympic Gold Medal (1984, 1988), World Championship (1986), FIVB World Cup (1985), Goodwill Games Gold (1986), revolutionized attacking with back-row attacks", score: 77.2, country: "USA", offensive: 9.5, defensive: 7.5, achievementsRating: 8.0, longevity: 7.5, clutchImpact: 8.2 }
+            ],
+            cricket: [
+                { name: "Sir Don Bradman", nickname: "The Don", position: "Batsman", career: "1928-1948", achievements: "99.94 Test Batting Average (unmatched), 29 Test Centuries, 6,996 Test runs, 334 highest Test score, Adelaide Oval statue, Australian Cricket Hall of Fame, ICC Cricket Hall of Fame, Knighted for services to cricket", score: 89.8, country: "Australia", offensive: 10.0, defensive: 6.0, achievementsRating: 10.0, longevity: 8.5, clutchImpact: 9.8 },
+                { name: "Sachin Tendulkar", nickname: "The Little Master", position: "Batsman", career: "1989-2013", achievements: "100 International Centuries (51 Test, 49 ODI), 34,357 international runs, 15,921 Test runs, 18,426 ODI runs, World Cup Winner (2011), Bharat Ratna (India's highest civilian honor), ICC Cricket Hall of Fame", score: 87.2, country: "India", offensive: 9.8, defensive: 6.5, achievementsRating: 9.5, longevity: 10.0, clutchImpact: 9.0 },
+                { name: "Sir Vivian Richards", nickname: "Master Blaster", position: "Batsman", career: "1974-1991", achievements: "World Cup Winner (1975, 1979), 8,540 Test runs, 6,721 ODI runs, 90.20 ODI Strike Rate, 24 Test centuries, Wisden Cricketer of the Year (1977), ICC Cricket Hall of Fame, Knighted for services to cricket", score: 85.1, country: "West Indies", offensive: 10.0, defensive: 5.5, achievementsRating: 9.0, longevity: 8.8, clutchImpact: 9.8 },
+                { name: "Shane Warne", nickname: "Warnie", position: "Leg Spinner", career: "1992-2007", achievements: "708 Test Wickets, 293 ODI Wickets, 5x Ashes series winner, 37 five-wicket hauls in Tests, Ball of the Century (1993), Wisden Leading Cricketer in the World (1997), ICC Cricket Hall of Fame", score: 83.9, country: "Australia", offensive: 5.0, defensive: 10.0, achievementsRating: 9.2, longevity: 8.8, clutchImpact: 9.5 },
+                { name: "Sir Garfield Sobers", nickname: "Garry", position: "All-rounder", career: "1954-1974", achievements: "8,032 Test runs, 235 Test wickets, 365* world record Test score (lasted 36 years), 26 Test centuries, 1,043 first-class wickets, Knighted for services to cricket, ICC Cricket Hall of Fame", score: 82.7, country: "Barbados", offensive: 9.5, defensive: 8.5, achievementsRating: 9.0, longevity: 9.0, clutchImpact: 8.8 },
+                { name: "Brian Lara", nickname: "The Prince", position: "Batsman", career: "1990-2007", achievements: "400* highest individual Test score, 375 previous Test record, 11,953 Test runs, 10,405 ODI runs, 34 Test centuries, 19 ODI centuries, Wisden Leading Cricketer in the World (1994, 1995)", score: 81.4, country: "Trinidad", offensive: 9.8, defensive: 5.8, achievementsRating: 8.5, longevity: 8.8, clutchImpact: 9.0 },
+                { name: "Imran Khan", nickname: "The Lion of Pakistan", position: "All-rounder", career: "1971-1992", achievements: "World Cup Winner & Captain (1992), 3,807 Test runs, 362 Test wickets, 3,709 ODI runs, 182 ODI wickets, 6 five-wicket hauls with bat scores over 50, later became Prime Minister of Pakistan", score: 80.6, country: "Pakistan", offensive: 8.2, defensive: 8.8, achievementsRating: 8.8, longevity: 9.0, clutchImpact: 9.5 },
+                { name: "Jacques Kallis", nickname: "Kallis the Colossus", position: "All-rounder", career: "1995-2013", achievements: "13,289 Test runs, 292 Test wickets, 45 Test centuries, 5 five-wicket hauls, 11,579 ODI runs, 273 ODI wickets, ICC Cricketer of the Year (2005), Wisden Leading Cricketer in the World (2007)", score: 79.8, country: "South Africa", offensive: 9.0, defensive: 8.5, achievementsRating: 8.8, longevity: 9.5, clutchImpact: 8.2 },
+                { name: "Virat Kohli", nickname: "King Kohli", position: "Batsman", career: "2008-present", achievements: "75+ International Centuries, World Cup Winner (2011), Champions Trophy Winner (2013), 8,000+ Test runs, 12,000+ ODI runs, ICC Cricketer of the Year (2017, 2018), Wisden Leading Cricketer in the World (2016, 2017, 2018)", score: 78.9, country: "India", offensive: 9.5, defensive: 6.2, achievementsRating: 8.2, longevity: 8.8, clutchImpact: 9.2 },
+                { name: "Glenn McGrath", nickname: "Pigeon", position: "Fast Bowler", career: "1993-2007", achievements: "563 Test Wickets, 381 ODI Wickets, 3x World Cup Winner (1999, 2003, 2007), 29 five-wicket hauls in Tests, Wisden Leading Cricketer in the World (1997), ICC Cricket Hall of Fame", score: 78.3, country: "Australia", offensive: 4.8, defensive: 10.0, achievementsRating: 8.8, longevity: 8.5, clutchImpact: 8.8 }
+            ],
+            handball: [
+                { name: "Nikola Karabatić", nickname: "Niko", position: "Playmaker", career: "2002-present", achievements: "3x Olympic Gold Medal (2008, 2012, 2021), 4x World Championship (2009, 2011, 2015, 2017), 3x European Championship (2006, 2010, 2014), IHF World Player of the Year (2007, 2014, 2016)", score: 84.2, country: "France", offensive: 9.5, defensive: 8.2, achievementsRating: 9.0, longevity: 9.8, clutchImpact: 9.2 },
+                { name: "Magnus Wislander", nickname: "Wille", position: "Playmaker", career: "1985-2002", achievements: "Olympic Gold Medal (2000), 4x World Championship (1990, 1999, 2001), 4x European Championship (1994, 1998, 2000, 2002), IHF World Player of the Year (1990, 1992, 1994, 1998)", score: 82.8, country: "Sweden", offensive: 9.8, defensive: 7.8, achievementsRating: 9.2, longevity: 9.5, clutchImpact: 8.8 },
+                { name: "Thierry Omeyer", nickname: "The Wall", position: "Goalkeeper", career: "1997-2017", achievements: "2x Olympic Gold Medal (2008, 2012), 4x World Championship (2001, 2009, 2011, 2015), 3x European Championship (2006, 2010, 2014), IHF World Player of the Year (2008)", score: 81.5, country: "France", offensive: 5.0, defensive: 10.0, achievementsRating: 9.0, longevity: 9.8, clutchImpact: 9.5 },
+                { name: "Stefan Lövgren", nickname: "Lövis", position: "Right Back", career: "1993-2009", achievements: "Olympic Gold Medal (2000), 4x World Championship (1990, 1999, 2001), 4x European Championship (1994, 1998, 2000, 2002), IHF World Player of the Year (1999)", score: 80.9, country: "Sweden", offensive: 9.2, defensive: 8.5, achievementsRating: 8.8, longevity: 8.8, clutchImpact: 8.5 },
+                { name: "Ivano Balić", nickname: "The Magician", position: "Playmaker", career: "1999-2013", achievements: "Olympic Gold Medal (2004), World Championship (2003), European Championship (2010), IHF World Player of the Year (2003, 2006), renowned for creative playmaking", score: 80.2, country: "Croatia", offensive: 9.8, defensive: 7.5, achievementsRating: 8.2, longevity: 8.5, clutchImpact: 9.0 },
+                { name: "Daniel Narcisse", nickname: "Dany", position: "Left Back", career: "2000-2017", achievements: "2x Olympic Gold Medal (2008, 2012), 3x World Championship (2009, 2011, 2015), 2x European Championship (2006, 2010), powerful left-handed shooter", score: 79.7, country: "France", offensive: 9.0, defensive: 8.2, achievementsRating: 8.5, longevity: 8.8, clutchImpact: 8.2 },
+                { name: "Andrej Golic", nickname: "Gosha", position: "Goalkeeper", career: "1988-2004", achievements: "Olympic Gold Medal (1996), European Championship (2004), Yugoslav/Slovenian handball legend, known for spectacular saves", score: 78.9, country: "Slovenia", offensive: 4.5, defensive: 9.8, achievementsRating: 8.0, longevity: 8.8, clutchImpact: 8.5 },
+                { name: "Domagoj Duvnjak", nickname: "Duva", position: "Center Back", career: "2007-present", achievements: "Olympic Bronze Medal (2012), World Championship Runner-up (2009), European Championship Runner-up (2008, 2010), Croatian national team captain", score: 78.4, country: "Croatia", offensive: 8.5, defensive: 9.0, achievementsRating: 7.8, longevity: 8.5, clutchImpact: 8.2 },
+                { name: "Uwe Gensheimer", nickname: "Gense", position: "Left Wing", career: "2004-present", achievements: "Olympic Bronze Medal (2016), European Championship (2016), German national team captain, prolific goalscorer", score: 77.8, country: "Germany", offensive: 9.2, defensive: 7.5, achievementsRating: 7.8, longevity: 8.8, clutchImpact: 8.0 },
+                { name: "Jackson Richardson", nickname: "Jacky", position: "Playmaker", career: "1993-2008", achievements: "Olympic Gold Medal (2008), World Championship (1995, 2001), European Championship (2006), IHF World Player of the Year (1995)", score: 77.2, country: "France", offensive: 9.0, defensive: 7.8, achievementsRating: 8.2, longevity: 8.5, clutchImpact: 8.0 }
+            ],
+            rugby: [
+                { name: "Jonah Lomu", nickname: "The Bulldozer", position: "Wing", career: "1994-2002", achievements: "63 tries in 73 Tests, Rugby World Cup Legend (1995, 1999), revolutionized rugby with size and speed, first rugby superstar, All Blacks legend", score: 84.6, country: "New Zealand", offensive: 10.0, defensive: 7.0, achievementsRating: 8.5, longevity: 7.8, clutchImpact: 9.5 },
+                { name: "Richie McCaw", nickname: "The Captain", position: "Flanker", career: "2001-2015", achievements: "2x Rugby World Cup Winner (2011, 2015), 148 caps (most capped All Black), 3x IRB Player of the Year, World Rugby Hall of Fame", score: 83.8, country: "New Zealand", offensive: 8.2, defensive: 9.8, achievementsRating: 9.0, longevity: 9.5, clutchImpact: 9.2 },
+                { name: "Dan Carter", nickname: "DC", position: "Fly-half", career: "2003-2015", achievements: "2x Rugby World Cup Winner (2011, 2015), 1,598 Test points (record at retirement), 3x IRB Player of the Year, master goal kicker", score: 82.7, country: "New Zealand", offensive: 9.5, defensive: 7.5, achievementsRating: 8.8, longevity: 8.8, clutchImpact: 8.8 },
+                { name: "Brian O'Driscoll", nickname: "BOD", position: "Center", career: "1999-2014", achievements: "133 caps, 46 tries, 4x British & Irish Lions tours, 8x Six Nations Champion, Ireland's greatest player", score: 81.9, country: "Ireland", offensive: 9.0, defensive: 8.5, achievementsRating: 8.5, longevity: 9.2, clutchImpact: 8.5 },
+                { name: "Martin Johnson", nickname: "Johnno", position: "Lock", career: "1993-2003", achievements: "Rugby World Cup Winner (2003), 2x British & Irish Lions Captain, 84 caps, Leicester Tigers legend", score: 81.2, country: "England", offensive: 7.8, defensive: 9.5, achievementsRating: 8.8, longevity: 8.5, clutchImpact: 9.0 },
+                { name: "Gareth Edwards", nickname: "The Welsh Wizard", position: "Scrum-half", career: "1967-1978", achievements: "53 caps, Grand Slam (1971, 1976), considered greatest scrum-half ever, Welsh rugby legend", score: 80.5, country: "Wales", offensive: 9.2, defensive: 8.0, achievementsRating: 8.8, longevity: 8.2, clutchImpact: 8.8 },
+                { name: "Sean Fitzpatrick", nickname: "Fitzy", position: "Hooker", career: "1986-1997", achievements: "92 caps, Rugby World Cup Winner (1987), All Blacks captain, revolutionized hooker position", score: 79.8, country: "New Zealand", offensive: 8.0, defensive: 9.0, achievementsRating: 8.2, longevity: 8.8, clutchImpact: 8.5 },
+                { name: "Sergio Parisse", nickname: "Il Capitano", position: "Number 8", career: "2002-2019", achievements: "142 caps (most capped player ever), Italian rugby legend, 5x Six Nations campaigns, incredible longevity", score: 79.1, country: "Italy", offensive: 8.5, defensive: 8.8, achievementsRating: 7.5, longevity: 10.0, clutchImpact: 8.0 },
+                { name: "David Campese", nickname: "Campo", position: "Wing", career: "1982-1996", achievements: "64 tries in 101 Tests, Rugby World Cup Winner (1991), revolutionary attacking flair, Wallabies legend", score: 78.4, country: "Australia", offensive: 9.8, defensive: 6.5, achievementsRating: 8.2, longevity: 8.5, clutchImpact: 8.2 },
+                { name: "Philippe Sella", nickname: "The Prince", position: "Center", career: "1982-1995", achievements: "111 caps, Grand Slam (1987), French rugby legend, elegant playing style", score: 77.7, country: "France", offensive: 8.8, defensive: 8.2, achievementsRating: 7.8, longevity: 8.5, clutchImpact: 7.8 }
+            ],
+            baseball: [
+                { name: "Babe Ruth", nickname: "The Sultan of Swat", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series Champion, 714 Home Runs, .342 Batting Average, 2x AL MVP, Hall of Fame (1936), revolutionized baseball, American icon", score: 96.5, country: "USA", offensive: 10.0, defensive: 7.5, achievementsRating: 10.0, longevity: 9.5, clutchImpact: 10.0 },
+                { name: "Willie Mays", nickname: "The Say Hey Kid", position: "Center Field", career: "1951-1973", achievements: "2x National League MVP, 660 Home Runs, 24x All-Star, 12x Gold Glove, Hall of Fame (1979), 'The Catch' in 1954 World Series", score: 89.7, country: "USA", offensive: 9.5, defensive: 10.0, achievementsRating: 9.2, longevity: 9.8, clutchImpact: 9.0 },
+                { name: "Ted Williams", nickname: "The Splendid Splinter", position: "Left Field", career: "1939-1960", achievements: ".406 Batting Average (1941), 2x American League MVP, .482 career OBP, Hall of Fame (1966), last player to hit .400", score: 88.9, country: "USA", offensive: 10.0, defensive: 6.5, achievementsRating: 9.5, longevity: 8.5, clutchImpact: 9.2 },
+                { name: "Lou Gehrig", nickname: "The Iron Horse", position: "First Base", career: "1923-1939", achievements: "2x American League MVP, 2,130 consecutive games played, 6x World Series Champion, Hall of Fame (1939), ALS awareness", score: 87.2, country: "USA", offensive: 9.5, defensive: 8.8, achievementsRating: 9.0, longevity: 10.0, clutchImpact: 8.8 },
+                { name: "Mickey Mantle", nickname: "The Mick", position: "Center Field", career: "1951-1968", achievements: "3x American League MVP, 536 Home Runs, 7x World Series Champion, Hall of Fame (1974), switch-hitting power", score: 85.8, country: "USA", offensive: 9.8, defensive: 8.2, achievementsRating: 9.0, longevity: 7.5, clutchImpact: 9.5 },
+                { name: "Hank Aaron", nickname: "Hammerin' Hank", position: "Right Field", career: "1954-1976", achievements: "1x National League MVP, 755 Home Runs (former record), 25x All-Star, Hall of Fame (1982), broke Babe Ruth's record", score: 84.6, country: "USA", offensive: 9.2, defensive: 8.5, achievementsRating: 9.2, longevity: 10.0, clutchImpact: 8.0 },
+                { name: "Stan Musial", nickname: "Stan the Man", position: "Outfielder/First Base", career: "1941-1963", achievements: "3x National League MVP, .331 career batting average, 3x World Series Champion, Hall of Fame (1969), 24x All-Star", score: 83.9, country: "USA", offensive: 9.5, defensive: 8.0, achievementsRating: 8.8, longevity: 9.8, clutchImpact: 8.2 },
+                { name: "Jackie Robinson", nickname: "Jack", position: "Second Base", career: "1947-1956", achievements: "1x National League MVP, broke baseball's color barrier, 1x World Series Champion, Hall of Fame (1962), civil rights pioneer", score: 82.7, country: "USA", offensive: 8.8, defensive: 8.5, achievementsRating: 10.0, longevity: 7.0, clutchImpact: 9.8 },
+                { name: "Barry Bonds", nickname: "The Home Run King", position: "Left Field", career: "1986-2007", achievements: "7x National League MVP, 762 Home Runs (record), 8x Gold Glove, 14x All-Star, single-season home run record (73)", score: 81.5, country: "USA", offensive: 10.0, defensive: 8.0, achievementsRating: 8.5, longevity: 9.5, clutchImpact: 7.8 },
+                { name: "Roberto Clemente", nickname: "The Great One", position: "Right Field", career: "1955-1972", achievements: "3,000 career hits, 15x All-Star, World Series MVP (1971), Hall of Fame (1973), humanitarian work, died in relief mission", score: 80.7, country: "Puerto Rico", offensive: 9.0, defensive: 9.5, achievementsRating: 8.5, longevity: 8.8, clutchImpact: 8.8 }
+            ],
+            
+        };
+
+        // Top 50 Players Data - PURE SCORE-BASED RANKING: All players ranked by their actual scores regardless of sport
         const top50PlayersData = [
-            { rank: 1, name: "Lionel Messi", sport: "football", position: "Forward", career: "2004-present", achievements: "7x Ballon d'Or, World Cup 2022", score: 98.1, country: "Argentina" },
-            { rank: 2, name: "Wayne Gretzky", sport: "hockey", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup, 9x MVP, 2,857 points", score: 97.8, country: "Canada" },
-            { rank: 3, name: "Michael Jordan", sport: "basketball", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion, 5x MVP", score: 97.2, country: "USA" },
-            { rank: 4, name: "Babe Ruth", sport: "baseball", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series, 714 Home Runs, .342 BA", score: 96.5, country: "USA" },
-            { rank: 5, name: "Tom Brady", sport: "american-football", position: "Quarterback", career: "2000-2022", achievements: "7x Super Bowl Champion", score: 95.1, country: "USA" },
-            { rank: 6, name: "LeBron James", sport: "basketball", position: "Forward", career: "2003-present", achievements: "4x NBA Champion, 4x MVP", score: 94.8, country: "USA" },
-            { rank: 7, name: "Cristiano Ronaldo", sport: "football", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or, 5x UCL", score: 94.2, country: "Portugal" },
-            { rank: 8, name: "Don Bradman", sport: "cricket", position: "Batsman", career: "1928-1948", achievements: "99.94 Test Average, Invincibles Captain", score: 93.8, country: "Australia" },
-            { rank: 9, name: "Willie Mays", sport: "baseball", position: "Center Field", career: "1951-1973", achievements: "2x MVP, 660 Home Runs, 'The Say Hey Kid'", score: 93.5, country: "USA" },
-            { rank: 10, name: "Tim Duncan", sport: "basketball", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion, 3x MVP", score: 92.1, country: "USA" },
-            { rank: 11, name: "Bill Russell", sport: "basketball", position: "Center", career: "1956-1969", achievements: "11x NBA Champion", score: 91.5, country: "USA" },
-            { rank: 12, name: "Ayrton Senna", sport: "formula1", position: "Driver", career: "1984-1994", achievements: "3x World Champion, 41 wins", score: 91.2, country: "Brazil" },
-            { rank: 13, name: "Magic Johnson", sport: "basketball", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion, 3x MVP", score: 91.2, country: "USA" },
-            { rank: 14, name: "Joe Montana", sport: "american-football", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion", score: 91.0, country: "USA" },
-            { rank: 15, name: "Ted Williams", sport: "baseball", position: "Left Field", career: "1939-1960", achievements: ".406 Average 1941, 2x MVP, .344 Career BA", score: 90.8, country: "USA" },
-            { rank: 16, name: "Mario Lemieux", sport: "hockey", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup, 3x MVP", score: 90.3, country: "Canada" },
-            { rank: 17, name: "Kareem Abdul-Jabbar", sport: "basketball", position: "Center", career: "1969-1989", achievements: "6x NBA Champion, 6x MVP", score: 90.1, country: "USA" },
-            { rank: 18, name: "Michael Schumacher", sport: "formula1", position: "Driver", career: "1991-2012", achievements: "7x World Champion, 91 wins", score: 88.7, country: "Germany" },
-            { rank: 19, name: "Jerry Rice", sport: "american-football", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion, 197 TDs", score: 88.7, country: "USA" },
-            { rank: 20, name: "Zinedine Zidane", sport: "football", position: "Attacking Midfielder", career: "1989-2006", achievements: "World Cup 1998, Ballon d'Or", score: 88.4, country: "France" },
-            { rank: 21, name: "Sachin Tendulkar", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "World Cup 2011, 100 International Centuries", score: 88.4, country: "India" },
-            { rank: 22, name: "Shaquille O'Neal", sport: "basketball", position: "Center", career: "1992-2011", achievements: "4x NBA Champion, 1x MVP", score: 88.2, country: "USA" },
-            { rank: 23, name: "Lewis Hamilton", sport: "formula1", position: "Driver", career: "2007-present", achievements: "7x World Champion, 103 wins", score: 88.1, country: "UK" },
-            { rank: 24, name: "Kobe Bryant", sport: "basketball", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion, 1x MVP", score: 88.0, country: "USA" },
-            { rank: 25, name: "Hank Aaron", sport: "baseball", position: "Right Field", career: "1954-1976", achievements: "755 Home Runs, 1x MVP, 25x All-Star", score: 87.9, country: "USA" },
-            { rank: 26, name: "Jonah Lomu", sport: "rugby", position: "Winger", career: "1994-2002", achievements: "2x World Cup Final, 63 Tries", score: 87.8, country: "New Zealand" },
-            { rank: 27, name: "Dan Carter", sport: "rugby", position: "Fly-half", career: "2003-2015", achievements: "2x World Cup, All Blacks Legend", score: 87.4, country: "New Zealand" },
-            { rank: 28, name: "Pelé", sport: "football", position: "Forward", career: "1956-1977", achievements: "3x World Cup", score: 86.8, country: "Brazil" },
-            { rank: 29, name: "Maurice Richard", sport: "hockey", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup, first 50-goal scorer", score: 86.8, country: "Canada" },
-            { rank: 30, name: "Bobby Orr", sport: "hockey", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup, 3x MVP", score: 86.6, country: "Canada" },
-            { rank: 31, name: "Lou Gehrig", sport: "baseball", position: "First Base", career: "1923-1939", achievements: "6x World Series, .340 BA, Iron Horse", score: 86.5, country: "USA" },
-            { rank: 32, name: "Wilt Chamberlain", sport: "basketball", position: "Center", career: "1959-1973", achievements: "2x NBA Champion, 4x MVP, 100-point game", score: 86.4, country: "USA" },
-            { rank: 33, name: "Mickey Mantle", sport: "baseball", position: "Center Field", career: "1951-1968", achievements: "7x World Series, 3x MVP, Triple Crown", score: 86.2, country: "USA" },
-            { rank: 34, name: "Shohei Ohtani", sport: "baseball", position: "Pitcher/DH", career: "2018-present", achievements: "2x MVP, Two-way phenomenon", score: 85.8, country: "Japan" },
-            { rank: 35, name: "Alain Prost", sport: "formula1", position: "Driver", career: "1980-1993", achievements: "4x World Champion", score: 85.6, country: "France" },
-            { rank: 36, name: "Fernando Alonso", sport: "formula1", position: "Driver", career: "2001-present", achievements: "2x World Champion, 32 wins", score: 85.3, country: "Spain" },
-            { rank: 37, name: "Johan Cruyff", sport: "football", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or, Total Football", score: 84.9, country: "Netherlands" },
-            { rank: 38, name: "Mark Messier", sport: "hockey", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup, 2x MVP", score: 84.5, country: "Canada" },
-            { rank: 39, name: "Viv Richards", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "2x World Cup, Fastest Century", score: 84.3, country: "West Indies" },
-            { rank: 40, name: "Richie McCaw", sport: "rugby", position: "Flanker", career: "2001-2015", achievements: "2x World Cup Captain, 148 Caps", score: 83.3, country: "New Zealand" },
-            { rank: 41, name: "Niki Lauda", sport: "formula1", position: "Driver", career: "1971-1985", achievements: "3x World Champion", score: 83.1, country: "Austria" },
-            { rank: 42, name: "Ronaldinho", sport: "football", position: "Attacking Midfielder", career: "1998-2015", achievements: "Ballon d'Or 2005, World Cup 2002", score: 82.9, country: "Brazil" },
-            { rank: 43, name: "Oscar Robertson", sport: "basketball", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion, 1x MVP", score: 82.5, country: "USA" },
-            { rank: 44, name: "Brian Lara", sport: "cricket", position: "Batsman", career: "1990-2007", achievements: "400* Test Score, World Record", score: 82.3, country: "West Indies" },
-            { rank: 45, name: "Jaromir Jagr", sport: "hockey", position: "Right Wing", career: "1990-2018", achievements: "2x Stanley Cup, 1x MVP", score: 82.1, country: "Czech Republic" },
-            { rank: 46, name: "Garrincha", sport: "football", position: "Right Winger", career: "1953-1972", achievements: "2x World Cup", score: 81.7, country: "Brazil" },
-            { rank: 47, name: "Stan Musial", sport: "baseball", position: "First Base/Outfield", career: "1941-1963", achievements: "3x World Series, 3x MVP, .331 BA", score: 81.5, country: "USA" },
-            { rank: 48, name: "Max Verstappen", sport: "formula1", position: "Driver", career: "2015-present", achievements: "4x World Champion, 60+ wins", score: 79.5, country: "Netherlands" },
-            { rank: 49, name: "Juan Manuel Fangio", sport: "formula1", position: "Driver", career: "1950-1958", achievements: "5x World Champion", score: 78.1, country: "Argentina" },
-            { rank: 50, name: "Jim Clark", sport: "formula1", position: "Driver", career: "1960-1968", achievements: "2x World Champion, Indy 500", score: 77.8, country: "UK" }
+            { rank: 1, name: "Lionel Messi", nickname: "La Pulga (The Flea)", sport: "football", position: "Forward", career: "2004-present", achievements: "8x Ballon d'Or (2009, 2010, 2011, 2012, 2015, 2019, 2021, 2023), FIFA World Cup Winner (2022), Copa América Winner (2021), 4x UEFA Champions League, 10x La Liga, 1x Ligue 1, 3x FIFA Club World Cup, Olympic Gold Medal (2008)", score: 98.1, country: "Argentina" },
+            { rank: 2, name: "Wayne Gretzky", nickname: "The Great One", sport: "hockey", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup Champion (1984, 1985, 1987, 1988), 9x Hart Memorial Trophy (MVP), 10x Art Ross Trophy (Scoring Leader), 5x Lady Byng Trophy, 2x Conn Smythe Trophy, 4x NHL All-Star Game MVP, Hockey Hall of Fame (1999)", score: 97.8, country: "Canada" },
+            { rank: 3, name: "Michael Jordan", nickname: "His Airness", sport: "basketball", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion (1991, 1992, 1993, 1996, 1997, 1998), 6x NBA Finals MVP, 5x NBA MVP (1988, 1991, 1992, 1996, 1998), 14x NBA All-Star, 10x NBA All-Star Game MVP, NBA Defensive Player of the Year (1988), Olympic Gold Medals (1984, 1992)", score: 97.2, country: "USA" },
+            { rank: 4, name: "Babe Ruth", nickname: "The Sultan of Swat", sport: "baseball", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series Champion (1915, 1916, 1918, 1923, 1927, 1928, 1932), AL MVP (1923), 2x AL ERA Leader (1916, 1918), 12x AL Home Run Leader, 6x AL RBI Leader, 13x AL Slugging Leader, Baseball Hall of Fame (1936)", score: 96.5, country: "USA" },
+            { rank: 5, name: "Tom Brady", nickname: "TB12", sport: "american-football", position: "Quarterback", career: "2000-2023", achievements: "7x Super Bowl Champion (2001, 2003, 2004, 2014, 2016, 2018, 2020), 5x Super Bowl MVP, 3x NFL MVP (2007, 2010, 2017), 15x Pro Bowl, 6x All-Pro First Team, NFL Comeback Player of the Year (2009), 2x AP Male Athlete of the Year", score: 95.8, country: "USA" },
+            { rank: 6, name: "LeBron James", nickname: "The King", sport: "basketball", position: "Forward", career: "2003-present", achievements: "4x NBA Champion (2012, 2013, 2016, 2020), 4x NBA Finals MVP, 4x NBA MVP (2009, 2010, 2012, 2013), 19x NBA All-Star, 3x NBA All-Star Game MVP, 2x Olympic Gold Medals (2008, 2012), NBA Rookie of the Year (2004)", score: 94.8, country: "USA" },
+            { rank: 7, name: "Cristiano Ronaldo", nickname: "CR7", sport: "football", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or (2008, 2013, 2014, 2016, 2017), 5x UEFA Champions League, 3x Premier League, 2x La Liga, 2x Serie A, UEFA European Championship (2016), UEFA Nations League (2019), FIFA Club World Cup (4x)", score: 94.2, country: "Portugal" },
+            { rank: 8, name: "Fernando Alonso", nickname: "El Nano", sport: "formula1", position: "Driver", career: "2001-present", achievements: "2x Formula 1 World Champion (2005, 2006), 32+ Grand Prix Wins, 22 Pole Positions, 98 Podium Finishes, Master of Inferior Machinery, 24 Hours of Le Mans Winner (2018, 2019)", score: 93.2, country: "Spain" },
+            { rank: 9, name: "Tim Duncan", nickname: "The Big Fundamental", sport: "basketball", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion (1999, 2003, 2005, 2007, 2014), 3x NBA Finals MVP, 2x NBA MVP (2002, 2003), 15x NBA All-Star, 15x All-NBA Team, 15x NBA All-Defensive Team, NBA Rookie of the Year (1998)", score: 92.1, country: "USA" },
+            { rank: 10, name: "Bill Russell", nickname: "Mr. Clutch", sport: "basketball", position: "Center", career: "1956-1969", achievements: "11x NBA Champion (1957, 1959-1966, 1968, 1969), 5x NBA MVP (1958, 1961-1963, 1965), 12x NBA All-Star, 3x NBA All-Star Game MVP, Olympic Gold Medal (1956), Presidential Medal of Freedom (2011)", score: 91.5, country: "USA" },
+            { rank: 11, name: "Ayrton Senna", nickname: "The Rain Master", sport: "formula1", position: "Driver", career: "1984-1994", achievements: "3x Formula 1 World Champion (1988, 1990, 1991), 41 Grand Prix Wins, 65 Pole Positions, Master of Wet Weather Conditions, Monaco Grand Prix Specialist (6 wins)", score: 91.2, country: "Brazil" },
+            { rank: 12, name: "Magic Johnson", nickname: "Magic", sport: "basketball", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion (1980, 1982, 1985, 1987, 1988), 3x NBA Finals MVP, 3x NBA MVP (1987, 1989, 1990), 12x NBA All-Star, 2x NBA All-Star Game MVP, Olympic Gold Medal (1992)", score: 91.2, country: "USA" },
+            { rank: 13, name: "Kareem Abdul-Jabbar", nickname: "The Captain", sport: "basketball", position: "Center", career: "1969-1989", achievements: "6x NBA Champion (1971, 1980, 1982, 1985, 1987, 1988), 2x NBA Finals MVP, 6x NBA MVP (1971, 1972, 1974, 1976, 1977, 1980), 19x NBA All-Star, 15x All-NBA Team, 11x NBA All-Defensive Team", score: 90.1, country: "USA" },
+            { rank: 14, name: "Michael Schumacher", nickname: "The Red Baron", sport: "formula1", position: "Driver", career: "1991-2012", achievements: "7x Formula 1 World Champion (1994, 1995, 2000-2004), 91 Grand Prix Wins, 68 Pole Positions, Most Consecutive Championships (5), Ferrari Legend", score: 89.8, country: "Germany" },
+            { rank: 15, name: "Don Bradman", nickname: "The Don", sport: "cricket", position: "Batsman", career: "1928-1948", achievements: "Test Batting Average 99.94, 29 Test Centuries, 117 First-Class Centuries, 6,996 Test Runs, Australian Cricket Hall of Fame, Order of the British Empire (1949)", score: 89.8, country: "Australia" },
+            { rank: 16, name: "Willie Mays", nickname: "The Say Hey Kid", sport: "baseball", position: "Center Field", career: "1951-1973", achievements: "2x World Series Champion (1954, 1962), 2x NL MVP (1954, 1965), 24x MLB All-Star, 12x Gold Glove Award, NL Rookie of the Year (1951), 660 Career Home Runs, Baseball Hall of Fame (1979)", score: 89.7, country: "USA" },
+            { rank: 17, name: "Joe Montana", nickname: "Joe Cool", sport: "american-football", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion (1981, 1984, 1988, 1989), 3x Super Bowl MVP, 2x NFL MVP (1989, 1990), 8x Pro Bowl, 3x All-Pro First Team, Associated Press Male Athlete of the Year (1989, 1990)", score: 89.7, country: "USA" },
+            { rank: 18, name: "Lewis Hamilton", nickname: "Still I Rise", sport: "formula1", position: "Driver", career: "2007-present", achievements: "7x Formula 1 World Champion (2008, 2014, 2015, 2017, 2018, 2019, 2020), 103+ Grand Prix Wins, 104+ Pole Positions, MBE (2009), Knighted (2021), Laureus World Sportsman of the Year (2020)", score: 89.7, country: "UK" },
+            { rank: 19, name: "Gordie Howe", nickname: "Mr. Hockey", sport: "hockey", position: "Right Wing", career: "1946-1980", achievements: "4x Stanley Cup Champion (1950, 1952, 1954, 1955), 6x Hart Memorial Trophy (MVP), 6x Art Ross Trophy, 23x NHL All-Star, Hockey Hall of Fame (1972), Order of Canada (1971)", score: 89.3, country: "Canada" },
+            { rank: 20, name: "Ted Williams", nickname: "The Splendid Splinter", sport: "baseball", position: "Left Field", career: "1939-1960", achievements: "2x World Series appearances, 2x AL MVP (1946, 1949), 19x MLB All-Star, 2x Triple Crown (1942, 1947), .406 Batting Average (1941), Last player to hit .400, Baseball Hall of Fame (1966)", score: 88.9, country: "USA" },
+            { rank: 21, name: "Zinedine Zidane", nickname: "Zizou", sport: "football", position: "Attacking Midfielder", career: "1989-2006", achievements: "1x FIFA World Cup (1998), 1x UEFA European Championship (2000), 1x UEFA Champions League (2002), 1x Ballon d'Or (1998), FIFA World Player of the Year (1998, 2000, 2003), 3x UEFA Champions League as coach", score: 88.4, country: "France" },
+            { rank: 22, name: "Shaquille O'Neal", nickname: "Shaq", sport: "basketball", position: "Center", career: "1992-2011", achievements: "4x NBA Champion (2000, 2001, 2002, 2006), 3x NBA Finals MVP, 1x NBA MVP (2000), 15x NBA All-Star, 3x NBA All-Star Game MVP, 8x All-NBA First Team, 3x All-Defensive Second Team", score: 88.2, country: "USA" },
+            { rank: 23, name: "Kobe Bryant", nickname: "Black Mamba", sport: "basketball", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion (2000, 2001, 2002, 2009, 2010), 2x NBA Finals MVP, 1x NBA MVP (2008), 18x NBA All-Star, 4x NBA All-Star Game MVP, 11x All-NBA First Team, 9x All-Defensive First Team", score: 88.0, country: "USA" },
+            { rank: 24, name: "Mario Lemieux", nickname: "Super Mario", sport: "hockey", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup Champion (1991, 1992), 3x Hart Memorial Trophy (MVP), 6x Art Ross Trophy, 10x NHL All-Star, 2x Conn Smythe Trophy, Olympic Gold Medal (2002), Hockey Hall of Fame (1997)", score: 87.6, country: "Canada" },
+            { rank: 25, name: "Max Verstappen", nickname: "Mad Max", sport: "formula1", position: "Driver", career: "2015-present", achievements: "3x Formula 1 World Champion (2021, 2022, 2023), 56+ Grand Prix Wins, 32+ Pole Positions, Youngest Race Winner (18 years), Most Wins in a Season (19 in 2023)", score: 87.5, country: "Netherlands" },
+            { rank: 26, name: "Lou Gehrig", nickname: "The Iron Horse", sport: "baseball", position: "First Base", career: "1923-1939", achievements: "6x World Series Champion (1927, 1928, 1932, 1936, 1937, 1938), 2x AL MVP (1927, 1936), 7x MLB All-Star, Triple Crown (1934), 2,130 Consecutive Games Played Record, Baseball Hall of Fame (1939)", score: 87.2, country: "USA" },
+            { rank: 27, name: "Sachin Tendulkar", nickname: "The Little Master", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "1x Cricket World Cup (2011), 100 International Centuries, 34,357 International Runs, 15,921 Test Runs, Wisden Cricketer of the Year (1997), ICC Cricket Hall of Fame, Bharat Ratna (2014)", score: 87.2, country: "India" },
+            { rank: 28, name: "Johnny Unitas", nickname: "Johnny U", sport: "american-football", position: "Quarterback", career: "1956-1973", achievements: "3x NFL Champion (1958, 1959, 1970), 3x NFL MVP (1959, 1964, 1967), 10x Pro Bowl, 5x All-Pro First Team, 47 Consecutive Games with TD Pass Record, Pro Football Hall of Fame (1979)", score: 87.2, country: "USA" },
+            { rank: 29, name: "Alain Prost", nickname: "The Professor", sport: "formula1", position: "Driver", career: "1980-1993", achievements: "4x Formula 1 World Champion (1985, 1986, 1989, 1993), 51 Grand Prix Wins, 33 Pole Positions, 106 Podium Finishes, Most Calculated and Strategic Driver", score: 86.9, country: "France" },
+            { rank: 30, name: "Jim Brown", nickname: "The Brown Bomber", sport: "american-football", position: "Running Back", career: "1957-1965", achievements: "1x NFL Champion (1964), 3x NFL MVP (1957, 1958, 1965), 9x Pro Bowl, 8x All-Pro First Team, 8x NFL Rushing Leader, Pro Football Hall of Fame (1971), Lacrosse Hall of Fame", score: 86.9, country: "USA" },
+            { rank: 31, name: "Pelé", nickname: "The King", sport: "football", position: "Forward", career: "1956-1977", achievements: "3x FIFA World Cup (1958, 1962, 1970), 2x Copa Libertadores (1962, 1963), 6x Brasileirão, 1,283 Career Goals, FIFA Player of the Century, Order of Merit (1995)", score: 86.8, country: "Brazil" },
+            { rank: 32, name: "Oscar Robertson", nickname: "The Big O", sport: "basketball", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion (1971), 1x NBA MVP (1964), 12x NBA All-Star, 3x NBA All-Star Game MVP, First Triple-Double Season (1961-62), 9x All-NBA First Team, 6x NBA Assists Leader", score: 86.4, country: "USA" },
+            { rank: 33, name: "Mickey Mantle", nickname: "The Mick", sport: "baseball", position: "Center Field", career: "1951-1968", achievements: "7x World Series Champion (1951, 1952, 1953, 1956, 1958, 1961, 1962), 3x AL MVP (1956, 1957, 1962), 20x MLB All-Star, Triple Crown (1956), 536 Career Home Runs, Baseball Hall of Fame (1974)", score: 85.8, country: "USA" },
+            { rank: 34, name: "Karch Kiraly", nickname: "King Karch", sport: "volleyball", position: "Outside Hitter", career: "1981-1996", achievements: "3x Olympic Gold Medal (1984, 1988, 1996), 2x FIVB World Championship, 147 Beach Volleyball Titles, Volleyball Hall of Fame (2001), Greatest Beach Volleyball Player Ever", score: 85.7, country: "USA" },
+            { rank: 35, name: "Maurice Richard", nickname: "Rocket Richard", sport: "hockey", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup Champion (1944, 1946, 1953, 1956, 1957, 1958, 1959, 1960), 1x Hart Memorial Trophy (1947), 14x NHL All-Star, First Player to Score 50 Goals in 50 Games, Hockey Hall of Fame (1961)", score: 85.4, country: "Canada" },
+            { rank: 36, name: "Jerry Rice", nickname: "The GOAT", sport: "american-football", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion (1988, 1989, 1994), 1x Super Bowl MVP (1988), 13x Pro Bowl, 10x All-Pro First Team, 6x NFL Receptions Leader, 6x NFL Receiving Yards Leader, Pro Football Hall of Fame (2010)", score: 85.1, country: "USA" },
+            { rank: 37, name: "Sir Vivian Richards", nickname: "Master Blaster", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "2x Cricket World Cup (1975, 1979), Test Batting Average 50.23, Strike Rate 90.20, Wisden Cricketer of the Year (1977), ICC Cricket Hall of Fame, Knighted (1999)", score: 85.1, country: "West Indies" },
+            { rank: 38, name: "Johan Cruyff", nickname: "El Salvador", sport: "football", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or (1971, 1973, 1974), 1x European Cup (1971, 1972, 1973), Father of Total Football, 9x Eredivisie, 1x La Liga, FIFA World Cup Runner-up (1974)", score: 84.9, country: "Netherlands" },
+            { rank: 39, name: "Lawrence Taylor", nickname: "LT", sport: "american-football", position: "Linebacker", career: "1981-1993", achievements: "2x Super Bowl Champion (1986, 1990), 3x NFL Defensive Player of the Year (1981, 1982, 1986), 1x NFL MVP (1986), 10x Pro Bowl, 8x All-Pro First Team, Pro Football Hall of Fame (1999)", score: 84.8, country: "USA" },
+            { rank: 40, name: "Bobby Orr", nickname: "Number 4", sport: "hockey", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup Champion (1970, 1972), 3x Hart Memorial Trophy (MVP), 8x James Norris Memorial Trophy, 2x Conn Smythe Trophy, Revolutionized Defensive Play, Hockey Hall of Fame (1979)", score: 84.7, country: "Canada" },
+            { rank: 41, name: "Hank Aaron", nickname: "Hammerin' Hank", sport: "baseball", position: "Right Field", career: "1954-1976", achievements: "1x World Series Champion (1957), 1x NL MVP (1957), 25x MLB All-Star, 3x Gold Glove Award, 755 Career Home Runs, Home Run King (1974-2007), Baseball Hall of Fame (1982)", score: 84.6, country: "USA" },
+            { rank: 42, name: "Jonah Lomu", nickname: "The Steamroller", sport: "rugby", position: "Wing", career: "1994-2002", achievements: "63 Tries in 73 Tests, 2x Rugby World Cup Runner-up (1995, 1999), All Blacks Legend, IRB Hall of Fame (2007), Most Iconic Rugby Player Ever", score: 84.6, country: "New Zealand" },
+            { rank: 43, name: "Sebastian Vettel", nickname: "Seb", sport: "formula1", position: "Driver", career: "2007-2022", achievements: "4x Formula 1 World Champion (2010, 2011, 2012, 2013), 53 Grand Prix Wins, 57 Pole Positions, Youngest World Champion (23 years), 122 Podium Finishes", score: 84.2, country: "Germany" },
+            { rank: 44, name: "Nikola Karabatić", nickname: "Niko", sport: "handball", position: "Playmaker", career: "2002-present", achievements: "3x Olympic Gold Medal (2008, 2012, 2021), 4x World Championship (2009, 2011, 2015, 2017), 3x European Championship (2006, 2010, 2014), IHF World Player of the Year (2007)", score: 84.2, country: "France" },
+            { rank: 45, name: "Shane Warne", nickname: "Warnie", sport: "cricket", position: "Leg Spinner", career: "1992-2007", achievements: "708 Test Wickets, 2nd Most Test Wickets Ever, 1x Cricket World Cup (1999), Wisden Leading Cricketer in the World (1997), ICC Cricket Hall of Fame, MBE (1998)", score: 83.9, country: "Australia" },
+            { rank: 46, name: "Peyton Manning", nickname: "The Sheriff", sport: "american-football", position: "Quarterback", career: "1998-2015", achievements: "2x Super Bowl Champion (2006, 2015), 1x Super Bowl MVP (2006), 5x NFL MVP (1999, 2003, 2004, 2008, 2013), 14x Pro Bowl, 7x All-Pro First Team, Pro Football Hall of Fame (2021)", score: 83.9, country: "USA" },
+            { rank: 47, name: "Mark Messier", nickname: "The Captain", sport: "hockey", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup Champion (1984, 1985, 1987, 1988, 1990, 1994), 2x Hart Memorial Trophy (MVP), 15x NHL All-Star, Mark Messier Leadership Award, Hockey Hall of Fame (2007)", score: 83.8, country: "Canada" },
+            { rank: 48, name: "Richie McCaw", nickname: "Captain Fantastic", sport: "rugby", position: "Flanker", career: "2001-2015", achievements: "2x Rugby World Cup Winner (2011, 2015), 148 Test Caps, All Blacks Captain (2006-2015), IRB Player of the Year (2006, 2009, 2010), New Zealand Order of Merit (2012)", score: 83.8, country: "New Zealand" },
+            { rank: 49, name: "Juan Manuel Fangio", nickname: "El Maestro", sport: "formula1", position: "Driver", career: "1950-1958", achievements: "5x Formula 1 World Champion (1951, 1954, 1955, 1956, 1957), 24 Grand Prix Wins, 29 Pole Positions, 35 Podium Finishes, Most Championships in F1 History for 46 Years", score: 83.6, country: "Argentina" },
+            { rank: 50, name: "Sandy Koufax", nickname: "The Left Arm of God", sport: "baseball", position: "Pitcher", career: "1955-1966", achievements: "4x World Series Champion (1959, 1963, 1965, 1966), 2x World Series MVP (1963, 1965), 3x Cy Young Award (1963, 1965, 1966), 1x NL MVP (1963), 4x No-Hitters, Perfect Game (1965), Baseball Hall of Fame (1972)", score: 83.4, country: "USA" }
         ];
 
-        // Extended database for sport-specific top 10s (includes additional players beyond top 50)
-        const allPlayersData = [
-            ...top50PlayersData,
-            // Additional Football players  
-            { rank: 51, name: "Diego Maradona", sport: "football", position: "Attacking Midfielder", career: "1976-1997", achievements: "World Cup 1986, Golden Ball", score: 80.9, country: "Argentina" },
-            { rank: 52, name: "Franz Beckenbauer", sport: "football", position: "Sweeper", career: "1964-1983", achievements: "World Cup 1974, 2x Ballon d'Or", score: 80.6, country: "Germany" },
-            { rank: 53, name: "Ronaldo Nazário", sport: "football", position: "Striker", career: "1993-2011", achievements: "2x World Cup, 2x Ballon d'Or", score: 80.3, country: "Brazil" },
-            { rank: 54, name: "Alfredo Di Stéfano", sport: "football", position: "Forward", career: "1945-1966", achievements: "5x European Cup, 2x Ballon d'Or", score: 80.0, country: "Argentina/Spain" },
-            { rank: 55, name: "Michel Platini", sport: "football", position: "Attacking Midfielder", career: "1972-1987", achievements: "European Championship 1984, 3x Ballon d'Or", score: 79.7, country: "France" },
-            { rank: 56, name: "Gerd Müller", sport: "football", position: "Striker", career: "1964-1981", achievements: "World Cup 1974, European Championship 1972", score: 79.4, country: "Germany" },
-            // Additional Basketball players
-            { rank: 57, name: "Larry Bird", sport: "basketball", position: "Small Forward", career: "1979-1992", achievements: "3x NBA Champion, 3x MVP", score: 79.1, country: "USA" },
-            { rank: 58, name: "Stephen Curry", sport: "basketball", position: "Point Guard", career: "2009-present", achievements: "4x NBA Champion, 2x MVP", score: 78.8, country: "USA" },
-            // Additional American Football players  
-            { rank: 59, name: "Peyton Manning", sport: "american-football", position: "Quarterback", career: "1998-2015", achievements: "2x Super Bowl, 5x MVP", score: 78.5, country: "USA" },
-            { rank: 60, name: "Johnny Unitas", sport: "american-football", position: "Quarterback", career: "1956-1973", achievements: "3x NFL Champion, 3x MVP", score: 78.2, country: "USA" },
-            { rank: 61, name: "Jim Brown", sport: "american-football", position: "Running Back", career: "1957-1965", achievements: "NFL Champion 1964, 3x MVP", score: 77.9, country: "USA" },
-            { rank: 62, name: "Lawrence Taylor", sport: "american-football", position: "Linebacker", career: "1981-1993", achievements: "2x Super Bowl, 3x DPOY", score: 77.6, country: "USA" },
-            { rank: 63, name: "Randy Moss", sport: "american-football", position: "Wide Receiver", career: "1998-2012", achievements: "6x Pro Bowl, NFL Records", score: 77.3, country: "USA" },
-            // Additional Hockey players
-            { rank: 64, name: "Gordie Howe", sport: "hockey", position: "Right Wing", career: "1946-1980", achievements: "4x Stanley Cup, 6x MVP", score: 77.0, country: "Canada" },
-            { rank: 65, name: "Sidney Crosby", sport: "hockey", position: "Center", career: "2005-present", achievements: "3x Stanley Cup, 2x MVP", score: 76.7, country: "Canada" },
-            { rank: 66, name: "Alexander Ovechkin", sport: "hockey", position: "Left Wing", career: "2005-present", achievements: "Stanley Cup 2018, 3x MVP", score: 76.4, country: "Russia" },
-            { rank: 92, name: "Pavel Datsyuk", sport: "hockey", position: "Center", career: "2001-2016", achievements: "2x Stanley Cup, Selke Trophy winner", score: 70.4, country: "Russia" },
-            // Additional Formula 1 players (no duplicates from main top50)
-            { rank: 70, name: "Sebastian Vettel", sport: "formula1", position: "Driver", career: "2007-2022", achievements: "4x World Champion", score: 75.2, country: "Germany" },
-            { rank: 71, name: "Nigel Mansell", sport: "formula1", position: "Driver", career: "1980-1995", achievements: "1x World Champion", score: 74.9, country: "UK" },
-            { rank: 72, name: "Jenson Button", sport: "formula1", position: "Driver", career: "2000-2016", achievements: "1x World Champion", score: 74.6, country: "UK" },
-            // Additional Volleyball players
-            { rank: 71, name: "Murilo Endres", sport: "volleyball", position: "Outside Hitter", career: "2001-2016", achievements: "Olympic Gold 2004, World Champion", score: 74.9, country: "Brazil" },
-            { rank: 72, name: "Samuele Papi", sport: "volleyball", position: "Libero", career: "1996-2014", achievements: "World Champion 1998, Olympic Bronze", score: 74.6, country: "Italy" },
-            { rank: 73, name: "Clayton Stanley", sport: "volleyball", position: "Outside Hitter", career: "2000-2012", achievements: "Olympic Gold 2008, World Champion", score: 74.3, country: "USA" },
-            { rank: 80, name: "Sergey Tetyukhin", sport: "volleyball", position: "Outside Hitter", career: "1998-2016", achievements: "Olympic Gold 2012, World Champion", score: 74.0, country: "Russia" },
-            { rank: 81, name: "Ivan Miljković", sport: "volleyball", position: "Outside Hitter", career: "1998-2012", achievements: "Olympic Gold 2000, World Champion", score: 73.7, country: "Serbia" },
-            { rank: 82, name: "Lloy Ball", sport: "volleyball", position: "Setter", career: "1990-2008", achievements: "Olympic Gold 2008, 3x Olympian", score: 73.4, country: "USA" },
-            { rank: 83, name: "Gilberto Godoy Filho", sport: "volleyball", position: "Outside Hitter", career: "1991-2004", achievements: "Olympic Gold 1992, 2004", score: 73.1, country: "Brazil" },
-            // Additional Cricket players
-            { rank: 74, name: "Don Bradman", sport: "cricket", position: "Batsman", career: "1928-1948", achievements: "Test Average 99.94, Invincibles Captain", score: 74.0, country: "Australia" },
-            { rank: 75, name: "Shane Warne", sport: "cricket", position: "Spin Bowler", career: "1992-2007", achievements: "708 Test Wickets, World Cup 1999", score: 73.7, country: "Australia" },
-            { rank: 76, name: "Jacques Kallis", sport: "cricket", position: "All-rounder", career: "1995-2013", achievements: "13,289 Test Runs, 292 Wickets", score: 73.4, country: "South Africa" },
-            { rank: 84, name: "Sachin Tendulkar", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "15,921 Test Runs, World Cup 2011", score: 72.8, country: "India" },
-            { rank: 85, name: "Viv Richards", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "8,540 Test Runs, 2x World Cup", score: 72.5, country: "West Indies" },
-            { rank: 86, name: "Kapil Dev", sport: "cricket", position: "All-rounder", career: "1978-1994", achievements: "434 Test Wickets, World Cup 1983", score: 72.2, country: "India" },
-            { rank: 87, name: "Imran Khan", sport: "cricket", position: "All-rounder", career: "1971-1992", achievements: "362 Test Wickets, World Cup 1992", score: 71.9, country: "Pakistan" },
-            // Additional Handball players
-            { rank: 77, name: "Mikkel Hansen", sport: "handball", position: "Left Wing", career: "2006-present", achievements: "Olympic Gold 2016, World Champion", score: 73.1, country: "Denmark" },
-            { rank: 78, name: "Luc Abalo", sport: "handball", position: "Right Wing", career: "2002-2019", achievements: "2x Olympic Gold, 4x World Champion", score: 72.8, country: "France" },
-            { rank: 79, name: "Ivano Balić", sport: "handball", position: "Playmaker", career: "1999-2013", achievements: "Olympic Gold 2004, World Champion", score: 72.5, country: "Croatia" },
-            { rank: 88, name: "Thierry Omeyer", sport: "handball", position: "Goalkeeper", career: "1997-2017", achievements: "2x Olympic Gold, 4x World Champion", score: 71.6, country: "France" },
-            { rank: 89, name: "Nikola Karabatić", sport: "handball", position: "Pivot", career: "2002-present", achievements: "3x Olympic Gold, 4x World Champion", score: 71.3, country: "France" },
-            { rank: 90, name: "Domagoj Duvnjak", sport: "handball", position: "Left Back", career: "2007-present", achievements: "Olympic Bronze, World Champion", score: 71.0, country: "Croatia" },
-            { rank: 91, name: "Filip Jícha", sport: "handball", position: "Playmaker", career: "2000-2017", achievements: "Olympic Bronze, World Champion", score: 70.7, country: "Czech Republic" },
-            // Additional Baseball players
-            { rank: 80, name: "Mickey Mantle", sport: "baseball", position: "Center Field", career: "1951-1968", achievements: "7x World Series, 3x MVP", score: 72.2, country: "USA" },
-            { rank: 81, name: "Barry Bonds", sport: "baseball", position: "Left Field", career: "1986-2007", achievements: "762 Home Runs, 7x MVP", score: 71.9, country: "USA" },
-            { rank: 82, name: "Stan Musial", sport: "baseball", position: "First Base/Outfield", career: "1941-1963", achievements: "3x World Series, 3x MVP", score: 71.6, country: "USA" },
-            // Additional Rugby players
-            { rank: 95, name: "Sergio Parisse", sport: "rugby", position: "Number 8", career: "2002-2019", achievements: "142 Caps, 6 Nations Grand Slam", score: 71.3, country: "Italy" },
-            { rank: 96, name: "Brian O'Driscoll", sport: "rugby", position: "Center", career: "1999-2014", achievements: "141 Caps, 4x 6 Nations", score: 71.0, country: "Ireland" },
-            { rank: 97, name: "Gareth Edwards", sport: "rugby", position: "Scrum-half", career: "1967-1978", achievements: "53 Caps, 3x Grand Slam", score: 70.7, country: "Wales" },
-            { rank: 98, name: "Martin Johnson", sport: "rugby", position: "Lock", career: "1993-2003", achievements: "World Cup Captain 2003, 84 Caps", score: 70.4, country: "England" },
-            { rank: 99, name: "Francois Pienaar", sport: "rugby", position: "Flanker", career: "1993-1996", achievements: "World Cup Captain 1995, 29 Caps", score: 70.1, country: "South Africa" },
-            { rank: 100, name: "Philippe Sella", sport: "rugby", position: "Center", career: "1982-1995", achievements: "111 Caps, Grand Slam 1987", score: 69.8, country: "France" },
-            { rank: 101, name: "John Eales", sport: "rugby", position: "Lock", career: "1991-2001", achievements: "2x World Cup, 86 Caps", score: 69.5, country: "Australia" }
-        ];
-
-        // Use top50PlayersData for main rankings, allPlayersData for sport-specific rankings
+        // Use top50PlayersData for main rankings
         const playersData = top50PlayersData;
 
         // Individual detailed ratings for select players (5-category system)
@@ -677,7 +736,7 @@
             23: { offensive: 9.0, defensive: 7.5, achievements: 9.8, longevity: 9.0, clutch: 9.0 }, // Schumacher - 88.7 score
             25: { offensive: 9.0, defensive: 7.2, achievements: 9.6, longevity: 9.0, clutch: 8.0 }, // Hamilton - 88.1 score  
             28: { offensive: 8.6, defensive: 7.8, achievements: 9.0, longevity: 8.8, clutch: 8.0 }, // Prost - 85.6 score
-            29: { offensive: 9.2, defensive: 7.0, achievements: 8.2, longevity: 8.5, clutch: 9.0 }, // Alonso - 85.3 score
+            29: { offensive: 9.2, defensive: 9.5, achievements: 8.2, longevity: 10.5, clutch: 10.0 }, // Alonso - 85.3 score
             40: { offensive: 8.2, defensive: 7.5, achievements: 8.8, longevity: 8.0, clutch: 7.0 }, // Lauda - 83.1 score
             41: { offensive: 9.3, defensive: 7.0, achievements: 7.2, longevity: 6.5, clutch: 7.0 }, // Verstappen - 79.5 score
             42: { offensive: 8.4, defensive: 7.2, achievements: 9.0, longevity: 7.5, clutch: 9.0 }, // Fangio - 78.1 score
@@ -733,9 +792,95 @@
             });
             event.target.classList.add('active');
             
-            // Filter players
-            let filteredPlayers = sport === 'all' ? playersData : playersData.filter(player => player.sport === sport);
-            displayRankings(filteredPlayers);
+            // Show appropriate rankings
+            if (sport === 'all') {
+                // Show the main top 50 rankings
+                displayRankings(playersData);
+            } else {
+                // Show sport-specific top 10 from clean database
+                displaySportSpecificRankings(sport);
+            }
+        }
+
+        // Display sport-specific top 10 rankings with proper 1-10 numbering
+        function displaySportSpecificRankings(sport) {
+            const grid = document.getElementById('rankings-grid');
+            if (!grid) return;
+            
+            // Get the exact 10 players for this sport from the clean databases
+            const sportPlayers = sportDatabases[sport] || [];
+            
+            grid.innerHTML = '';
+            
+            // Display exactly 10 players with sport-specific ranks 1-10
+            sportPlayers.forEach((player, index) => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.onclick = () => togglePlayerDetails(`${sport}-${index + 1}`);
+                
+                const sportEmojis = {
+                    'football': '⚽',
+                    'basketball': '🏀',
+                    'american-football': '🏈',
+                    'hockey': '🏒',
+                    'formula1': '🏎️',
+                    'volleyball': '🏐',
+                    'cricket': '🏏',
+                    'handball': '🤾',
+                    'rugby': '🏉',
+                    'baseball': '⚾',
+                };
+                
+                const sportName = getSportName(sport);
+                
+                playerCard.innerHTML = `
+                    <div class="player-info">
+                        <h3>${index + 1}. ${player.name} ${sportEmojis[sport] || '🏆'}</h3>
+                        <div class="nickname"><strong>"${player.nickname}"</strong></div>
+                        <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                    </div>
+                    <div class="player-score">${player.score}</div>
+                    <div class="player-details" id="${sport}-${index + 1}">
+                        ${player.offensive ? `
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${player.offensive}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Offensive' : 'Offensive'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.defensive}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Defensive' : 'Defensive'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${(player.achievementsRating || 8.0).toFixed(1)}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Erfolge' : 'Achievements'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.longevity}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Langlebigkeit' : 'Longevity'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.clutchImpact}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Clutch Impact' : 'Clutch Impact'}</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #555;">
+                            <h4 style="color: #ffbf00; margin-bottom: 0.8rem;">${currentLanguage === 'de' ? 'Biografie & Erfolge:' : 'Biography & Achievements:'}</h4>
+                            <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        </div>
+                        ` : `
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        `}
+                    </div>
+                `;
+                
+                grid.appendChild(playerCard);
+            });
         }
 
         // Display rankings
@@ -768,6 +913,7 @@
                 playerCard.innerHTML = `
                     <div class="player-info">
                         <h3>${player.rank}. ${player.name} ${sportEmojis[player.sport] || '🏆'}</h3>
+                        ${player.nickname ? `<p class="nickname"><strong>${currentLanguage === 'de' ? 'Spitzname:' : 'Nickname:'}</strong> "${player.nickname}"</p>` : ''}
                         <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
                         <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
                         <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
@@ -821,9 +967,18 @@
         }
 
         // Toggle player details
-        function togglePlayerDetails(rank) {
-            const details = document.getElementById(`details-${rank}`);
-            if (details) details.classList.toggle('show');
+        function togglePlayerDetails(elementId) {
+            // Handle both formats: rank numbers and sport-index format
+            const details = document.getElementById(`details-${elementId}`) || document.getElementById(elementId);
+            if (details) {
+                if (details.style.display === 'none' || details.style.display === '') {
+                    details.style.display = 'block';
+                    details.classList.add('show');
+                } else {
+                    details.style.display = 'none';
+                    details.classList.remove('show');
+                }
+            }
         }
 
         // Display sport-specific top 10 rankings
@@ -831,11 +986,16 @@
             const container = document.getElementById(containerId);
             if (!container) return;
             
-            // Use extended database for sport-specific rankings, but limit to 10
-            const sportPlayers = allPlayersData.filter(player => player.sport === sport).slice(0, 10);
+            // Get the exact 10 players for this sport from the clean databases
+            const sportPlayers = sportDatabases[sport] || [];
+            
             container.innerHTML = '';
             
+            // Display exactly 10 players with sport-specific ranks 1-10
             sportPlayers.forEach((player, index) => {
+                // Fix for achievements rating field compatibility
+                const achievementsRating = player.achievementsRating || (typeof player.achievements === 'number' ? player.achievements : 8.0);
+                
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
                 playerCard.onclick = () => togglePlayerDetails(`${sport}-${index + 1}`);
@@ -849,30 +1009,49 @@
                     'volleyball': '🏐',
                     'cricket': '🏏',
                     'handball': '🤾',
-                    'baseball': '⚾',
-                    'rugby': '🏉'
+                    'rugby': '🏉',
                 };
+                
+                const sportName = getSportName(sport);
                 
                 playerCard.innerHTML = `
                     <div class="player-info">
-                        <h3>${sportEmojis[sport]} #${index + 1} ${player.name}</h3>
-                        <p><strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                        <h3>${index + 1}. ${player.name} ${sportEmojis[sport] || '🏆'}</h3>
+                        ${player.nickname ? `<p class="nickname"><strong>${currentLanguage === 'de' ? 'Spitzname:' : 'Nickname:'}</strong> "${player.nickname}"</p>` : ''}
+                        <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
                         <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
                     </div>
                     <div class="player-score">${player.score}</div>
-                    <div class="player-details" id="details-${sport}-${index + 1}">
+                    <div class="player-details" id="${sport}-${index + 1}">
+                        ${player.offensive ? `
                         <div class="stats-grid">
                             <div class="stat-item">
-                                <div class="stat-value">${player.score}</div>
-                                <div class="stat-label">GOAT Score</div>
+                                <div class="stat-value">${player.offensive}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Offensive' : 'Offensive'}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">#${player.rank}</div>
-                                <div class="stat-label">${currentLanguage === 'de' ? 'Gesamt Rang' : 'Overall Rank'}</div>
+                                <div class="stat-value">${player.defensive}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Defensive' : 'Defensive'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.achievements}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Erfolge' : 'Achievements'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.longevity}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Langlebigkeit' : 'Longevity'}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${player.clutchImpact}/10</div>
+                                <div class="stat-label">${currentLanguage === 'de' ? 'Clutch Impact' : 'Clutch Impact'}</div>
                             </div>
                         </div>
+                        ` : `
+                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        `}
                     </div>
                 `;
                 
