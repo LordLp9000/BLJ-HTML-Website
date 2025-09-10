@@ -66,8 +66,7 @@
 ### **Sport Weight Multipliers Applied:**
 - **Volleyball/Handball players** get **0.85x multiplier** on overall scores
 - **Global sports** (Football/Basketball) get **1.0x multiplier**
-
-| Player | Sport | OLD Score | **NEW Score** | Reason |
+- **Cricket** gets **0.95x multiplier** (strong global following but smaller pro ecosystem than football/basketball)| Player | Sport | OLD Score | **NEW Score** | Reason |
 |--------|-------|-----------|---------------|--------|
 | **Giba** | Volleyball | 93.9 | **79.8** | 93.9 × 0.85 = Limited global reach |
 | **Karch Kiraly** | Volleyball | 89.1 | **75.7** | 89.1 × 0.85 = Sport multiplier |
@@ -95,10 +94,7 @@
 
 **Players DROPPED out of Top 15:**
 - **Giba** (#8 → #28): 93.9 → 79.8 (volleyball multiplier)
-- **Lewis Hamilton** (#5 → #16): 95.1 → 88.6 (equipment dependency)
-- **Karabatic** (#20 → #35): 90.0 → 76.5 (handball multiplier)
-
-## ✅ **What This System Fixes:**
+- **Lewis Hamilton** (#5 → #16): 95.1 → 88.6 (equipment dependency)## ✅ **What This System Fixes:**
 
 1. **Position Reality**: Forwards can't have 8+ defensive ratings
 2. **Era Appropriate**: 1960s Pelé didn't press like modern players
