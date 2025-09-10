@@ -25,12 +25,10 @@ Add 4 high-quality images of Lionel Messi to the `images` folder with these exac
 - **Copyright**: Make sure you have rights to use the images
 
 ## Step 4: Alternative Image Sources
-If you don't have your own images, you can use:
-- **Free sources**: Unsplash, Pexels, Pixabay (search "football" or "soccer")
-- **Official sources**: FC Barcelona, PSG, Argentina national team websites
-- **News sources**: ESPN, BBC Sport, FIFA.com
-
-## Step 5: Test the Slideshow
+If you don't have your own images:
+- **Free stock (permissive licenses)**: Unsplash, Pexels, Pixabay — verify each image’s license.
+- **Creative Commons**: Wikimedia Commons — use images allowed for reuse and provide attribution when required.
+- Avoid using images from official club sites, news outlets, or FIFA unless you have explicit permission or a license that allows reuse.## Step 5: Test the Slideshow
 1. Open your HTML file in a browser
 2. Navigate to the home page
 3. Verify that all 4 images load correctly

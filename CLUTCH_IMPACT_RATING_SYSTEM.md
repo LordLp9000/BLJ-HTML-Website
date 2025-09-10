@@ -69,12 +69,9 @@
 
 ### **10/10 - Legendary Clutch:**
 - **Wayne Gretzky**: 4 Stanley Cups, playoff point records
-- **Mario Lemieux**: Comeback from cancer to win Stanley Cup
-
-### **9/10 - Elite Clutch:**
-- **Mark Messier**: "The Guarantee" 1994, captain of 6 Stanley Cups
+- **Mario Lemieux**: Returned from cancer to win scoring titles and MVP; two Stanley Cups (1991–92) pre-diagnosis### **9/10 - Elite Clutch:**
+- **Mark Messier**: "The Guarantee" 1994; 6 Stanley Cups—captain for two (1990 Oilers, 1994 Rangers)
 - **Maurice Richard**: "Rocket" - first 50-goal scorer, 8 Stanley Cups
-
 ### **8/10 - Very Clutch:**
 - **Bobby Orr**: "The Goal" 1970 Stanley Cup winner
 - **Jaromir Jagr**: 1991-92 Stanley Cups as young star
@@ -100,18 +97,27 @@
 
 ---
 
-## 🏁 **Formula 1 Clutch Impact:**
+## 🏁 **Formula 1 Clutch Impact (Emphasizing Non-Winning Machinery):**
 
 ### **10/10 - Legendary Clutch:**
-- **Ayrton Senna**: Monaco master, wet weather genius, pole position king
+- **Ayrton Senna**: Monaco 1984 (near-win in inferior Toleman), rain masterclass in underpowered McLarens, extracted miracles from mediocre cars
+- **Jim Clark**: Won 1965 title, Indy 500 victor, could win in any machinery regardless of competitive level
 
 ### **9/10 - Elite Clutch:**
-- **Michael Schumacher**: 7 championships, clutch drives
-- **Lewis Hamilton**: Multiple championship-deciding races
+- **Juan Manuel Fangio**: 5 titles with 4 teams, legendary drives in inferior Maserati vs. superior Ferraris
+- **Michael Schumacher**: Spain 1996 rain masterclass, 1995-96 carrying mediocre Ferrari to wins, made average cars championship contenders
+- **Fernando Alonso**: 2012 Ferrari season (nearly won title in inferior car), McLaren years extracting podiums from backmarkers, Hungary 2009 rain masterclass
 
 ### **8/10 - Very Clutch:**
-- **Niki Lauda**: Comeback from near-fatal crash to win championship
-- **Juan Manuel Fangio**: 5 titles with 4 different teams
+- **Alain Prost**: "The Professor" - maximized every car's potential, strategic genius who won with inferior machinery
+- **Jackie Stewart**: 3 titles in dangerous era, clutch performances when safety equipment was minimal
+- **Lewis Hamilton**: 2008 Brazil last-corner championship, extracted wins from inferior 2009 McLaren
+
+### **7/10 - Good Clutch:**
+- **Niki Lauda**: Comeback from near-fatal crash, analytical approach maximized car performance
+- **Max Verstappen**: 2021 title fight performances, occasional wins during Mercedes dominance
+
+**Note**: F1 ratings emphasize extracting maximum performance from inferior machinery, wet weather mastery, and strategic brilliance over pure speed in dominant cars.
 
 ---
 

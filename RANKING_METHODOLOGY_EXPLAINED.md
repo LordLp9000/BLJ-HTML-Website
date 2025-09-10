@@ -8,8 +8,8 @@ You're absolutely right to question some of the rankings. Here are the main prob
 1. **Giba (#8)** - Volleyball player ranked above NBA legends
 2. **Nikola Karabatic (#20)** - Handball player above hockey legends
 3. **Sergio Llull (#36)** - Relatively unknown volleyball player in top 50
+3. **Sergio Llull (#36)** - EuroLeague basketball star; ranking rationale should compare against global basketball GOATs
 4. **Some Formula 1 drivers** ranked higher than basketball/football legends
-
 ## 📊 **How GOAT Scores Should Be Calculated**
 
 ### **The Formula:**

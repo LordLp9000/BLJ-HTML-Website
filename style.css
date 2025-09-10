@@ -603,12 +603,11 @@ footer {
     line-height: 1;
 }
 
-.stat-label {
+.goat-showcase .stat-label {
     font-size: 0.9rem;
     color: white;
     margin-top: 0.5rem;
 }
-
 .goat-bio h3 {
     font-size: 2rem;
     color: #ffbf00;
