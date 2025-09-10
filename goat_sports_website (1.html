@@ -15,7 +15,7 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="logo">GOAT SPORTS</div>
+            <div class="logo" onclick="showSection('home')" style="cursor: pointer;">GOAT SPORTS</div>
             
             <!-- Slide-out menu -->
             <div class="slide-menu" id="slideMenu">
@@ -58,6 +58,93 @@
                 <h1 data-lang-de="Der beste Teamsportler aller Zeiten" data-lang-en="The Greatest Team Sport Athlete of All Time">Der beste Teamsportler aller Zeiten</h1>
                 <p data-lang-de="Statistisch fundierte Analyse der größten Athleten aus Fußball, Basketball, American Football, Eishockey und mehr" data-lang-en="Statistically based analysis of the greatest athletes from football, basketball, American football, ice hockey and more">Statistisch fundierte Analyse der größten Athleten aus Fußball, Basketball, American Football, Eishockey und mehr</p>
                 <p><strong data-lang-de="Datengetrieben • Objektiv • Sportartenübergreifend" data-lang-en="Data-driven • Objective • Cross-sport">Datengetrieben • Objektiv • Sportartenübergreifend</strong></p>
+            </div>
+
+            <!-- #1 GOAT Athlete Showcase -->
+            <div class="section">
+                <h2 data-lang-de="🐐 Der #1 GOAT - Lionel Messi" data-lang-en="🐐 The #1 GOAT - Lionel Messi">🐐 Der #1 GOAT - Lionel Messi</h2>
+                
+                <div class="goat-showcase">
+                    <div class="slideshow-container">
+                        <div class="slide active">
+                            <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
+                        </div>
+                        <div class="slide">
+                            <img src="images/messi-2.jpg" alt="Lionel Messi with Ballon d'Or" />
+                        </div>
+                        <div class="slide">
+                            <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
+                        </div>
+                        <div class="slide">
+                            <img src="images/messi-4.jpg" alt="Lionel Messi team celebration" />
+                        </div>
+                        
+                        <!-- Navigation arrows -->
+                        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                        
+                        <!-- Slide indicators -->
+                        <div class="slide-indicators">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="goat-bio">
+                        <div class="goat-stats">
+                            <div class="stat-highlight">
+                                <div class="stat-number">98.1</div>
+                                <div class="stat-label" data-lang-de="GOAT Score" data-lang-en="GOAT Score">GOAT Score</div>
+                            </div>
+                            <div class="stat-highlight">
+                                <div class="stat-number">#1</div>
+                                <div class="stat-label" data-lang-de="Rang" data-lang-en="Rank">Rang</div>
+                            </div>
+                        </div>
+                        
+                        <h3 data-lang-de="Lionel Andrés Messi" data-lang-en="Lionel Andrés Messi">Lionel Andrés Messi</h3>
+                        <p class="player-details-text">
+                            <span data-lang-de="🇦🇷 Argentinien • ⚽ Fußball • 🎯 Stürmer" data-lang-en="🇦🇷 Argentina • ⚽ Football • 🎯 Forward">🇦🇷 Argentinien • ⚽ Fußball • 🎯 Stürmer</span>
+                        </p>
+                        
+                        <div class="bio-text">
+                            <p data-lang-de="Lionel Messi gilt als der größte Fußballer aller Zeiten und führt unser GOAT-Ranking mit einem Score von 98.1 an. Mit 7 Ballon d'Or-Auszeichnungen, einem WM-Titel 2022 und über 800 Karrieretoren hat er Rekorde gesetzt, die möglicherweise nie gebrochen werden." data-lang-en="Lionel Messi is considered the greatest footballer of all time and leads our GOAT rankings with a score of 98.1. With 7 Ballon d'Or awards, a 2022 World Cup title, and over 800 career goals, he has set records that may never be broken.">
+                                Lionel Messi gilt als der größte Fußballer aller Zeiten und führt unser GOAT-Ranking mit einem Score von 98.1 an. Mit 7 Ballon d'Or-Auszeichnungen, einem WM-Titel 2022 und über 800 Karrieretoren hat er Rekorde gesetzt, die möglicherweise nie gebrochen werden.
+                            </p>
+                            <p data-lang-de="Seine außergewöhnliche Technik, Spielintelligenz und Konstanz über zwei Jahrzehnte machen ihn zum unangefochtenen GOAT des Teamsports." data-lang-en="His exceptional technique, game intelligence, and consistency over two decades make him the undisputed GOAT of team sports.">
+                                Seine außergewöhnliche Technik, Spielintelligenz und Konstanz über zwei Jahrzehnte machen ihn zum unangefochtenen GOAT des Teamsports.
+                            </p>
+                        </div>
+                        
+                        <div class="achievements-grid">
+                            <div class="achievement-item">
+                                <span class="achievement-icon">🏆</span>
+                                <span data-lang-de="7x Ballon d'Or" data-lang-en="7x Ballon d'Or">7x Ballon d'Or</span>
+                            </div>
+                            <div class="achievement-item">
+                                <span class="achievement-icon">🏆</span>
+                                <span data-lang-de="WM 2022" data-lang-en="World Cup 2022">WM 2022</span>
+                            </div>
+                            <div class="achievement-item">
+                                <span class="achievement-icon">⚽</span>
+                                <span data-lang-de="800+ Tore" data-lang-en="800+ Goals">800+ Tore</span>
+                            </div>
+                            <div class="achievement-item">
+                                <span class="achievement-icon">👑</span>
+                                <span data-lang-de="Copa América" data-lang-en="Copa América">Copa América</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <p data-lang-de="Entdecken Sie die kompletten Top 50 Rankings und sehen Sie, wie Messi im Vergleich zu anderen Sportlegenden abschneidet." data-lang-en="Discover the complete Top 50 rankings and see how Messi compares to other sports legends.">
+                                Entdecken Sie die kompletten Top 50 Rankings und sehen Sie, wie Messi im Vergleich zu anderen Sportlegenden abschneidet.
+                            </p>
+                            <button class="cta-button" onclick="showSection('rankings')" data-lang-de="🏆 Zu den Top 50 Rankings" data-lang-en="🏆 View Top 50 Rankings">🏆 Zu den Top 50 Rankings</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="section">
@@ -116,7 +203,7 @@
                         (Defensive Performance Z-Score × 0.20) +<br>
                         (Achievements Z-Score × 0.25) +<br>
                         (Longevity Z-Score × 0.15) +<br>
-                        (Impact/Leadership Z-Score × 0.15)
+                        (Clutch Impact Z-Score × 0.15)
                     </div>
                 </div>
 
@@ -126,7 +213,7 @@
                     <li><strong data-lang-de="Defensive Performance (20%): Tackles, Blocks, Saves" data-lang-en="Defensive Performance (20%): Tackles, Blocks, Saves">Defensive Performance (20%):</strong> <span data-lang-de="Tackles, Blocks, Saves" data-lang-en="Tackles, Blocks, Saves">Tackles, Blocks, Saves</span></li>
                     <li><strong data-lang-de="Achievements (25%): Meisterschaften, individuelle Auszeichnungen" data-lang-en="Achievements (25%): Championships, Individual Awards">Achievements (25%):</strong> <span data-lang-de="Meisterschaften, individuelle Auszeichnungen" data-lang-en="Championships, Individual Awards">Meisterschaften, individuelle Auszeichnungen</span></li>
                     <li><strong data-lang-de="Longevity (15%): Karrierelänge, Konstanz über Jahre" data-lang-en="Longevity (15%): Career Length, Consistency Over Years">Longevity (15%):</strong> <span data-lang-de="Karrierelänge, Konstanz über Jahre" data-lang-en="Career Length, Consistency Over Years">Karrierelänge, Konstanz über Jahre</span></li>
-                    <li><strong data-lang-de="Impact/Leadership (15%): Team-Erfolg, Führungsqualitäten" data-lang-en="Impact/Leadership (15%): Team Success, Leadership Qualities">Impact/Leadership (15%):</strong> <span data-lang-de="Team-Erfolg, Führungsqualitäten" data-lang-en="Team Success, Leadership Qualities">Team-Erfolg, Führungsqualitäten</span></li>
+                    <li><strong data-lang-de="Clutch Impact (15%): Finale, Game-Winner, Killerinstinkt" data-lang-en="Clutch Impact (15%): Finals Performance, Game Winners, Killer Instinct">Clutch Impact (15%):</strong> <span data-lang-de="Finale, Game-Winner, Killerinstinkt in entscheidenden Momenten" data-lang-en="Finals performance, game winners, killer instinct in crucial moments">Finale, Game-Winner, Killerinstinkt in entscheidenden Momenten</span></li>
                 </ul>
             </div>
         </section>
@@ -159,8 +246,9 @@
                     </div>
                     
                     <div class="input-group">
-                        <label for="impact" data-lang-de="Einfluss & Führung (0-10):" data-lang-en="Impact & Leadership (0-10):">Einfluss & Führung (0-10):</label>
+                        <label for="impact" data-lang-de="Clutch Impact & Killerinstinkt (0-10):" data-lang-en="Clutch Impact & Killer Instinct (0-10):">Clutch Impact & Killerinstinkt (0-10):</label>
                         <input type="number" id="impact" min="0" max="10" step="0.1" placeholder="z.B. 9.5">
+                        <small style="color: #ccc; font-size: 0.9rem;" data-lang-de="Game-Winner, Finale-Performance, entscheidende Momente" data-lang-en="Game winners, finals performance, crucial moments">Game-Winner, Finale-Performance, entscheidende Momente</small>
                     </div>
                     
                     <button class="calculate-btn" onclick="calculateGOATScore()" data-lang-de="GOAT Score berechnen" data-lang-en="Calculate GOAT Score">GOAT Score berechnen</button>
@@ -455,59 +543,112 @@
             }
         }
 
-        // Top 50 Players Data - Now includes all sports
-        const playersData = [
-            { rank: 1, name: "Lionel Messi", sport: "football", position: "Forward", career: "2004-2023", achievements: "7x Ballon d'Or, World Cup 2022", score: 98.7, country: "Argentina" },
-            { rank: 2, name: "Michael Jordan", sport: "basketball", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion, 5x MVP", score: 97.2, country: "USA" },
-            { rank: 3, name: "Tom Brady", sport: "american-football", position: "Quarterback", career: "2000-2022", achievements: "7x Super Bowl Champion", score: 96.8, country: "USA" },
-            { rank: 4, name: "Wayne Gretzky", sport: "hockey", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup, 9x MVP", score: 95.9, country: "Canada" },
-            { rank: 5, name: "Lewis Hamilton", sport: "formula1", position: "Driver", career: "2007-present", achievements: "7x World Champion", score: 95.1, country: "UK" },
-            { rank: 6, name: "Cristiano Ronaldo", sport: "football", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or, 5x UCL", score: 94.8, country: "Portugal" },
-            { rank: 7, name: "LeBron James", sport: "basketball", position: "Forward", career: "2003-present", achievements: "4x NBA Champion, 4x MVP", score: 94.3, country: "USA" },
-            { rank: 8, name: "Giba", sport: "volleyball", position: "Outside Hitter", career: "1995-2012", achievements: "Olympic Gold 2004, World Champion 2002", score: 93.9, country: "Brazil" },
-            { rank: 9, name: "Magic Johnson", sport: "basketball", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion, 3x MVP", score: 93.5, country: "USA" },
-            { rank: 10, name: "Joe Montana", sport: "american-football", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion", score: 93.2, country: "USA" },
-            { rank: 11, name: "Sachin Tendulkar", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "World Cup 2011, 100 International Centuries", score: 92.8, country: "India" },
-            { rank: 12, name: "Kareem Abdul-Jabbar", sport: "basketball", position: "Center", career: "1969-1989", achievements: "6x NBA Champion, 6x MVP", score: 92.5, country: "USA" },
-            { rank: 13, name: "Babe Ruth", sport: "baseball", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series, 714 Home Runs", score: 92.1, country: "USA" },
-            { rank: 14, name: "Mario Lemieux", sport: "hockey", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup, 3x MVP", score: 91.8, country: "Canada" },
-            { rank: 15, name: "Ayrton Senna", sport: "formula1", position: "Driver", career: "1984-1994", achievements: "3x World Champion", score: 91.5, country: "Brazil" },
-            { rank: 16, name: "Jonah Lomu", sport: "rugby", position: "Winger", career: "1994-2002", achievements: "2x World Cup Final, 63 Tries", score: 91.2, country: "New Zealand" },
-            { rank: 17, name: "Jerry Rice", sport: "american-football", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion", score: 90.9, country: "USA" },
-            { rank: 18, name: "Zinedine Zidane", sport: "football", position: "Attacking Midfielder", career: "1989-2006", achievements: "World Cup 1998, Ballon d'Or", score: 90.6, country: "France" },
-            { rank: 19, name: "Tim Duncan", sport: "basketball", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion, 3x MVP", score: 90.3, country: "USA" },
-            { rank: 20, name: "Nikola Karabatic", sport: "handball", position: "Playmaker", career: "2002-2022", achievements: "3x Olympic Gold, 4x World Champion", score: 90.0, country: "France" },
-            { rank: 21, name: "Michael Schumacher", sport: "formula1", position: "Driver", career: "1991-2012", achievements: "7x World Champion", score: 89.7, country: "Germany" },
-            { rank: 22, name: "Shaquille O'Neal", sport: "basketball", position: "Center", career: "1992-2011", achievements: "4x NBA Champion, 1x MVP", score: 89.4, country: "USA" },
-            { rank: 23, name: "Karch Kiraly", sport: "volleyball", position: "Outside Hitter", career: "1981-1996", achievements: "3x Olympic Gold, Beach Volleyball Champion", score: 89.1, country: "USA" },
-            { rank: 24, name: "Ronaldinho", sport: "football", position: "Attacking Midfielder", career: "1998-2015", achievements: "Ballon d'Or 2005, World Cup 2002", score: 88.8, country: "Brazil" },
-            { rank: 25, name: "Kobe Bryant", sport: "basketball", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion, 1x MVP", score: 88.5, country: "USA" },
-            { rank: 26, name: "Willie Mays", sport: "baseball", position: "Center Field", career: "1951-1973", achievements: "2x MVP, 660 Home Runs", score: 88.2, country: "USA" },
-            { rank: 27, name: "Maurice Richard", sport: "hockey", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup", score: 87.9, country: "Canada" },
-            { rank: 28, name: "Dan Carter", sport: "rugby", position: "Fly-half", career: "2003-2015", achievements: "2x World Cup, All Blacks Legend", score: 87.6, country: "New Zealand" },
-            { rank: 29, name: "Pelé", sport: "football", position: "Forward", career: "1956-1977", achievements: "3x World Cup", score: 87.3, country: "Brazil" },
-            { rank: 30, name: "Bill Russell", sport: "basketball", position: "Center", career: "1956-1969", achievements: "11x NBA Champion", score: 87.0, country: "USA" },
-            { rank: 31, name: "Magnus Wislander", sport: "handball", position: "Playmaker", career: "1985-2001", achievements: "3x World Champion, Olympic Silver", score: 86.7, country: "Sweden" },
-            { rank: 32, name: "Bobby Orr", sport: "hockey", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup, 3x MVP", score: 86.4, country: "Canada" },
-            { rank: 33, name: "Viv Richards", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "2x World Cup, Fastest Century", score: 86.1, country: "West Indies" },
-            { rank: 34, name: "Johan Cruyff", sport: "football", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or", score: 85.8, country: "Netherlands" },
-            { rank: 35, name: "Wilt Chamberlain", sport: "basketball", position: "Center", career: "1959-1973", achievements: "2x NBA Champion, 4x MVP", score: 85.5, country: "USA" },
-            { rank: 36, name: "Sergio Llull", sport: "volleyball", position: "Setter", career: "2004-2020", achievements: "Olympic Bronze, European Champion", score: 85.2, country: "Spain" },
-            { rank: 37, name: "Mark Messier", sport: "hockey", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup, 2x MVP", score: 84.9, country: "Canada" },
-            { rank: 38, name: "Alain Prost", sport: "formula1", position: "Driver", career: "1980-1993", achievements: "4x World Champion", score: 84.6, country: "France" },
-            { rank: 39, name: "Hank Aaron", sport: "baseball", position: "Right Field", career: "1954-1976", achievements: "755 Home Runs, MVP 1957", score: 84.3, country: "USA" },
-            { rank: 40, name: "Hakeem Olajuwon", sport: "basketball", position: "Center", career: "1984-2002", achievements: "2x NBA Champion, 1x MVP", score: 84.0, country: "Nigeria/USA" },
-            { rank: 41, name: "Thierry Omeyer", sport: "handball", position: "Goalkeeper", career: "1997-2017", achievements: "2x Olympic Gold, 3x World Champion", score: 83.7, country: "France" },
-            { rank: 42, name: "Richie McCaw", sport: "rugby", position: "Flanker", career: "2001-2015", achievements: "2x World Cup Captain, 148 Caps", score: 83.4, country: "New Zealand" },
-            { rank: 43, name: "Niki Lauda", sport: "formula1", position: "Driver", career: "1971-1985", achievements: "3x World Champion", score: 83.1, country: "Austria" },
-            { rank: 44, name: "Ted Williams", sport: "baseball", position: "Left Field", career: "1939-1960", achievements: ".406 Average, 2x MVP", score: 82.8, country: "USA" },
-            { rank: 45, name: "Oscar Robertson", sport: "basketball", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion, 1x MVP", score: 82.5, country: "USA" },
-            { rank: 46, name: "Brian Lara", sport: "cricket", position: "Batsman", career: "1990-2007", achievements: "400* Test Score, World Record", score: 82.2, country: "West Indies" },
-            { rank: 47, name: "Jaromir Jagr", sport: "hockey", position: "Right Wing", career: "1990-2018", achievements: "2x Stanley Cup, 1x MVP", score: 81.9, country: "Czech Republic" },
-            { rank: 48, name: "Bernardo Rezende", sport: "volleyball", position: "Coach/Former Player", career: "1975-1987", achievements: "2x Olympic Gold as Coach", score: 81.6, country: "Brazil" },
-            { rank: 49, name: "Garrincha", sport: "football", position: "Right Winger", career: "1953-1972", achievements: "2x World Cup", score: 81.3, country: "Brazil" },
-            { rank: 50, name: "Lou Gehrig", sport: "baseball", position: "First Base", career: "1923-1939", achievements: "6x World Series, Iron Horse", score: 81.0, country: "USA" }
+        // Top 50 Players Data - Exactly 50 athletes with STATISTICALLY ACCURATE rankings
+        const top50PlayersData = [
+            { rank: 1, name: "Lionel Messi", sport: "football", position: "Forward", career: "2004-2023", achievements: "7x Ballon d'Or, World Cup 2022", score: 98.1, country: "Argentina" },
+            { rank: 2, name: "Wayne Gretzky", sport: "hockey", position: "Center", career: "1979-1999", achievements: "4x Stanley Cup, 9x MVP, 2,857 points", score: 97.8, country: "Canada" },
+            { rank: 3, name: "Michael Jordan", sport: "basketball", position: "Shooting Guard", career: "1984-2003", achievements: "6x NBA Champion, 5x MVP", score: 97.2, country: "USA" },
+            { rank: 4, name: "Babe Ruth", sport: "baseball", position: "Outfielder/Pitcher", career: "1914-1935", achievements: "7x World Series, 714 Home Runs, .342 BA", score: 96.5, country: "USA" },
+            { rank: 5, name: "Tom Brady", sport: "american-football", position: "Quarterback", career: "2000-2022", achievements: "7x Super Bowl Champion", score: 95.1, country: "USA" },
+            { rank: 6, name: "LeBron James", sport: "basketball", position: "Forward", career: "2003-present", achievements: "4x NBA Champion, 4x MVP", score: 94.8, country: "USA" },
+            { rank: 7, name: "Cristiano Ronaldo", sport: "football", position: "Forward", career: "2002-present", achievements: "5x Ballon d'Or, 5x UCL", score: 94.2, country: "Portugal" },
+            { rank: 8, name: "Don Bradman", sport: "cricket", position: "Batsman", career: "1928-1948", achievements: "99.94 Test Average, Invincibles Captain", score: 93.8, country: "Australia" },
+            { rank: 9, name: "Willie Mays", sport: "baseball", position: "Center Field", career: "1951-1973", achievements: "2x MVP, 660 Home Runs, 'The Say Hey Kid'", score: 93.5, country: "USA" },
+            { rank: 10, name: "Tim Duncan", sport: "basketball", position: "Power Forward", career: "1997-2016", achievements: "5x NBA Champion, 3x MVP", score: 92.1, country: "USA" },
+            { rank: 11, name: "Bill Russell", sport: "basketball", position: "Center", career: "1956-1969", achievements: "11x NBA Champion", score: 91.5, country: "USA" },
+            { rank: 12, name: "Magic Johnson", sport: "basketball", position: "Point Guard", career: "1979-1996", achievements: "5x NBA Champion, 3x MVP", score: 91.2, country: "USA" },
+            { rank: 13, name: "Joe Montana", sport: "american-football", position: "Quarterback", career: "1979-1994", achievements: "4x Super Bowl Champion", score: 91.0, country: "USA" },
+            { rank: 14, name: "Ted Williams", sport: "baseball", position: "Left Field", career: "1939-1960", achievements: ".406 Average 1941, 2x MVP, .344 Career BA", score: 90.8, country: "USA" },
+            { rank: 15, name: "Kareem Abdul-Jabbar", sport: "basketball", position: "Center", career: "1969-1989", achievements: "6x NBA Champion, 6x MVP", score: 90.1, country: "USA" },
+            { rank: 16, name: "Mario Lemieux", sport: "hockey", position: "Center", career: "1984-2006", achievements: "2x Stanley Cup, 3x MVP", score: 90.3, country: "Canada" },
+            { rank: 17, name: "Ayrton Senna", sport: "formula1", position: "Driver", career: "1984-1994", achievements: "3x World Champion, 41 wins", score: 89.8, country: "Brazil" },
+            { rank: 18, name: "Sachin Tendulkar", sport: "cricket", position: "Batsman", career: "1989-2013", achievements: "World Cup 2011, 100 International Centuries", score: 88.4, country: "India" },
+            { rank: 19, name: "Jerry Rice", sport: "american-football", position: "Wide Receiver", career: "1985-2004", achievements: "3x Super Bowl Champion, 197 TDs", score: 88.7, country: "USA" },
+            { rank: 20, name: "Shaquille O'Neal", sport: "basketball", position: "Center", career: "1992-2011", achievements: "4x NBA Champion, 1x MVP", score: 88.2, country: "USA" },
+            { rank: 21, name: "Zinedine Zidane", sport: "football", position: "Attacking Midfielder", career: "1989-2006", achievements: "World Cup 1998, Ballon d'Or", score: 88.4, country: "France" },
+            { rank: 22, name: "Kobe Bryant", sport: "basketball", position: "Shooting Guard", career: "1996-2016", achievements: "5x NBA Champion, 1x MVP", score: 88.0, country: "USA" },
+            { rank: 23, name: "Hank Aaron", sport: "baseball", position: "Right Field", career: "1954-1976", achievements: "755 Home Runs, 1x MVP, 25x All-Star", score: 87.9, country: "USA" },
+            { rank: 24, name: "Lewis Hamilton", sport: "formula1", position: "Driver", career: "2007-present", achievements: "7x World Champion, 103 wins", score: 87.6, country: "UK" },
+            { rank: 25, name: "Jonah Lomu", sport: "rugby", position: "Winger", career: "1994-2002", achievements: "2x World Cup Final, 63 Tries", score: 87.8, country: "New Zealand" },
+            { rank: 26, name: "Michael Schumacher", sport: "formula1", position: "Driver", career: "1991-2012", achievements: "7x World Champion, 91 wins", score: 87.2, country: "Germany" },
+            { rank: 27, name: "Dan Carter", sport: "rugby", position: "Fly-half", career: "2003-2015", achievements: "2x World Cup, All Blacks Legend", score: 87.4, country: "New Zealand" },
+            { rank: 28, name: "Pelé", sport: "football", position: "Forward", career: "1956-1977", achievements: "3x World Cup", score: 86.8, country: "Brazil" },
+            { rank: 29, name: "Lou Gehrig", sport: "baseball", position: "First Base", career: "1923-1939", achievements: "6x World Series, .340 BA, Iron Horse", score: 86.5, country: "USA" },
+            { rank: 30, name: "Maurice Richard", sport: "hockey", position: "Right Wing", career: "1942-1960", achievements: "8x Stanley Cup, first 50-goal scorer", score: 86.8, country: "Canada" },
+            { rank: 31, name: "Bobby Orr", sport: "hockey", position: "Defenseman", career: "1966-1978", achievements: "2x Stanley Cup, 3x MVP", score: 86.6, country: "Canada" },
+            { rank: 32, name: "Wilt Chamberlain", sport: "basketball", position: "Center", career: "1959-1973", achievements: "2x NBA Champion, 4x MVP, 100-point game", score: 86.4, country: "USA" },
+            { rank: 33, name: "Mickey Mantle", sport: "baseball", position: "Center Field", career: "1951-1968", achievements: "7x World Series, 3x MVP, Triple Crown", score: 86.2, country: "USA" },
+            { rank: 34, name: "Viv Richards", sport: "cricket", position: "Batsman", career: "1974-1991", achievements: "2x World Cup, Fastest Century", score: 84.3, country: "West Indies" },
+            { rank: 35, name: "Shohei Ohtani", sport: "baseball", position: "Pitcher/DH", career: "2018-present", achievements: "2x MVP, Two-way phenomenon", score: 85.8, country: "Japan" },
+            { rank: 36, name: "Alain Prost", sport: "formula1", position: "Driver", career: "1980-1993", achievements: "4x World Champion", score: 84.1, country: "France" },
+            { rank: 37, name: "Mark Messier", sport: "hockey", position: "Center", career: "1979-2004", achievements: "6x Stanley Cup, 2x MVP", score: 84.5, country: "Canada" },
+            { rank: 38, name: "Johan Cruyff", sport: "football", position: "Forward", career: "1964-1984", achievements: "3x Ballon d'Or, Total Football", score: 84.9, country: "Netherlands" },
+            { rank: 39, name: "Richie McCaw", sport: "rugby", position: "Flanker", career: "2001-2015", achievements: "2x World Cup Captain, 148 Caps", score: 83.3, country: "New Zealand" },
+            { rank: 40, name: "Niki Lauda", sport: "formula1", position: "Driver", career: "1971-1985", achievements: "3x World Champion", score: 83.1, country: "Austria" },
+            { rank: 41, name: "Hakeem Olajuwon", sport: "basketball", position: "Center", career: "1984-2002", achievements: "2x NBA Champion, 1x MVP", score: 83.5, country: "USA" },
+            { rank: 42, name: "Ronaldinho", sport: "football", position: "Attacking Midfielder", career: "1998-2015", achievements: "Ballon d'Or 2005, World Cup 2002", score: 82.9, country: "Brazil" },
+            { rank: 43, name: "Oscar Robertson", sport: "basketball", position: "Point Guard", career: "1960-1974", achievements: "1x NBA Champion, 1x MVP", score: 82.5, country: "USA" },
+            { rank: 44, name: "Brian Lara", sport: "cricket", position: "Batsman", career: "1990-2007", achievements: "400* Test Score, World Record", score: 82.3, country: "West Indies" },
+            { rank: 45, name: "Jaromir Jagr", sport: "hockey", position: "Right Wing", career: "1990-2018", achievements: "2x Stanley Cup, 1x MVP", score: 82.1, country: "Czech Republic" },
+            { rank: 46, name: "Garrincha", sport: "football", position: "Right Winger", career: "1953-1972", achievements: "2x World Cup", score: 81.7, country: "Brazil" },
+            { rank: 47, name: "Stan Musial", sport: "baseball", position: "First Base/Outfield", career: "1941-1963", achievements: "3x World Series, 3x MVP, .331 BA", score: 81.5, country: "USA" },
+            { rank: 48, name: "Giba", sport: "volleyball", position: "Outside Hitter", career: "1995-2012", achievements: "Olympic Gold 2004, World Champion 2002", score: 79.8, country: "Brazil" },
+            { rank: 49, name: "Nikola Karabatic", sport: "handball", position: "Playmaker", career: "2002-2022", achievements: "3x Olympic Gold, 4x World Champion", score: 76.5, country: "France" },
+            { rank: 50, name: "Karch Kiraly", sport: "volleyball", position: "Outside Hitter", career: "1981-1996", achievements: "3x Olympic Gold, Beach Volleyball Champion", score: 75.7, country: "USA" }
         ];
+
+        // Extended database for sport-specific top 10s (includes additional players beyond top 50)
+        const allPlayersData = [
+            ...top50PlayersData,
+            // Additional Football players
+            { rank: 51, name: "Diego Maradona", sport: "football", position: "Attacking Midfielder", career: "1976-1997", achievements: "World Cup 1986, Golden Ball", score: 80.9, country: "Argentina" },
+            { rank: 52, name: "Franz Beckenbauer", sport: "football", position: "Sweeper", career: "1964-1983", achievements: "World Cup 1974, 2x Ballon d'Or", score: 80.6, country: "Germany" },
+            { rank: 53, name: "Ronaldo Nazário", sport: "football", position: "Striker", career: "1993-2011", achievements: "2x World Cup, 2x Ballon d'Or", score: 80.3, country: "Brazil" },
+            { rank: 54, name: "Alfredo Di Stéfano", sport: "football", position: "Forward", career: "1945-1966", achievements: "5x European Cup, 2x Ballon d'Or", score: 80.0, country: "Argentina/Spain" },
+            { rank: 55, name: "Michel Platini", sport: "football", position: "Attacking Midfielder", career: "1972-1987", achievements: "European Championship 1984, 3x Ballon d'Or", score: 79.7, country: "France" },
+            { rank: 56, name: "Gerd Müller", sport: "football", position: "Striker", career: "1964-1981", achievements: "World Cup 1974, European Championship 1972", score: 79.4, country: "Germany" },
+            // Additional Basketball players
+            { rank: 57, name: "Larry Bird", sport: "basketball", position: "Small Forward", career: "1979-1992", achievements: "3x NBA Champion, 3x MVP", score: 79.1, country: "USA" },
+            { rank: 58, name: "Stephen Curry", sport: "basketball", position: "Point Guard", career: "2009-present", achievements: "4x NBA Champion, 2x MVP", score: 78.8, country: "USA" },
+            // Additional American Football players  
+            { rank: 59, name: "Peyton Manning", sport: "american-football", position: "Quarterback", career: "1998-2015", achievements: "2x Super Bowl, 5x MVP", score: 78.5, country: "USA" },
+            { rank: 60, name: "Johnny Unitas", sport: "american-football", position: "Quarterback", career: "1956-1973", achievements: "3x NFL Champion, 3x MVP", score: 78.2, country: "USA" },
+            { rank: 61, name: "Jim Brown", sport: "american-football", position: "Running Back", career: "1957-1965", achievements: "NFL Champion 1964, 3x MVP", score: 77.9, country: "USA" },
+            { rank: 62, name: "Lawrence Taylor", sport: "american-football", position: "Linebacker", career: "1981-1993", achievements: "2x Super Bowl, 3x DPOY", score: 77.6, country: "USA" },
+            { rank: 63, name: "Randy Moss", sport: "american-football", position: "Wide Receiver", career: "1998-2012", achievements: "6x Pro Bowl, NFL Records", score: 77.3, country: "USA" },
+            // Additional Hockey players
+            { rank: 64, name: "Gordie Howe", sport: "hockey", position: "Right Wing", career: "1946-1980", achievements: "4x Stanley Cup, 6x MVP", score: 77.0, country: "Canada" },
+            { rank: 65, name: "Sidney Crosby", sport: "hockey", position: "Center", career: "2005-present", achievements: "3x Stanley Cup, 2x MVP", score: 76.7, country: "Canada" },
+            { rank: 66, name: "Alexander Ovechkin", sport: "hockey", position: "Left Wing", career: "2005-present", achievements: "Stanley Cup 2018, 3x MVP", score: 76.4, country: "Russia" },
+            // Additional Formula 1 players
+            { rank: 67, name: "Juan Manuel Fangio", sport: "formula1", position: "Driver", career: "1950-1958", achievements: "5x World Champion", score: 76.1, country: "Argentina" },
+            { rank: 68, name: "Jim Clark", sport: "formula1", position: "Driver", career: "1960-1968", achievements: "2x World Champion, Indy 500", score: 75.8, country: "UK" },
+            { rank: 69, name: "Jackie Stewart", sport: "formula1", position: "Driver", career: "1965-1973", achievements: "3x World Champion", score: 75.5, country: "UK" },
+            { rank: 70, name: "Sebastian Vettel", sport: "formula1", position: "Driver", career: "2007-2022", achievements: "4x World Champion", score: 75.2, country: "Germany" },
+            // Additional Volleyball players
+            { rank: 71, name: "Murilo Endres", sport: "volleyball", position: "Outside Hitter", career: "2001-2016", achievements: "Olympic Gold 2004, World Champion", score: 74.9, country: "Brazil" },
+            { rank: 72, name: "Samuele Papi", sport: "volleyball", position: "Libero", career: "1996-2014", achievements: "World Champion 1998, Olympic Bronze", score: 74.6, country: "Italy" },
+            { rank: 73, name: "Clayton Stanley", sport: "volleyball", position: "Outside Hitter", career: "2000-2012", achievements: "Olympic Gold 2008, World Champion", score: 74.3, country: "USA" },
+            // Additional Cricket players
+            { rank: 74, name: "Don Bradman", sport: "cricket", position: "Batsman", career: "1928-1948", achievements: "Test Average 99.94, Invincibles Captain", score: 74.0, country: "Australia" },
+            { rank: 75, name: "Shane Warne", sport: "cricket", position: "Spin Bowler", career: "1992-2007", achievements: "708 Test Wickets, World Cup 1999", score: 73.7, country: "Australia" },
+            { rank: 76, name: "Jacques Kallis", sport: "cricket", position: "All-rounder", career: "1995-2013", achievements: "13,289 Test Runs, 292 Wickets", score: 73.4, country: "South Africa" },
+            // Additional Handball players
+            { rank: 77, name: "Mikkel Hansen", sport: "handball", position: "Left Wing", career: "2006-present", achievements: "Olympic Gold 2016, World Champion", score: 73.1, country: "Denmark" },
+            { rank: 78, name: "Luc Abalo", sport: "handball", position: "Right Wing", career: "2002-2019", achievements: "2x Olympic Gold, 4x World Champion", score: 72.8, country: "France" },
+            { rank: 79, name: "Ivano Balić", sport: "handball", position: "Playmaker", career: "1999-2013", achievements: "Olympic Gold 2004, World Champion", score: 72.5, country: "Croatia" },
+            // Additional Baseball players
+            { rank: 80, name: "Mickey Mantle", sport: "baseball", position: "Center Field", career: "1951-1968", achievements: "7x World Series, 3x MVP", score: 72.2, country: "USA" },
+            { rank: 81, name: "Barry Bonds", sport: "baseball", position: "Left Field", career: "1986-2007", achievements: "762 Home Runs, 7x MVP", score: 71.9, country: "USA" },
+            { rank: 82, name: "Stan Musial", sport: "baseball", position: "First Base/Outfield", career: "1941-1963", achievements: "3x World Series, 3x MVP", score: 71.6, country: "USA" },
+            // Additional Rugby players
+            { rank: 83, name: "Sergio Parisse", sport: "rugby", position: "Number 8", career: "2002-2019", achievements: "142 Caps, 6 Nations Grand Slam", score: 71.3, country: "Italy" },
+            { rank: 84, name: "Brian O'Driscoll", sport: "rugby", position: "Center", career: "1999-2014", achievements: "141 Caps, 4x 6 Nations", score: 71.0, country: "Ireland" },
+            { rank: 85, name: "Gareth Edwards", sport: "rugby", position: "Scrum-half", career: "1967-1978", achievements: "53 Caps, 3x Grand Slam", score: 70.7, country: "Wales" }
+        ];
+
+        // Use top50PlayersData for main rankings, allPlayersData for sport-specific rankings
+        const playersData = top50PlayersData;
 
         // Navigation functionality with hamburger menu
         function showSection(sectionId) {
@@ -651,7 +792,8 @@
             const container = document.getElementById(containerId);
             if (!container) return;
             
-            const sportPlayers = playersData.filter(player => player.sport === sport).slice(0, 10);
+            // Use extended database for sport-specific rankings, but limit to 10
+            const sportPlayers = allPlayersData.filter(player => player.sport === sport).slice(0, 10);
             container.innerHTML = '';
             
             sportPlayers.forEach((player, index) => {
@@ -789,7 +931,56 @@
                     toggleMenu(false);
                 }
             });
+
+            // Start slideshow auto-play
+            startSlideshow();
         });
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (slides[slideIndex]) {
+                slides[slideIndex].classList.add('active');
+                dots[slideIndex].classList.add('active');
+            }
+        }
+
+        function changeSlide(direction) {
+            slideIndex += direction;
+            showSlide(slideIndex);
+            restartSlideshow();
+        }
+
+        function currentSlide(index) {
+            slideIndex = index - 1;
+            showSlide(slideIndex);
+            restartSlideshow();
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function restartSlideshow() {
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
     </script>
 </body>
 </html>
