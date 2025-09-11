@@ -67,16 +67,28 @@
                 <div class="goat-showcase">
                     <div class="slideshow-container">
                         <div class="slide active">
-                            <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
+                            <a href="https://www.flickr.com/photos/21677455@N04/3234505488/" target="_blank" class="slide-image-link">
+                                <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
+                                <div class="image-credit">📸 Flickr - CC BY-NC 2.0</div>
+                            </a>
                         </div>
                         <div class="slide">
-                            <img src="images/messi-2.png" alt="Lionel Messi with Ballon d'Or" />
+                            <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" class="slide-image-link">
+                                <img src="images/messi-2.png" alt="Lionel Messi with Ballon d'Or" />
+                                <div class="image-credit">📸 CC BY-NC 2.0 License</div>
+                            </a>
                         </div>
                         <div class="slide">
-                            <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
+                            <a href="https://commons.wikimedia.org/w/index.php?curid=8148272" target="_blank" class="slide-image-link">
+                                <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
+                                <div class="image-credit">📸 Wikimedia Commons - CC BY 2.0</div>
+                            </a>
                         </div>
                         <div class="slide">
-                            <img src="images/messi-4.jpg" alt="Lionel Messi team celebration" />
+                            <div class="slide-image-link">
+                                <img src="images/messi-4.jpg" alt="Lionel Messi team celebration" />
+                                <div class="image-credit">📸 Copyright Free</div>
+                            </div>
                         </div>
                         
                         <!-- Navigation arrows -->
@@ -899,7 +911,7 @@
                         <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
                     </div>
                     <div class="player-score">${player.score}</div>
-                    <div class="player-details" id="${sport}-${index + 1}">
+                    <div class="player-details" id="filter-${sport}-${index + 1}">
                         ${player.offensive ? `
                         <div class="stats-grid">
                             <div class="stat-item">
@@ -938,7 +950,7 @@
                 `;
                 
                 // Set onclick AFTER innerHTML to prevent it from being overwritten
-                playerCard.onclick = () => toggleSportPlayerDetails(`${sport}-${index + 1}`, sport);
+                playerCard.onclick = () => toggleSportPlayerDetails(`filter-${sport}-${index + 1}`, sport);
                 
                 grid.appendChild(playerCard);
             });
@@ -1035,42 +1047,12 @@
         // Toggle player details
         // Toggle player details for Top 50 rankings
         function toggleTop50PlayerDetails(elementId) {
-            // Toggle the selected player detail
-            const details = document.getElementById(elementId);
-            if (details) {
-                const isVisible = details.style.display === 'block' || details.classList.contains('show');
-                if (isVisible) {
-                    details.style.display = 'none';
-                    details.classList.remove('show');
-                } else {
-                    details.style.display = 'block';
-                    details.classList.add('show');
-                }
-                
-                // Also close any open sport-specific details for the same player
-                // Extract rank from top50-X format
-                const rank = elementId.replace('top50-', '');
-                closeOtherPlayerDetails(elementId);
-            }
+            togglePlayerDetailsUnified(elementId);
         }
 
         // Toggle player details for sport-specific rankings
         function toggleSportPlayerDetails(elementId, sport) {
-            // Toggle the selected player detail
-            const details = document.getElementById(elementId);
-            if (details) {
-                const isVisible = details.style.display === 'block' || details.classList.contains('show');
-                if (isVisible) {
-                    details.style.display = 'none';
-                    details.classList.remove('show');
-                } else {
-                    details.style.display = 'block';
-                    details.classList.add('show');
-                }
-                
-                // Also close any open top50 details for the same player
-                closeOtherPlayerDetails(elementId);
-            }
+            togglePlayerDetailsUnified(elementId);
         }
         
         // Helper function to close other instances of the same player's details
@@ -1083,6 +1065,24 @@
                     detail.classList.remove('show');
                 }
             });
+        }
+        
+        // Enhanced toggle system that handles all ID patterns
+        function togglePlayerDetailsUnified(elementId) {
+            const details = document.getElementById(elementId);
+            if (details) {
+                const isVisible = details.style.display === 'block' || details.classList.contains('show');
+                if (isVisible) {
+                    details.style.display = 'none';
+                    details.classList.remove('show');
+                } else {
+                    details.style.display = 'block';
+                    details.classList.add('show');
+                }
+                
+                // Close other instances to prevent conflicts
+                closeOtherPlayerDetails(elementId);
+            }
         }
 
         // Legacy function for backward compatibility
@@ -1149,7 +1149,7 @@
                         <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
                     </div>
                     <div class="player-score">${player.score}</div>
-                    <div class="player-details" id="${sport}-${index + 1}">
+                    <div class="player-details" id="menu-${sport}-${index + 1}">
                         ${player.offensive ? `
                         <div class="stats-grid">
                             <div class="stat-item">
@@ -1191,7 +1191,7 @@
                 `;
                 
                 // Set onclick AFTER innerHTML to prevent it from being overwritten
-                playerCard.onclick = () => toggleSportPlayerDetails(`${sport}-${index + 1}`, sport);
+                playerCard.onclick = () => toggleSportPlayerDetails(`menu-${sport}-${index + 1}`, sport);
                 
                 container.appendChild(playerCard);
             });
