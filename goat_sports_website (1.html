@@ -297,13 +297,16 @@
                     <label for="star1" title="1 star">★</label>
                 </div>
 
-                <h3 data-lang-de="Finden Sie unser Ranking-system fair?" data-lang-en="Is this ranking-system fair?">War dieser Artikel hilfreich?</h3>
+                <h3 data-lang-de="Finden Sie unser Rankingsystem fair?" data-lang-en="Do you find our ranking system fair?">Finden Sie unser Rankingsystem fair?</h3>
                 <form>
-                <input type="radio" id="Ja/Yes" name="fairranking" value="Ja/Yes">
-                <label for="yesfair">Ja/Yes</label><br>
-                <input type="radio" id="Nein/No" name="fairranking" value="Nein/No">
-                <label for="notHelpful">Nein/No</label><br>
-                </form> 
+                  <fieldset>
+                    <legend class="visually-hidden" data-lang-de="Fairness des Rankings" data-lang-en="Ranking fairness">Fairness des Rankings</legend>
+                    <input type="radio" id="fair-yes" name="fairranking" value="yes">
+                    <label for="fair-yes" data-lang-de="Ja" data-lang-en="Yes">Ja</label><br>
+                    <input type="radio" id="fair-no" name="fairranking" value="no">
+                    <label for="fair-no" data-lang-de="Nein" data-lang-en="No">Nein</label><br>
+                  </fieldset>
+                </form>
 
                 <h3 data-lang-de="Feedback/Falsche Informationen melden" data-lang-en="Feedback/Report wrong Infromations">Feedback/Falsche Informationen melden</h3>
                 <form onsubmit="event.preventDefault(); alert('Danke für Ihre Unterstützung/Thank you for your support!');">
