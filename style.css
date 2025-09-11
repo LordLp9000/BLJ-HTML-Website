@@ -231,6 +231,17 @@ nav {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(100px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
 main {
     max-width: auto;
     margin: 0 auto;
@@ -631,15 +642,71 @@ footer {
     margin-top: 3rem;
 }
 
-/* Copyright Attribution Styles */
+/* Footer Content Grid - Side by Side Layout */
+.footer-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+    align-items: start;
+}
+
+/* Copyright Attribution Styles - Adjusted for side-by-side */
 .copyright-attributions {
     background-color: #282727;
-    padding: 2rem;
-    margin: 2rem auto 0;
+    padding: 1.5rem;
     border-radius: 10px;
     border: 2px solid #ffbf00;
-    max-width: 1000px;
     text-align: left;
+    height: fit-content;
+}
+
+/* Privacy Policy Styles - Adjusted for side-by-side */
+#privacy-policy {
+    background-color: #282727;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid #6f00ff;
+    text-align: left;
+    font-size: 0.85rem;
+    height: fit-content;
+}
+
+#privacy-policy h2 {
+    color: #ffbf00;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #6f00ff;
+    padding-bottom: 0.5rem;
+}
+
+#privacy-policy h3 {
+    color: #ffbf00;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+#privacy-policy p {
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    color: #ccc;
+}
+
+#privacy-policy a {
+    color: #ffbf00;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#privacy-policy a:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 .copyright-attributions h4 {
@@ -654,8 +721,8 @@ footer {
 
 .attribution-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -749,8 +816,15 @@ footer {
         gap: 1rem;
     }
     
+    /* Mobile: Stack footer content vertically */
+    .footer-content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
     .copyright-attributions {
-        margin: 1rem;
+        margin: 1rem 0;
         padding: 1.5rem;
     }
     
@@ -777,6 +851,21 @@ footer {
     .preview-info {
         text-align: center;
         font-size: 0.85rem;
+    }
+    
+    /* Mobile styles for privacy policy */
+    #privacy-policy {
+        margin: 1rem 0;
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+    
+    #privacy-policy h2 {
+        font-size: 1rem;
+    }
+    
+    #privacy-policy h3 {
+        font-size: 0.9rem;
     }
     
     /* Mobile styles for expanded player cards - in-place expansion */
