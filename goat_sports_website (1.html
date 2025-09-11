@@ -70,7 +70,7 @@
                             <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
                         </div>
                         <div class="slide">
-                            <img src="images/messi-2.jpg" alt="Lionel Messi with Ballon d'Or" />
+                            <img src="images/messi-2.png" alt="Lionel Messi with Ballon d'Or" />
                         </div>
                         <div class="slide">
                             <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
@@ -893,7 +893,7 @@
             players.forEach(player => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                playerCard.onclick = () => togglePlayerDetails(player.rank);
+                playerCard.onclick = () => togglePlayerDetails(`top50-${player.rank}`);
                 
                 const sportEmojis = {
                     'football': '⚽',
@@ -913,13 +913,12 @@
                 playerCard.innerHTML = `
                     <div class="player-info">
                         <h3>${player.rank}. ${player.name} ${sportEmojis[player.sport] || '🏆'}</h3>
-                        ${player.nickname ? `<p class="nickname"><strong>${currentLanguage === 'de' ? 'Spitzname:' : 'Nickname:'}</strong> "${player.nickname}"</p>` : ''}
+                        ${player.nickname ? `<div class="nickname"><strong>"${player.nickname}"</strong></div>` : ''}
                         <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
                         <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
                     </div>
                     <div class="player-score">${player.score}</div>
-                    <div id="details-${player.rank}" class="player-details">
+                    <div id="top50-${player.rank}" class="player-details">
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <div class="stat-value">${detailedRatings[player.rank] ? detailedRatings[player.rank].offensive.toFixed(1) : (Math.random() * 10 + 5).toFixed(1)}</div>
@@ -968,8 +967,8 @@
 
         // Toggle player details
         function togglePlayerDetails(elementId) {
-            // Handle both formats: rank numbers and sport-index format
-            const details = document.getElementById(`details-${elementId}`) || document.getElementById(elementId);
+            // Direct access to the element by its unique ID
+            const details = document.getElementById(elementId);
             if (details) {
                 if (details.style.display === 'none' || details.style.display === '') {
                     details.style.display = 'block';
@@ -1017,10 +1016,9 @@
                 playerCard.innerHTML = `
                     <div class="player-info">
                         <h3>${index + 1}. ${player.name} ${sportEmojis[sport] || '🏆'}</h3>
-                        ${player.nickname ? `<p class="nickname"><strong>${currentLanguage === 'de' ? 'Spitzname:' : 'Nickname:'}</strong> "${player.nickname}"</p>` : ''}
+                        ${player.nickname ? `<div class="nickname"><strong>"${player.nickname}"</strong></div>` : ''}
                         <p><strong>${currentLanguage === 'de' ? 'Sport:' : 'Sport:'}</strong> ${sportName} | <strong>${currentLanguage === 'de' ? 'Position:' : 'Position:'}</strong> ${player.position}</p>
                         <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career} | <strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
                     </div>
                     <div class="player-score">${player.score}</div>
                     <div class="player-details" id="${sport}-${index + 1}">
