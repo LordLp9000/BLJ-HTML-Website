@@ -589,6 +589,37 @@ footer {
     border-left: 3px solid #ffbf00;
 }
 
+.image-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.preview-thumbnail {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #ffbf00;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.preview-thumbnail:hover {
+    transform: scale(1.1);
+    border-color: white;
+}
+
+.preview-info {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.preview-info strong {
+    color: #ffbf00;
+}
+
 .attribution-item a {
     color: #ffbf00;
     text-decoration: none;
@@ -632,6 +663,23 @@ footer {
     
     .attribution-item {
         padding: 1rem;
+    }
+    
+    .image-preview-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .preview-thumbnail {
+        width: 80px;
+        height: 50px;
+        align-self: center;
+    }
+    
+    .preview-info {
+        text-align: center;
+        font-size: 0.85rem;
     }
 }
 
