@@ -685,6 +685,27 @@ footer {
     display: none;
 }
 
+ .star-rating {
+      display: flex;
+      font-size: 2rem;
+        }
+
+.star-rating input {
+      display: none;
+    }
+
+.star-rating label {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+      color: #f5b301;
+    }
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;

@@ -282,6 +282,36 @@
                     <li data-lang-de="Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren" data-lang-en="Students learning about sports science or data analysis">Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren</li>
                     <li data-lang-de="Diskussionsfreudige Community, die immer über den 'GOAT' debattiert" data-lang-en="Discussion-loving community always debating about the 'GOAT'">Diskussionsfreudige Community, die immer über den "GOAT" debattiert</li>
                 </ul>
+
+                <h3 data-lang-de="Wir brauchen Ihre Unterstützug" data-lang-en="We need your support">Wir brauchen Ihre Unterstützung</h3>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="1">
+                    <label for="star5" title="5 stars">★</label>
+                    <input type="radio" id="star4" name="rating" value="2">
+                    <label for="star4" title="4 stars">★</label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3" title="3 stars">★</label>
+                    <input type="radio" id="star2" name="rating" value="4">
+                    <label for="star2" title="2 stars">★</label>
+                    <input type="radio" id="star1" name="rating" value="5">
+                    <label for="star1" title="1 star">★</label>
+                </div>
+
+                <h3 data-lang-de="Finden Sie unser Ranking-system fair?" data-lang-en="Is this ranking-system fair?">War dieser Artikel hilfreich?</h3>
+                <form>
+                <input type="radio" id="Ja/Yes" name="fairranking" value="Ja/Yes">
+                <label for="yesfair">Ja/Yes</label><br>
+                <input type="radio" id="Nein/No" name="fairranking" value="Nein/No">
+                <label for="notHelpful">Nein/No</label><br>
+                </form> 
+
+                <h3 data-lang-de="Feedback/Falsche Informationen melden" data-lang-en="Feedback/Report wrong Infromations">Feedback/Falsche Informationen melden</h3>
+                <form onsubmit="event.preventDefault(); alert('Danke für Ihre Unterstützung/Thank you for your support!');">
+                    <label for="feedback" data-lang-de="Teilen Sie uns Ihre Meinung mit:" data-lang-en="Share your thoughts with us:">Teilen Sie uns Ihre Meinung mit:</label><br>
+                    <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Ihr Feedback.../Your feedback..."></textarea><br>
+                    <button type="submit" data-lang-de="Absenden" data-lang-en="Submit">Absenden</button>
+                </form>
+
             </div>
         </section>
 
