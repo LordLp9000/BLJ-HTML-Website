@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    background-color: #0004ff;
+    background-color: #5d00ff;
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -70,7 +70,7 @@ nav {
     left: -350px;
     width: 350px;
     height: 100vh;
-    background: linear-gradient(135deg, #0004ff, #6f00ff);
+    background: linear-gradient(135deg, #5d00ff, #6f00ff);
     z-index: 1001;
     transition: left 0.3s ease;
     overflow-y: auto;
@@ -137,7 +137,7 @@ nav {
 .menu-links a:hover,
 .menu-links a.active {
     background-color: #ffbf00;
-    color: #0004ff;
+    color: #5d00ff;
     padding-left: 2rem;
 }
 
@@ -176,7 +176,7 @@ nav {
 .language-switcher button:hover,
 .language-switcher button.active {
     background-color: #ffbf00;
-    color: #0004ff;
+    color: #5d00ff;
 }
 
 .dropdown {
@@ -186,7 +186,7 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #0004ff;
+    background-color: #5d00ff;
     min-width: 220px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
     z-index: 1001;
@@ -208,7 +208,7 @@ nav {
 
 .dropdown-content a:hover {
     background-color: #ffbf00 !important;
-    color: #0004ff !important;
+    color: #5d00ff !important;
 }
 
 .dropdown-content a:first-child {
@@ -247,7 +247,7 @@ main {
 }
 
 .hero {
-    background: linear-gradient(135deg, #6f00ff, #0004ff);
+    background: linear-gradient(135deg, #6f00ff, #5d00ff);
     padding: 4rem 2rem;
     text-align: center;
     border-radius: 15px;
@@ -298,7 +298,7 @@ main {
 }
 
 .player-card {
-    background: linear-gradient(135deg, #6f00ff, #0004ff);
+    background: linear-gradient(135deg, #6f00ff, #5d00ff);
     width: 100%;
     max-width: 900px;
     padding: 2rem;
@@ -312,11 +312,83 @@ main {
     gap: 2.5rem;
     flex-wrap: wrap;
     min-height: 180px;
+    position: relative;
 }
 
 .player-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(111, 0, 255, 0.3);
+}
+
+/* Expanded Player Card - Horizontal expansion with grid adjustment */
+.player-card.expanded {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    z-index: 100;
+    transform: none;
+    box-shadow: 0 15px 40px rgba(111, 0, 255, 0.5);
+    border: 3px solid #ffbf00;
+    margin: 2rem 0;
+    transition: all 0.4s ease;
+    grid-column: 1 / -1; /* Take full width of grid */
+}
+
+.player-card.expanded:hover {
+    transform: none;
+}
+
+/* Adjust grid when card is expanded */
+.rankings-grid.has-expanded {
+    grid-template-columns: 1fr; /* Single column when expanded */
+    gap: 1rem;
+}
+
+/* Remove the overlay background for in-place expansion */
+.player-overlay {
+    display: none;
+}
+
+/* Close Button for Expanded Card - adjusted for in-place expansion */
+.player-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #ffbf00;
+    color: #5d00ff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 101;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #5d00ff;
+}
+
+.player-close-btn:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.player-close-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animate other cards when one is expanded */
+.player-card.compressed {
+    opacity: 0.7;
+    transform: scale(0.98);
+    margin: 1rem 0;
+    transition: all 0.3s ease;
 }
 
 .player-info {
@@ -390,7 +462,7 @@ main {
 }
 
 .filter-btn {
-    background: linear-gradient(135deg, #6f00ff, #0004ff);
+    background: linear-gradient(135deg, #6f00ff, #5d00ff);
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -404,7 +476,7 @@ main {
 .filter-btn:hover,
 .filter-btn.active {
     background: linear-gradient(135deg, #ffbf00, #ff9500);
-    color: #0004ff;
+    color: #5d00ff;
 }
 
 .calculator {
@@ -442,7 +514,7 @@ main {
 }
 
 .calculate-btn {
-    background: linear-gradient(135deg, #6f00ff, #0004ff);
+    background: linear-gradient(135deg, #6f00ff, #5d00ff);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -501,6 +573,31 @@ main {
     display: block;
 }
 
+/* Enhanced player details for expanded view */
+.player-card.expanded .player-details {
+    background-color: rgba(45, 45, 45, 0.95);
+    border: 2px solid #ffbf00;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+.player-card.expanded .player-details.show {
+    display: block;
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -528,7 +625,7 @@ main {
 }
 
 footer {
-    background-color: #0004ff;
+    background-color: #5d00ff;
     padding: 2rem 0;
     text-align: center;
     margin-top: 3rem;
@@ -681,6 +778,32 @@ footer {
         text-align: center;
         font-size: 0.85rem;
     }
+    
+    /* Mobile styles for expanded player cards - in-place expansion */
+    .player-card.expanded {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+        transform: scale(1);
+        margin: 1.5rem 0;
+    }
+    
+    .player-card.expanded:hover {
+        transform: scale(1);
+    }
+    
+    .player-close-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+    
+    .player-card.expanded .player-details {
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
 }
 
 /* GOAT Showcase Styles */
@@ -794,7 +917,7 @@ footer {
 
 .prev:hover, .next:hover {
     background: rgba(255,191,0,0.8);
-    color: #0004ff;
+    color: #5d00ff;
 }
 
 .slide-indicators {
@@ -833,7 +956,7 @@ footer {
 
 .stat-highlight {
     text-align: center;
-    background: linear-gradient(135deg, #6f00ff, #0004ff);
+    background: linear-gradient(135deg, #6f00ff, #5d00ff);
     padding: 1rem;
     border-radius: 10px;
     flex: 1;
@@ -909,7 +1032,7 @@ footer {
 
 .cta-button {
     background: linear-gradient(135deg, #ffbf00, #ff9500);
-    color: #0004ff;
+    color: #5d00ff;
     border: none;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -928,7 +1051,48 @@ footer {
 .mobile-menu {
     display: none;
 }
+.star-rating {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      font-size: 2rem;
+}
 
+.star-rating input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+}
+
+.star-rating label {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+      color: #f5b301;
+}
+
+/* Keyboard focus on the currently focusable star */
+.star-rating input:focus + label {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+}
+
+/* Utility for hidden legends (used in 1.html) */
+.visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+}
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -936,7 +1100,7 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: #0004ff;
+        background-color: #5d00ff;
         flex-direction: column;
         padding: 1rem 0;
     }
