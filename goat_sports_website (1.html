@@ -302,6 +302,39 @@
                     <li data-lang-de="Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren" data-lang-en="Students learning about sports science or data analysis">Schüler und Studenten, die sich über Sportwissenschaft oder Datenanalyse informieren</li>
                     <li data-lang-de="Diskussionsfreudige Community, die immer über den 'GOAT' debattiert" data-lang-en="Discussion-loving community always debating about the 'GOAT'">Diskussionsfreudige Community, die immer über den "GOAT" debattiert</li>
                 </ul>
+
+                <h3 data-lang-de="Wir brauchen Ihre Unterstützung" data-lang-en="We need your support">Wir brauchen Ihre Unterstützung</h3>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="1">
+                    <label for="star5" title="5 stars">★</label>
+                    <input type="radio" id="star4" name="rating" value="2">
+                    <label for="star4" title="4 stars">★</label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3" title="3 stars">★</label>
+                    <input type="radio" id="star2" name="rating" value="4">
+                    <label for="star2" title="2 stars">★</label>
+                    <input type="radio" id="star1" name="rating" value="5">
+                    <label for="star1" title="1 star">★</label>
+                </div>
+
+                <h3 data-lang-de="Finden Sie unser Rankingsystem fair?" data-lang-en="Do you find our ranking system fair?">Finden Sie unser Rankingsystem fair?</h3>
+                <form>
+                  <fieldset>
+                    <legend class="visually-hidden" data-lang-de="Fairness des Rankings" data-lang-en="Ranking fairness">Fairness des Rankings</legend>
+                    <input type="radio" id="fair-yes" name="fairranking" value="yes">
+                    <label for="fair-yes" data-lang-de="Ja" data-lang-en="Yes">Ja</label><br>
+                    <input type="radio" id="fair-no" name="fairranking" value="no">
+                    <label for="fair-no" data-lang-de="Nein" data-lang-en="No">Nein</label><br>
+                  </fieldset>
+                </form>
+
+                <h3 data-lang-de="Feedback/Falsche Informationen melden" data-lang-en="Feedback/Report incorrect information">Feedback/Falsche Informationen melden</h3>
+                <form onsubmit="event.preventDefault(); alert('Danke für Ihre Unterstützung/Thank you for your support!');">
+                    <label for="feedback" data-lang-de="Teilen Sie uns Ihre Meinung mit:" data-lang-en="Share your thoughts with us:">Teilen Sie uns Ihre Meinung mit:</label><br>
+                    <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Ihr Feedback.../Your feedback..." required></textarea><br>
+                    <button type="submit" data-lang-de="Absenden" data-lang-en="Submit">Absenden</button>
+                </form>
+
             </div>
         </section>
 

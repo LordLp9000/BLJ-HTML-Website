@@ -929,6 +929,49 @@ footer {
     display: none;
 }
 
+.star-rating {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      font-size: 2rem;
+}
+
+.star-rating input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+}
+
+.star-rating label {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+      color: #f5b301;
+}
+
+/* Keyboard focus on the currently focusable star */
+.star-rating input:focus + label {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+}
+
+/* Utility for hidden legends (used in 1.html) */
+.visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
