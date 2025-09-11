@@ -1901,10 +1901,11 @@
         .catch(error => {
             console.error('Error:', error);
             const messageDiv = document.getElementById('feedback-message');
-            messageDiv.textContent = 'Vielen Dank für Ihr Feedback!';
+            messageDiv.textContent = document.documentElement.lang === 'de'
+                ? 'Fehler beim Senden des Feedbacks. Bitte versuchen Sie es später erneut.'
+                : 'Error submitting feedback. Please try again later.';
             messageDiv.style.display = 'block';
-            messageDiv.style.color = '#009900';
-            event.target.reset();
+            messageDiv.style.color = '#d32f2f'; // red for error
         });
     });
     </script>
