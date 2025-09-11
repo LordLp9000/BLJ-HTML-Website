@@ -72,8 +72,7 @@
                     <div id="${sport}-${index + 1}" style="display: none; background: #f0f0f0; padding: 10px;">
                         <p>Offensive: ${player.offensive}/10</p>
                         <p>Defensive: ${player.defensive}/10</p>
-                        <p>Achievements: ${(player.achievementsRating || 8.0).toFixed(1)}/10</p>
-                        <p>Achievements Text: ${player.achievements}</p>
+                        <p>Achievements: ${(player.achievementsRating ?? 8.0).toFixed(1)}/10</p>                        <p>Achievements Text: ${player.achievements}</p>
                     </div>
                 `;
                 

@@ -325,6 +325,11 @@ main {
     padding-right: 1rem;
 }
 
+@media (max-width: 768px) {
+    .player-info {
+        min-width: 0; /* allows flex item to shrink */
+    }
+}
 .player-info h3 {
     color: #ffbf00;
     font-size: 1.4rem;
@@ -529,6 +534,107 @@ footer {
     margin-top: 3rem;
 }
 
+/* Copyright Attribution Styles */
+.copyright-attributions {
+    background-color: #282727;
+    padding: 2rem;
+    margin: 2rem auto 0;
+    border-radius: 10px;
+    border: 2px solid #ffbf00;
+    max-width: 1000px;
+    text-align: left;
+}
+
+.copyright-attributions h4 {
+    color: #ffbf00;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #6f00ff;
+    padding-bottom: 0.5rem;
+}
+
+.attribution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.attribution-item {
+    background-color: #3a3939;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #6f00ff;
+}
+
+.attribution-item p {
+    margin-bottom: 1rem;
+    color: #ffbf00;
+    font-weight: 600;
+}
+
+.attribution-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.attribution-item li {
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    background-color: rgba(111, 0, 255, 0.1);
+    border-radius: 5px;
+    border-left: 3px solid #ffbf00;
+}
+
+.attribution-item a {
+    color: #ffbf00;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.attribution-item a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.attribution-item a:focus,
+.attribution-item a:focus-visible {
+    outline: 2px solid #ffbf00;
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+.attribution-item img {
+    transition: transform 0.3s ease;
+}
+
+.attribution-item a:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .attribution-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .copyright-attributions {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .copyright-attributions h4 {
+        font-size: 1.2rem;
+    }
+    
+    .attribution-item {
+        padding: 1rem;
+    }
+}
+
 /* GOAT Showcase Styles */
 .goat-showcase {
     display: grid;
@@ -566,15 +672,21 @@ footer {
     border-radius: 10px;
 }
 
-.slide-image-link {
+.slide-image-container {
     position: relative;
     display: block;
-    text-decoration: none;
-    transition: transform 0.3s ease;
 }
 
-.slide-image-link:hover {
-    transform: scale(1.02);
+.slide-image-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.slide-image-link:focus,
+.slide-image-link:focus-visible {
+    outline: 3px solid #ffbf00;
+    outline-offset: 2px;
+    border-radius: 10px;
 }
 
 .image-credit {
@@ -588,12 +700,27 @@ footer {
     font-size: 0.8rem;
     font-weight: 600;
     opacity: 0;
-    transition: opacity 0.3s ease;
     pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-.slide-image-link:hover .image-credit {
+.image-credit.show {
     opacity: 1;
+}
+
+/* Hover and motion effects only for users who don't prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+    .slide-image-link {
+        transition: transform 0.3s ease;
+    }
+    
+    .slide-image-link:hover {
+        transform: scale(1.02);
+    }
+    
+    .image-credit {
+        transition: opacity 0.3s ease;
+    }
 }
 
 .prev, .next {
@@ -857,5 +984,20 @@ footer {
         padding: 0.2rem 0.5rem;
         bottom: 8px;
         right: 8px;
+        opacity: 0;
+    }
+    
+    .image-credit.show {
+        opacity: 1;
+    }
+    
+    .slide-image-link:focus,
+    .slide-image-link:focus-visible {
+        outline: 2px solid #ffbf00;
+        outline-offset: 1px;
+    }
+    
+    .slide-image-container {
+        position: relative;
     }
 }

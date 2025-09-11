@@ -67,27 +67,35 @@
                 <div class="goat-showcase">
                     <div class="slideshow-container">
                         <div class="slide active">
-                            <a href="https://www.flickr.com/photos/21677455@N04/3234505488/" target="_blank" class="slide-image-link">
-                                <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
-                                <div class="image-credit">📸 Flickr - CC BY-NC 2.0</div>
-                            </a>
+                            <div class="slide-image-container">
+                                <a href="https://www.flickr.com/photos/21677455@N04/3234505488/" target="_blank" rel="noopener noreferrer" class="slide-image-link">
+                                    <img src="images/messi-1.jpg" alt="Lionel Messi celebrating World Cup" />
+                                </a>
+                                <div class="image-credit">📸 Flickr User - CC BY-NC 2.0</div>
+                            </div>
                         </div>
                         <div class="slide">
-                            <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" class="slide-image-link">
-                                <img src="images/messi-2.png" alt="Lionel Messi with Ballon d'Or" />
-                                <div class="image-credit">📸 CC BY-NC 2.0 License</div>
-                            </a>
+                            <div class="slide-image-container">
+                                <a href="https://www.flickr.com/photos/official-fifa/3234505488" target="_blank" rel="noopener noreferrer" class="slide-image-link">
+                                    <img src="images/messi-2.png" alt="Lionel Messi with Ballon d'Or" />
+                                </a>
+                                <div class="image-credit">📸 FIFA Official - CC BY-NC 2.0</div>
+                            </div>
                         </div>
                         <div class="slide">
-                            <a href="https://commons.wikimedia.org/w/index.php?curid=8148272" target="_blank" class="slide-image-link">
-                                <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
-                                <div class="image-credit">📸 Wikimedia Commons - CC BY 2.0</div>
-                            </a>
+                            <div class="slide-image-container">
+                                <a href="https://commons.wikimedia.org/w/index.php?curid=8148272" target="_blank" rel="noopener noreferrer" class="slide-image-link">
+                                    <img src="images/messi-3.jpg" alt="Lionel Messi in action" />
+                                </a>
+                                <div class="image-credit">📸 Tsutomu Takasu - CC BY 2.0</div>
+                            </div>
                         </div>
                         <div class="slide">
-                            <div class="slide-image-link">
-                                <img src="images/messi-4.jpg" alt="Lionel Messi team celebration" />
-                                <div class="image-credit">📸 Copyright Free</div>
+                            <div class="slide-image-container">
+                                <a href="https://www.pexels.com/photo/football-player-lionel-messi/" target="_blank" rel="noopener noreferrer" class="slide-image-link">
+                                    <img src="images/messi-4.jpg" alt="Lionel Messi team celebration" />
+                                </a>
+                                <div class="image-credit">📸 Public domain — Pexels</div>
                             </div>
                         </div>
                         
@@ -477,6 +485,40 @@
     <footer>
         <p>&copy; 2025 GOAT Sports - Laurent & Dario.K | Projektarbeit HTML</p>
         <p>Kontakt: <a href="mailto:info@goat-sports.com" style="color: #ffbf00;">info@goat-sports.com</a></p>
+        
+        <div class="copyright-attributions">
+            <h4>📸 Bildnachweis / Image Credits</h4>
+            <div class="attribution-grid">
+                <div class="attribution-item">
+                    <p><strong>Messi Bilder:</strong></p>
+                    <ul>
+                        <li>📸 Flickr User - <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY-NC 2.0</a></li>
+                        <li>📸 FIFA Official - <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY-NC 2.0</a></li>
+                        <li>📸 Tsutomu Takasu - <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY 2.0</a></li>
+                        <li>📸 Public Domain - Pexels</li>
+                    </ul>
+                </div>
+                <div class="attribution-item">
+                    <p><strong>Creative Commons Lizenzen:</strong></p>
+                    <p>
+                        <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">
+                            <img src="https://licensebuttons.net/l/by-nc/2.0/80x15.png" alt="CC BY-NC 2.0" style="vertical-align: middle; margin-right: 5px;">
+                            Namensnennung-Nicht kommerziell 2.0
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">
+                            <img src="https://licensebuttons.net/l/by/2.0/80x15.png" alt="CC BY 2.0" style="vertical-align: middle; margin-right: 5px;">
+                            Namensnennung 2.0
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #ccc; margin-top: 1rem;">
+                Alle verwendeten Bilder werden gemäß ihrer jeweiligen Lizenzbedingungen verwendet. 
+                Klicken Sie auf die Bilder für detaillierte Urheberrechtsinformationen.
+            </p>
+        </div>
     </footer>
 
     <script>
@@ -1260,6 +1302,11 @@
 
             // Start slideshow auto-play
             startSlideshow();
+            
+            // Add click listeners to all slide images for credit toggle
+            document.querySelectorAll('.slide-image-link img').forEach(img => {
+                img.addEventListener('click', toggleImageCredit);
+            });
         });
 
         // Slideshow functionality
@@ -1306,6 +1353,26 @@
         function restartSlideshow() {
             clearInterval(slideInterval);
             startSlideshow();
+        }
+
+        // Image credit toggle functionality
+        function toggleImageCredit(event) {
+            event.preventDefault(); // Prevent link navigation
+            event.stopPropagation(); // Prevent event bubbling
+            
+            // Find the credit element in the same container
+            const container = event.target.closest('.slide-image-container');
+            const credit = container.querySelector('.image-credit');
+            
+            // Toggle the show class
+            if (credit.classList.contains('show')) {
+                credit.classList.remove('show');
+            } else {
+                // Hide all other credits first
+                document.querySelectorAll('.image-credit.show').forEach(c => c.classList.remove('show'));
+                // Show this credit
+                credit.classList.add('show');
+            }
         }
     </script>
 </body>
