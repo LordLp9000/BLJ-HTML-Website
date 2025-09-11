@@ -1860,11 +1860,11 @@
             if (feedbackForm) {
                 feedbackForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    document.getElementById('feedback-success').textContent = 
+                    document.getElementById('feedback-message').textContent = 
                             document.documentElement.lang === 'de' 
                             ? 'Danke für Ihr Feedback!' 
                             : 'Thank you for your feedback!';
-                        document.getElementById('feedback-success').style.display = 'block';
+                        document.getElementById('feedback-message').style.display = 'block';
                         feedbackForm.reset();
                     });
                 }
