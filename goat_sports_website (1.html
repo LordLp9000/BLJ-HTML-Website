@@ -1208,18 +1208,117 @@
         // Enhanced toggle system that handles all ID patterns
         function togglePlayerDetailsUnified(elementId) {
             const details = document.getElementById(elementId);
-            if (details) {
-                const isVisible = details.style.display === 'block' || details.classList.contains('show');
-                if (isVisible) {
-                    details.style.display = 'none';
-                    details.classList.remove('show');
-                } else {
-                    details.style.display = 'block';
-                    details.classList.add('show');
+            if (!details) return;
+            
+            const playerCard = details.closest('.player-card');
+            if (!playerCard) return;
+            
+            const isExpanded = playerCard.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Close expanded view
+                closeExpandedCard();
+            } else {
+                // Open expanded view
+                openExpandedCard(playerCard, details);
+            }
+        }
+        
+        function openExpandedCard(playerCard, details) {
+            // Close any other expanded cards first
+            closeExpandedCard();
+            
+            // Add close button to card
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'player-close-btn';
+            closeBtn.innerHTML = '×';
+            closeBtn.title = 'Close player details';
+            closeBtn.setAttribute('aria-label', 'Close player details');
+            // Use event listener instead of onclick for better control
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeExpandedCard();
+            });
+            playerCard.appendChild(closeBtn);
+            
+            // Find the parent grid container and adjust its layout
+            const gridContainer = playerCard.closest('.rankings-grid');
+            if (gridContainer) {
+                gridContainer.classList.add('has-expanded');
+            }
+            
+            // Compress other cards instead of hiding them
+            document.querySelectorAll('.player-card').forEach(card => {
+                if (card !== playerCard) {
+                    card.classList.add('compressed');
+                }
+            });
+            
+            // Expand the clicked card horizontally
+            playerCard.classList.add('expanded');
+            details.style.display = 'block';
+            details.classList.add('show');
+            
+            // Close on Escape key
+            document.addEventListener('keydown', handleEscapeKey);
+            
+            // Scroll to the expanded card smoothly
+            setTimeout(() => {
+                playerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+            
+            // Prevent card click from bubbling when expanded
+            playerCard.addEventListener('click', function(e) {
+                if (playerCard.classList.contains('expanded')) {
+                    e.stopPropagation();
+                }
+            });
+        }
+        
+        function closeExpandedCard() {
+            // Remove expanded card
+            const expandedCard = document.querySelector('.player-card.expanded');
+            if (expandedCard) {
+                expandedCard.classList.remove('expanded');
+                
+                // Remove close button
+                const closeBtn = expandedCard.querySelector('.player-close-btn');
+                if (closeBtn) {
+                    closeBtn.remove();
                 }
                 
-                // Close other instances to prevent conflicts
-                closeOtherPlayerDetails(elementId);
+                // Hide details
+                const details = expandedCard.querySelector('.player-details.show');
+                if (details) {
+                    details.style.display = 'none';
+                    details.classList.remove('show');
+                }
+                
+                // Remove click prevention
+                expandedCard.removeEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+                
+                // Restore grid layout
+                const gridContainer = expandedCard.closest('.rankings-grid');
+                if (gridContainer) {
+                    gridContainer.classList.remove('has-expanded');
+                }
+            }
+            
+            // Restore all cards from compressed state
+            document.querySelectorAll('.player-card.compressed').forEach(card => {
+                card.classList.remove('compressed');
+            });
+            
+            // Remove escape key listener
+            document.removeEventListener('keydown', handleEscapeKey);
+        }
+        
+        function handleEscapeKey(event) {
+            if (event.key === 'Escape') {
+                closeExpandedCard();
             }
         }
 
@@ -1403,7 +1502,159 @@
             document.querySelectorAll('.slide-image-link img').forEach(img => {
                 img.addEventListener('click', toggleImageCredit);
             });
+            
+            // Initialize star rating functionality
+            initializeStarRating();
+            
+            // Initialize feedback form
+            initializeFeedbackForm();
         });
+
+        // Star Rating Functionality
+        let currentRating = 0;
+
+        function initializeStarRating() {
+            const stars = document.querySelectorAll('.star');
+            const ratingText = document.getElementById('ratingText');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    currentRating = parseInt(this.getAttribute('data-rating'));
+                    updateStarDisplay();
+                    updateRatingText();
+                });
+                
+                star.addEventListener('mouseenter', function() {
+                    const hoverRating = parseInt(this.getAttribute('data-rating'));
+                    highlightStars(hoverRating);
+                });
+                
+                star.addEventListener('mouseleave', function() {
+                    updateStarDisplay();
+                });
+            });
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function updateStarDisplay() {
+            highlightStars(currentRating);
+        }
+
+        function updateRatingText() {
+            const ratingText = document.getElementById('ratingText');
+            const currentLang = document.documentElement.lang || 'de';
+            
+            const ratingTexts = {
+                de: {
+                    1: "⭐ Schlecht - Wir arbeiten an Verbesserungen!",
+                    2: "⭐⭐ Geht so - Feedback willkommen!",
+                    3: "⭐⭐⭐ Gut - Solide Arbeit!",
+                    4: "⭐⭐⭐⭐ Sehr gut - Fast perfekt!",
+                    5: "⭐⭐⭐⭐⭐ Ausgezeichnet - Vielen Dank!"
+                },
+                en: {
+                    1: "⭐ Poor - We're working on improvements!",
+                    2: "⭐⭐ Fair - Feedback welcome!",
+                    3: "⭐⭐⭐ Good - Solid work!",
+                    4: "⭐⭐⭐⭐ Very good - Almost perfect!",
+                    5: "⭐⭐⭐⭐⭐ Excellent - Thank you!"
+                }
+            };
+            
+            if (currentRating > 0) {
+                ratingText.textContent = ratingTexts[currentLang][currentRating];
+                ratingText.style.display = 'block';
+            } else {
+                ratingText.style.display = 'none';
+            }
+        }
+
+        function submitRating() {
+            if (currentRating === 0) {
+                alert(document.documentElement.lang === 'de' ? 
+                      'Bitte wählen Sie eine Bewertung aus!' : 
+                      'Please select a rating!');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('ratingResult');
+            const currentLang = document.documentElement.lang || 'de';
+            
+            const thankYouMessages = {
+                de: `Vielen Dank für Ihre ${currentRating}-Sterne Bewertung! 🎉 Ihr Feedback hilft uns dabei, GOAT Sports zu verbessern.`,
+                en: `Thank you for your ${currentRating}-star rating! 🎉 Your feedback helps us improve GOAT Sports.`
+            };
+            
+            resultDiv.innerHTML = `<p style="color: #ffbf00; font-weight: bold;">${thankYouMessages[currentLang]}</p>`;
+            resultDiv.style.display = 'block';
+            
+            // Store rating (in a real app, you'd send this to a server)
+            localStorage.setItem('goatSportsRating', currentRating);
+            
+            // Hide submit button
+            document.getElementById('submitRating').style.display = 'none';
+        }
+
+        // Feedback Form Functionality
+        function initializeFeedbackForm() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitFeedback();
+            });
+        }
+
+        function submitFeedback() {
+            const name = document.getElementById('feedbackName').value;
+            const email = document.getElementById('feedbackEmail').value;
+            const category = document.getElementById('feedbackCategory').value;
+            const message = document.getElementById('feedbackMessage').value;
+            const resultDiv = document.getElementById('feedbackResult');
+            const currentLang = document.documentElement.lang || 'de';
+            
+            if (!message.trim()) {
+                alert(currentLang === 'de' ? 
+                      'Bitte geben Sie eine Nachricht ein!' : 
+                      'Please enter a message!');
+                return;
+            }
+            
+            // Simulate sending feedback (in a real app, you'd send this to a server)
+            const feedbackData = {
+                name: name || 'Anonymous',
+                email: email || 'Not provided',
+                category: category,
+                message: message,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store feedback locally (for demonstration)
+            const existingFeedback = JSON.parse(localStorage.getItem('goatSportsFeedback') || '[]');
+            existingFeedback.push(feedbackData);
+            localStorage.setItem('goatSportsFeedback', JSON.stringify(existingFeedback));
+            
+            const successMessages = {
+                de: '✅ Vielen Dank für Ihr Feedback! Wir haben Ihre Nachricht erhalten und werden sie sorgfältig prüfen.',
+                en: '✅ Thank you for your feedback! We have received your message and will review it carefully.'
+            };
+            
+            resultDiv.innerHTML = `<p style="color: #4CAF50; font-weight: bold;">${successMessages[currentLang]}</p>`;
+            resultDiv.style.display = 'block';
+            
+            // Reset form
+            document.getElementById('feedbackForm').reset();
+        }
 
         // Slideshow functionality
         let slideIndex = 0;
