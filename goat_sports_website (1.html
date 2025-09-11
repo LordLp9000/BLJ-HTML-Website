@@ -304,37 +304,56 @@
                 </ul>
 
                 <h3 data-lang-de="Wir brauchen Ihre Unterstützung" data-lang-en="We need your support">Wir brauchen Ihre Unterstützung</h3>
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="1">
-                    <label for="star5" title="5 stars">★</label>
-                    <input type="radio" id="star4" name="rating" value="2">
-                    <label for="star4" title="4 stars">★</label>
-                    <input type="radio" id="star3" name="rating" value="3">
-                    <label for="star3" title="3 stars">★</label>
-                    <input type="radio" id="star2" name="rating" value="4">
-                    <label for="star2" title="2 stars">★</label>
-                    <input type="radio" id="star1" name="rating" value="5">
-                    <label for="star1" title="1 star">★</label>
-                </div>
+                <form id="feedback-form" method="POST" action="https://formlog.offline.ch/log">
+                    <div class="feedback-section">
 
-                <h3 data-lang-de="Finden Sie unser Rankingsystem fair?" data-lang-en="Do you find our ranking system fair?">Finden Sie unser Rankingsystem fair?</h3>
-                <form>
-                  <fieldset>
-                    <legend class="visually-hidden" data-lang-de="Fairness des Rankings" data-lang-en="Ranking fairness">Fairness des Rankings</legend>
-                    <input type="radio" id="fair-yes" name="fairranking" value="yes">
-                    <label for="fair-yes" data-lang-de="Ja" data-lang-en="Yes">Ja</label><br>
-                    <input type="radio" id="fair-no" name="fairranking" value="no">
-                    <label for="fair-no" data-lang-de="Nein" data-lang-en="No">Nein</label><br>
-                  </fieldset>
+                        <h3 data-lang-de="Was ist Ihr Lieblingssport von denen? (Für Statistiken)" data-lang-en="Which of those is your favourite? (for statistics)">Was ist Ihr Lieblingssport von denen? (Für Statistiken)</h3>
+                        <select name="favSport" id="favSport">
+                            <option value="likesEqually">I like them equally</option>
+                            <option value="FootballSport">⚽Football</option>
+                            <option value="BasketballSport">🏀Basketball</option>
+                            <option value="AmericanFootballSport">🏈American Football</option>
+                            <option value="IcehockeySport">🏒Icehockey</option>
+                            <option value="VolleyballSport">🏐Volleyball</option>
+                            <option value="CricketSport">🏏Cricket</option>
+                            <option value="HandballSport">🤾Handball</option>
+                            <option value="BaseballSport">⚾Baseball</option>
+                            <option value="RugbySport">🏉Rugby</option>
+                            <option value="Formula1Sport">🏎️Formula 1</option>                            
+                        </select>
+                        
+                        <h3 data-lang-de="Bewertung Website" data-lang-en="Rating Website">Bewertung Website</h3>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="stars" value="5">
+                            <label for="star5" title="5 stars">★</label>
+                            <input type="radio" id="star4" name="stars" value="4">
+                            <label for="star4" title="4 stars">★</label>
+                            <input type="radio" id="star3" name="stars" value="3">
+                            <label for="star3" title="3 stars">★</label>
+                            <input type="radio" id="star2" name="stars" value="2">
+                            <label for="star2" title="2 stars">★</label>
+                            <input type="radio" id="star1" name="stars" value="1">
+                            <label for="star1" title="1 star">★</label>
+                        </div>
+
+                        <h3 data-lang-de="Finden Sie unser Rankingsystem fair?" data-lang-en="Is our Ranking-system fair?">Finden Sie unser Rankingsystem fair?</h3>
+                        <div>
+                            <input type="radio" id="fair-yes" name="fair" value="yes">
+                            <label for="fair-yes">Ja</label>
+                            <input type="radio" id="fair-no" name="fair" value="no">
+                            <label for="fair-no">Nein</label>
+                        </div>
+
+                        <h3>Feedback</h3>
+                        <div>
+                            <label for="text">Ihre Meinung/Your opinion:</label><br>
+                            <textarea id="text" name="text" rows="4" cols="50" required></textarea>
+                        </div>
+
+                        <button type="submit">Submit</button>
+                        <div id="feedback-message" style="margin-top: 1rem; display: none;"></div>
+                    </div>
                 </form>
-
-                <h3 data-lang-de="Feedback/Falsche Informationen melden" data-lang-en="Feedback/Report incorrect information">Feedback/Falsche Informationen melden</h3>
-                <form onsubmit="event.preventDefault(); alert('Danke für Ihre Unterstützung/Thank you for your support!');">
-                    <label for="feedback" data-lang-de="Teilen Sie uns Ihre Meinung mit:" data-lang-en="Share your thoughts with us:">Teilen Sie uns Ihre Meinung mit:</label><br>
-                    <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Ihr Feedback.../Your feedback..." required></textarea><br>
-                    <button type="submit" data-lang-de="Absenden" data-lang-en="Submit">Absenden</button>
-                </form>
-
             </div>
         </section>
 
@@ -524,13 +543,13 @@
                 <h4>📸 Bildnachweis / Image Credits</h4>
                 <div class="attribution-grid">
                     <div class="attribution-item">
-                        <p><strong>Messi Bilder:</strong></p>
+                        <p data-lang-de="Messi Bilder" data-lang-en="Messi pictures"><strong>Messi Bilder:</strong></p>
                         <ul>
                             <li>
                                 <div class="image-preview-item">
                                     <img src="images/messi-1.jpg" alt="Messi World Cup" class="preview-thumbnail">
                                     <div class="preview-info">
-                                        <strong>Bild 1:</strong> Messi feiert Weltmeisterschaft<br>
+                                        <strong>Picture 1:</strong> Messi celebrates Worldcup<br>
                                         📸 Flickr User - <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY-NC 2.0</a>
                                     </div>
                                 </div>
@@ -539,7 +558,7 @@
                                 <div class="image-preview-item">
                                     <img src="images/messi-2.png" alt="Messi Ballon d'Or" class="preview-thumbnail">
                                     <div class="preview-info">
-                                        <strong>Bild 2:</strong> Messi mit Ballon d'Or<br>
+                                        <strong>Picture 2:</strong> Messi with Ballon d'Or<br>
                                         📸 FIFA Official - <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY-NC 2.0</a>
                                     </div>
                                 </div>
@@ -548,7 +567,7 @@
                                 <div class="image-preview-item">
                                     <img src="images/messi-3.jpg" alt="Messi in Action" class="preview-thumbnail">
                                     <div class="preview-info">
-                                        <strong>Bild 3:</strong> Messi in Aktion<br>
+                                        <strong>Picture 3:</strong> Messi in action<br>
                                         📸 Tsutomu Takasu - <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">CC BY 2.0</a>
                                     </div>
                                 </div>
@@ -557,7 +576,7 @@
                                 <div class="image-preview-item">
                                     <img src="images/messi-4.jpg" alt="Messi Team Celebration" class="preview-thumbnail">
                                     <div class="preview-info">
-                                        <strong>Bild 4:</strong> Messi Teamfeier<br>
+                                        <strong>Picture 4:</strong> Messi Teamcelebration<br>
                                         📸 Public Domain - Pexels
                                     </div>
                                 </div>
@@ -565,7 +584,7 @@
                         </ul>
                     </div>
                     <div class="attribution-item">
-                        <p><strong>Creative Commons Lizenzen:</strong></p>
+                        <p data-lang-de="Creative Commons Lizenzen" data-lang-en="Creative Commons Licenses"><strong>Creative Commons Lizenzen:</strong></p>
                         <p>
                             <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="noopener noreferrer" style="color: #ffbf00;">
                                 <img src="https://licensebuttons.net/l/by-nc/2.0/80x15.png" alt="CC BY-NC 2.0" style="vertical-align: middle; margin-right: 5px;">
@@ -1837,6 +1856,59 @@
                 credit.classList.add('show');
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackForm = document.getElementById('feedback-form');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    document.getElementById('feedback-message').textContent = 
+                            document.documentElement.lang === 'de' 
+                            ? 'Danke für Ihr Feedback!' 
+                            : 'Thank you for your feedback!';
+                        document.getElementById('feedback-message').style.display = 'block';
+                        feedbackForm.reset();
+                    });
+                }
+            });
+
+            document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(this);
+        const formBody = new URLSearchParams(formData).toString();
+
+        fetch('https://formlog.offline.ch/log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formBody
+        })
+        .then(response => {
+            if (response.ok) {
+                const messageDiv = document.getElementById('feedback-message');
+                messageDiv.textContent = document.documentElement.lang === 'de'
+                    ? 'Vielen Dank für Ihr Feedback!'
+                    : 'Thank you for your feedback!';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = '#4CAF50';
+                event.target.reset();
+                
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const messageDiv = document.getElementById('feedback-message');
+            messageDiv.textContent = document.documentElement.lang === 'de'
+                ? 'Fehler beim Senden des Feedbacks. Bitte versuchen Sie es später erneut.'
+                : 'Error submitting feedback. Please try again later.';
+            messageDiv.style.display = 'block';
+            messageDiv.style.color = '#d32f2f'; // red for error
+        });
+    });
     </script>
 </body>
 </html>
