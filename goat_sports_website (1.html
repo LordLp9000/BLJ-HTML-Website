@@ -1886,7 +1886,9 @@
         .then(response => {
             if (response.ok) {
                 const messageDiv = document.getElementById('feedback-message');
-                messageDiv.textContent = 'Error versuche es später erneut';
+                messageDiv.textContent = document.documentElement.lang === 'de'
+                    ? 'Vielen Dank für Ihr Feedback!'
+                    : 'Thank you for your feedback!';
                 messageDiv.style.display = 'block';
                 messageDiv.style.color = '#4CAF50';
                 event.target.reset();
