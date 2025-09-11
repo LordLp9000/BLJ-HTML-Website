@@ -232,7 +232,7 @@ nav {
 }
 
 main {
-    max-width: 1200px;
+    max-width: auto;
     margin: 0 auto;
     padding: 2rem;
     margin-top: 80px; /* Account for fixed header */
@@ -299,14 +299,18 @@ main {
 
 .player-card {
     background: linear-gradient(135deg, #6f00ff, #0004ff);
+    width: 100%;
+    max-width: 800px;
     padding: 1.5rem;
     border-radius: 10px;
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .player-card:hover {
@@ -314,14 +318,30 @@ main {
     box-shadow: 0 10px 25px rgba(111, 0, 255, 0.3);
 }
 
+.player-info {
+    flex: 1;
+    min-width: 300px;
+}
+
 .player-info h3 {
     color: #ffbf00;
     font-size: 1.3rem;
     font-family: 'Orbitron', monospace;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 .player-info p {
     margin: 0.5rem 0;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.nickname {
+    color: #ffbf00;
+    font-style: italic;
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
 }
 
 .player-score {
@@ -332,6 +352,9 @@ main {
     padding: 1rem;
     border-radius: 10px;
     font-family: 'Orbitron', monospace;
+    min-width: 80px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .rankings-grid {
@@ -448,9 +471,12 @@ main {
 .player-details {
     background-color: #2d2d2d;
     padding: 1.5rem;
+    width: 100%;
     border-radius: 10px;
     margin-top: 1rem;
     display: none;
+    border: 1px solid #6f00ff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .player-details.show {
@@ -730,10 +756,17 @@ footer {
     .player-card {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
+        max-width: 100%;
+    }
+    
+    .player-info {
+        min-width: unset;
     }
     
     .player-score {
         margin-top: 1rem;
+        align-self: center;
     }
     
     .ranking-filters {
