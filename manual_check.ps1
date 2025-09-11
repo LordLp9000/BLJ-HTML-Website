@@ -1,4 +1,4 @@
-﻿# Manual check of specific hidden players
+﻿﻿# Manual check of specific hidden players
 
 . .\refined_calculator.ps1
 
@@ -55,6 +55,5 @@ Write-Host "Connor McDavid (Center): Current=78.5, Calculated=$mcdavidCalc"
 
 Write-Host ""
 Write-Host "=== ANALYSIS ==="
-Write-Host "The current scores appear to be manually set and do not follow the sport-specific formula."
-Write-Host "Most calculated scores are higher than current scores, suggesting the formulas need adjustment"
-Write-Host "OR the current scores were set using a different methodology."
+Write-Host "The current scores appear manually set and may not follow the sport-specific formula."
+Write-Host "Most calculated scores are higher than the current scores, suggesting the formula may need adjustment or that the current scores were set using a different methodology."

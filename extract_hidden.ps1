@@ -1,5 +1,16 @@
-﻿# Extract hidden players from HTML file
-$content = Get-Content "goat_sports_website (1.html" -Raw
+﻿﻿# Extract hidden players from HTML file
+param(
+  [Parameter(Mandatory = $true)]
+  [ValidateScript({ Test-Path -LiteralPath $_ })]
+  [string]$Path
+)
+
+try {
+  $content = Get-Content -LiteralPath $Path -Raw -ErrorAction Stop
+} catch {
+  Write-Error "Failed to read '$Path': $($_.Exception.Message)"
+  exit 1
+}
 
 # Pattern to find hidden players
 $hiddenPattern = '\{ name: "([^"]+)"[^}]+position: "([^"]+)"[^}]+offensive: ([\d.]+), defensive: ([\d.]+), achievementsRating: ([\d.]+), longevity: ([\d.]+), clutchImpact: ([\d.]+)[^}]+score: ([\d.]+)[^}]+hidden: true \}'

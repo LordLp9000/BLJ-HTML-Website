@@ -1,11 +1,11 @@
-﻿# Check if current scores follow basic formula (0.25, 0.20, 0.25, 0.15, 0.15)
+﻿﻿# Check if current scores follow basic formula (0.25, 0.20, 0.25, 0.15, 0.15)
 
 function Calculate-BasicGOAT {
     param($Off, $Def, $Ach, $Lon, $Clutch)
     return [Math]::Round((($Off * 0.25) + ($Def * 0.20) + ($Ach * 0.25) + ($Lon * 0.15) + ($Clutch * 0.15)) * 10, 1)
 }
 
-Write-Host "=== CHECKING BASIC FORMULA ===
+Write-Host "=== CHECKING BASIC FORMULA ==="
 Write-Host ""
 
 # Neymar: Off=9.5, Def=4.2, Ach=7.8, Lon=8.5, Clutch=8.2, Current=79.5

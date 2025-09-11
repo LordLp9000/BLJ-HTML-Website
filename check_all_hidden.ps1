@@ -1,9 +1,9 @@
-﻿# Comprehensive Hidden Player Score Checker and Corrector
+﻿﻿# Comprehensive Hidden Player Score Checker and Corrector
 
 . .\refined_calculator.ps1
 
 # Parse hidden players from file and check scores
-$content = Get-Content "goat_sports_website (1.html" -Raw
+$content = Get-Content "goat_sports_website (1).html" -Raw
 
 # Find all sport sections and their hidden players
 $sportsMap = @{

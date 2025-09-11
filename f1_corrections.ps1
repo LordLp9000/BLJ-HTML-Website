@@ -1,4 +1,4 @@
-﻿# Calculate correct scores for all hidden F1 drivers
+﻿﻿# Calculate correct scores for all hidden F1 drivers
 Write-Host "F1 Hidden Drivers - Score Corrections:"
 Write-Host "======================================="
 
@@ -17,7 +17,7 @@ $f1Drivers = @(
 )
 
 foreach ($driver in $f1Drivers) {
-    $correctScore = [Math]::Round(($driver.off * 0.25 + $driver.def * 0.10 + $driver.ach * 0.25 + $driver.lon * 0.15 + $driver.clutch * 0.25) * 10, 1)
-    $difference = [Math]::Round($correctScore - $driver.current, 1)
-    Write-Host "$($driver.name): $($driver.current)  $correctScore (diff: $difference)"
+    $correctScore = [Math]::Round(( $driver['off'] * 0.25 + $driver['def'] * 0.10 + $driver['ach'] * 0.25 + $driver['lon'] * 0.15 + $driver['clutch'] * 0.25 ) * 10, 1)
+    $difference   = [Math]::Round($correctScore - $driver['current'], 1)
+    Write-Host "$($driver['name']): $($driver['current'])  $correctScore (diff: $difference)"
 }

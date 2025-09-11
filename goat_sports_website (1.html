@@ -1796,6 +1796,81 @@
             });
         }
 
+        // Helper function to determine sport from player data
+        function getSportFromPlayer(player) {
+            // Try to find the player in the main databases to determine sport
+            for (const [sport, database] of Object.entries(sportDatabases)) {
+                if (database.find(p => p.name === player.name)) {
+                    return sport;
+                }
+            }
+            
+            // Check in top50Players if not found in sport databases
+            const top50Player = top50PlayersData.find(p => p.name === player.name);
+            if (top50Player) {
+                return top50Player.sport;
+            }
+            
+            return 'unknown';
+        }
+
+        // Function to show player card for similar players
+        function showSimilarPlayerCard(playerName, sport) {
+            // Find the player in the appropriate database
+            let player = null;
+            let elementId = null;
+            
+            if (sportDatabases[sport]) {
+                const index = sportDatabases[sport].findIndex(p => p.name === playerName);
+                if (index !== -1) {
+                    player = sportDatabases[sport][index];
+                    elementId = `menu-${sport}-${index + 1}`;
+                }
+            }
+            
+            // If not found in sport database, check top50Players
+            if (!player) {
+                const top50Player = top50PlayersData.find(p => p.name === playerName);
+                if (top50Player) {
+                    elementId = `top50-${top50Player.rank}`;
+                }
+            }
+            
+            // If we found the player, show their details
+            if (elementId) {
+                // First, make sure the sport is displayed in the menu if it's a sport-specific player
+                if (sport !== 'unknown' && sportDatabases[sport]) {
+                    // Switch to the sport tab
+                    displaySport(sport);
+                }
+                
+                // Then toggle the player details
+                setTimeout(() => {
+                    if (sport !== 'unknown' && sportDatabases[sport]) {
+                        toggleSportPlayerDetails(elementId, sport);
+                    } else {
+                        toggleTop50PlayerDetails(elementId);
+                    }
+                }, 100); // Small delay to ensure the sport is displayed first
+            } else {
+                // If player not found, show an alert
+                const message = currentLanguage === 'de' ? 
+                    `Spielerkarte für ${playerName} konnte nicht gefunden werden.` : 
+                    `Player card for ${playerName} could not be found.`;
+                alert(message);
+            }
+        }
+
+        // Function to shuffle an array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array]; // Create a copy to avoid modifying original
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
         function calculateGOATScore() {
             const offensive = parseFloat(document.getElementById('offensive').value) || 0;
             const defensive = parseFloat(document.getElementById('defensive').value) || 0;
@@ -1836,11 +1911,13 @@
                 allPlayers.push(...sportArray);
             });
             
-            // Find players with similar scores (within ±5 points)
-            const similarPlayers = allPlayers
-                .filter(player => Math.abs(player.score - normalizedScore) <= 5)
-                .sort((a, b) => Math.abs(a.score - normalizedScore) - Math.abs(b.score - normalizedScore))
-                .slice(0, 3); // Show top 3 similar players
+            // Find players with similar scores (within -3 to +3 points range)
+            const eligiblePlayers = allPlayers
+                .filter(player => {
+                    const scoreDiff = player.score - normalizedScore;
+                    return scoreDiff >= -3 && scoreDiff <= 3; // Players can be up to 3 points lower or 3 points higher
+                });
+            const similarPlayers = shuffleArray(eligiblePlayers).slice(0, 3); // Show 3 random similar players
 
             const scoreText = currentLanguage === 'de' ? "GOAT Score:" : "GOAT Score:";
             const rankingText = currentLanguage === 'de' ? "Einschätzung:" : "Rating:";
@@ -1848,11 +1925,52 @@
             
             let similarPlayersHtml = '';
             if (similarPlayers.length > 0) {
-                similarPlayersHtml = `<div style="margin-top: 15px;"><strong>${similarText}</strong><ul>`;
-                similarPlayers.forEach(player => {
-                    similarPlayersHtml += `<li>${player.name} (${player.score})</li>`;
+                similarPlayersHtml = `<div style="margin-top: 15px;"><strong>${similarText}</strong>
+                    <div class="similar-players-grid" style="display: grid; gap: 1rem; margin-top: 1rem;">`;
+                similarPlayers.forEach((player, index) => {
+                    const nickname = player.nickname ? ` "${player.nickname}"` : '';
+                    const sport = player.sport || getSportFromPlayer(player);
+                    similarPlayersHtml += `
+                        <div class="similar-player-card" 
+                             onclick="showSimilarPlayerCard('${player.name}', '${sport}')"
+                             style="
+                                background: linear-gradient(135deg, #6f00ff, #5d00ff);
+                                padding: 1rem 1.5rem;
+                                border-radius: 10px;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                                border: 2px solid rgba(255, 191, 0, 0.3);
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                min-height: 60px;
+                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                             "
+                             onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(111, 0, 255, 0.4)'; this.style.borderColor='#ffbf00';" 
+                             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 0, 0, 0.3)'; this.style.borderColor='rgba(255, 191, 0, 0.3)';">
+                            <div style="flex: 1;">
+                                <div style="color: #ffbf00; font-weight: 700; font-size: 1.1rem; font-family: 'Orbitron', monospace; margin-bottom: 0.3rem;">
+                                    ${player.name}
+                                </div>
+                                ${nickname ? `<div style="color: #ffbf00; font-style: italic; font-size: 0.9rem; opacity: 0.8;">${nickname}</div>` : ''}
+                            </div>
+                            <div style="
+                                background-color: rgba(0, 0, 0, 0.3);
+                                color: #ffbf00;
+                                font-weight: 900;
+                                font-size: 1.3rem;
+                                font-family: 'Orbitron', monospace;
+                                padding: 0.5rem 0.8rem;
+                                border-radius: 8px;
+                                border: 1px solid rgba(255, 191, 0, 0.3);
+                                min-width: 60px;
+                                text-align: center;
+                            ">
+                                ${player.score}
+                            </div>
+                        </div>`;
                 });
-                similarPlayersHtml += '</ul></div>';
+                similarPlayersHtml += '</div></div>';
             }
             
             document.getElementById('score-display').innerHTML = `<strong>${scoreText} ${normalizedScore.toFixed(1)}/100</strong>`;
