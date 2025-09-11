@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #333; color: white; }
+        button { padding: 10px; margin: 5px; background: #0066ff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .section { background: #444; padding: 20px; margin: 10px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>GOAT Sports Test</h1>
+    
+    <button onclick="testBasketball()">Test Basketball Function</button>
+    <button onclick="testShowSection()">Test Show Section Function</button>
+    
+    <div id="test-container" class="section">
+        <p>Results will appear here...</p>
+    </div>
+    
+    <script>
+        // Simple basketball data for testing
+        const sportDatabases = {
+            basketball: [
+                { name: "Michael Jordan", score: 97.2, position: "SG", career: "1984-2003", country: "USA", 
+                  offensive: 10.0, defensive: 8.8, achievementsRating: 10.0, achievements: "6x NBA Champion" },
+                { name: "LeBron James", score: 94.8, position: "SF", career: "2003-present", country: "USA",
+                  offensive: 9.5, defensive: 8.7, achievementsRating: 9.2, achievements: "4x NBA Champion" }
+            ]
+        };
+        
+        function testBasketball() {
+            const container = document.getElementById('test-container');
+            const players = sportDatabases.basketball;
+            
+            container.innerHTML = '<h3>Basketball Test Results:</h3>';
+            
+            players.forEach((player, index) => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: linear-gradient(135deg, #6f00ff, #0004ff); padding: 1rem; margin: 1rem 0; border-radius: 8px; cursor: pointer;';
+                
+                card.innerHTML = `
+                    <h4>${index + 1}. ${player.name}</h4>
+                    <p>Score: ${player.score}</p>
+                    <p>Achievements Rating: ${(player.achievementsRating || 8.0).toFixed(1)}/10</p>
+                    <div id="details-${index}" style="display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ccc;">
+                        <p><strong>Position:</strong> ${player.position}</p>
+                        <p><strong>Career:</strong> ${player.career}</p>
+                        <p><strong>Offensive:</strong> ${player.offensive}/10</p>
+                        <p><strong>Achievements:</strong> ${player.achievements}</p>
+                    </div>
+                `;
+                
+                // Test onclick
+                card.onclick = () => {
+                    const details = document.getElementById(`details-${index}`);
+                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                };
+                
+                container.appendChild(card);
+            });
+        }
+        
+        function testShowSection() {
+            const container = document.getElementById('test-container');
+            container.innerHTML = '<h3>Show Section Test:</h3><p>Function called successfully!</p>';
+            console.log('testShowSection called');
+        }
+    </script>
+</body>
+</html>

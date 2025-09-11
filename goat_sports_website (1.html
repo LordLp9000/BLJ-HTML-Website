@@ -746,13 +746,21 @@
 
         // Navigation functionality with hamburger menu
         function showSection(sectionId) {
+            console.log('showSection called with:', sectionId);
+            
             // Hide all sections
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
             
             // Show target section
-            document.getElementById(sectionId).classList.add('active');
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                console.log('Section shown:', sectionId);
+            } else {
+                console.log('Section not found:', sectionId);
+            }
             
             // Update navigation - remove active from all menu links
             document.querySelectorAll('.menu-link').forEach(link => {
@@ -763,7 +771,58 @@
             const targetLink = document.querySelector(`[href="#${sectionId}"]`);
             if (targetLink) targetLink.classList.add('active');
             
-            // Close menu on mobile after navigation
+            // Load sport-specific rankings when navigating to them
+            console.log('Checking switch for section:', sectionId);
+            switch(sectionId) {
+                case 'football-top10':
+                    console.log('Loading football rankings');
+                    displaySportRankings('football', 'football-rankings-grid');
+                    break;
+                case 'basketball-top10':
+                    console.log('Loading basketball rankings');
+                    displaySportRankings('basketball', 'basketball-rankings-grid');
+                    break;
+                case 'american-football-top10':
+                    console.log('Loading american football rankings');
+                    displaySportRankings('american-football', 'american-football-rankings-grid');
+                    break;
+                case 'hockey-top10':
+                    console.log('Loading hockey rankings');
+                    displaySportRankings('hockey', 'hockey-rankings-grid');
+                    break;
+                case 'formula1-top10':
+                    console.log('Loading formula1 rankings');
+                    displaySportRankings('formula1', 'formula1-rankings-grid');
+                    break;
+                case 'volleyball-top10':
+                    console.log('Loading volleyball rankings');
+                    displaySportRankings('volleyball', 'volleyball-rankings-grid');
+                    break;
+                case 'cricket-top10':
+                    console.log('Loading cricket rankings');
+                    displaySportRankings('cricket', 'cricket-rankings-grid');
+                    break;
+                case 'handball-top10':
+                    console.log('Loading handball rankings');
+                    displaySportRankings('handball', 'handball-rankings-grid');
+                    break;
+                case 'baseball-top10':
+                    console.log('Loading baseball rankings');
+                    displaySportRankings('baseball', 'baseball-rankings-grid');
+                    break;
+                case 'rugby-top10':
+                    console.log('Loading rugby rankings');
+                    displaySportRankings('rugby', 'rugby-rankings-grid');
+                    break;
+                case 'rankings':
+                    console.log('Loading main rankings');
+                    displayRankings();
+                    break;
+                default:
+                    console.log('No special loading for section:', sectionId);
+            }
+            
+            // Close mobile menu after navigation
             toggleMenu(false);
         }
 
@@ -816,7 +875,6 @@
             sportPlayers.forEach((player, index) => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                playerCard.onclick = () => togglePlayerDetails(`${sport}-${index + 1}`);
                 
                 const sportEmojis = {
                     'football': '⚽',
@@ -879,6 +937,9 @@
                     </div>
                 `;
                 
+                // Set onclick AFTER innerHTML to prevent it from being overwritten
+                playerCard.onclick = () => toggleSportPlayerDetails(`${sport}-${index + 1}`, sport);
+                
                 grid.appendChild(playerCard);
             });
         }
@@ -893,7 +954,7 @@
             players.forEach(player => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                playerCard.onclick = () => togglePlayerDetails(`top50-${player.rank}`);
+                playerCard.onclick = () => toggleTop50PlayerDetails(`top50-${player.rank}`);
                 
                 const sportEmojis = {
                     'football': '⚽',
@@ -941,6 +1002,12 @@
                                 <div class="stat-label">${currentLanguage === 'de' ? 'Clutch Impact' : 'Clutch Impact'}</div>
                             </div>
                         </div>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #555;">
+                            <h4 style="color: #ffbf00; margin-bottom: 0.8rem;">${currentLanguage === 'de' ? 'Biografie & Erfolge:' : 'Biography & Achievements:'}</h4>
+                            <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        </div>
                     </div>
                 `;
                 
@@ -966,8 +1033,60 @@
         }
 
         // Toggle player details
+        // Toggle player details for Top 50 rankings
+        function toggleTop50PlayerDetails(elementId) {
+            // Toggle the selected player detail
+            const details = document.getElementById(elementId);
+            if (details) {
+                const isVisible = details.style.display === 'block' || details.classList.contains('show');
+                if (isVisible) {
+                    details.style.display = 'none';
+                    details.classList.remove('show');
+                } else {
+                    details.style.display = 'block';
+                    details.classList.add('show');
+                }
+                
+                // Also close any open sport-specific details for the same player
+                // Extract rank from top50-X format
+                const rank = elementId.replace('top50-', '');
+                closeOtherPlayerDetails(elementId);
+            }
+        }
+
+        // Toggle player details for sport-specific rankings
+        function toggleSportPlayerDetails(elementId, sport) {
+            // Toggle the selected player detail
+            const details = document.getElementById(elementId);
+            if (details) {
+                const isVisible = details.style.display === 'block' || details.classList.contains('show');
+                if (isVisible) {
+                    details.style.display = 'none';
+                    details.classList.remove('show');
+                } else {
+                    details.style.display = 'block';
+                    details.classList.add('show');
+                }
+                
+                // Also close any open top50 details for the same player
+                closeOtherPlayerDetails(elementId);
+            }
+        }
+        
+        // Helper function to close other instances of the same player's details
+        function closeOtherPlayerDetails(currentElementId) {
+            // Close all other player details to avoid conflicts
+            document.querySelectorAll('.player-details.show').forEach(detail => {
+                if (detail.id !== currentElementId) {
+                    // Only close if it's a different element
+                    detail.style.display = 'none';
+                    detail.classList.remove('show');
+                }
+            });
+        }
+
+        // Legacy function for backward compatibility
         function togglePlayerDetails(elementId) {
-            // Direct access to the element by its unique ID
             const details = document.getElementById(elementId);
             if (details) {
                 if (details.style.display === 'none' || details.style.display === '') {
@@ -982,22 +1101,30 @@
 
         // Display sport-specific top 10 rankings
         function displaySportRankings(sport, containerId) {
+            console.log('displaySportRankings called with:', sport, containerId);
+            
             const container = document.getElementById(containerId);
-            if (!container) return;
+            if (!container) {
+                console.error(`Container ${containerId} not found for sport ${sport}`);
+                return;
+            }
             
             // Get the exact 10 players for this sport from the clean databases
             const sportPlayers = sportDatabases[sport] || [];
+            console.log(`Found ${sportPlayers.length} players for sport ${sport}`);
+            
+            if (sportPlayers.length === 0) {
+                console.error(`No players found for sport ${sport}`);
+                container.innerHTML = '<p>No players found for this sport.</p>';
+                return;
+            }
             
             container.innerHTML = '';
             
             // Display exactly 10 players with sport-specific ranks 1-10
             sportPlayers.forEach((player, index) => {
-                // Fix for achievements rating field compatibility
-                const achievementsRating = player.achievementsRating || (typeof player.achievements === 'number' ? player.achievements : 8.0);
-                
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                playerCard.onclick = () => togglePlayerDetails(`${sport}-${index + 1}`);
                 
                 const sportEmojis = {
                     'football': '⚽',
@@ -1009,6 +1136,7 @@
                     'cricket': '🏏',
                     'handball': '🤾',
                     'rugby': '🏉',
+                    'baseball': '⚾'
                 };
                 
                 const sportName = getSportName(sport);
@@ -1033,7 +1161,7 @@
                                 <div class="stat-label">${currentLanguage === 'de' ? 'Defensive' : 'Defensive'}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">${player.achievements}/10</div>
+                                <div class="stat-value">${(player.achievementsRating || 8.0).toFixed(1)}/10</div>
                                 <div class="stat-label">${currentLanguage === 'de' ? 'Erfolge' : 'Achievements'}</div>
                             </div>
                             <div class="stat-item">
@@ -1045,13 +1173,25 @@
                                 <div class="stat-label">${currentLanguage === 'de' ? 'Clutch Impact' : 'Clutch Impact'}</div>
                             </div>
                         </div>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #555;">
+                            <h4 style="color: #ffbf00; margin-bottom: 0.8rem;">${currentLanguage === 'de' ? 'Biografie & Erfolge:' : 'Biography & Achievements:'}</h4>
+                            <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        </div>
                         ` : `
-                        <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
-                        <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #555;">
+                            <h4 style="color: #ffbf00; margin-bottom: 0.8rem;">${currentLanguage === 'de' ? 'Biografie & Erfolge:' : 'Biography & Achievements:'}</h4>
+                            <p><strong>${currentLanguage === 'de' ? 'Karriere:' : 'Career:'}</strong> ${player.career}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Land:' : 'Country:'}</strong> ${player.country}</p>
+                            <p><strong>${currentLanguage === 'de' ? 'Erfolge:' : 'Achievements:'}</strong> ${player.achievements}</p>
+                        </div>
                         `}
                     </div>
                 `;
+                
+                // Set onclick AFTER innerHTML to prevent it from being overwritten
+                playerCard.onclick = () => toggleSportPlayerDetails(`${sport}-${index + 1}`, sport);
                 
                 container.appendChild(playerCard);
             });
@@ -1095,41 +1235,8 @@
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
+                    console.log('Navigating to section:', targetId);
                     showSection(targetId);
-                    
-                    // Load sport-specific rankings when navigating to them
-                    switch(targetId) {
-                        case 'football-top10':
-                            displaySportRankings('football', 'football-rankings-grid');
-                            break;
-                        case 'basketball-top10':
-                            displaySportRankings('basketball', 'basketball-rankings-grid');
-                            break;
-                        case 'american-football-top10':
-                            displaySportRankings('american-football', 'american-football-rankings-grid');
-                            break;
-                        case 'hockey-top10':
-                            displaySportRankings('hockey', 'hockey-rankings-grid');
-                            break;
-                        case 'formula1-top10':
-                            displaySportRankings('formula1', 'formula1-rankings-grid');
-                            break;
-                        case 'volleyball-top10':
-                            displaySportRankings('volleyball', 'volleyball-rankings-grid');
-                            break;
-                        case 'cricket-top10':
-                            displaySportRankings('cricket', 'cricket-rankings-grid');
-                            break;
-                        case 'handball-top10':
-                            displaySportRankings('handball', 'handball-rankings-grid');
-                            break;
-                        case 'baseball-top10':
-                            displaySportRankings('baseball', 'baseball-rankings-grid');
-                            break;
-                        case 'rugby-top10':
-                            displaySportRankings('rugby', 'rugby-rankings-grid');
-                            break;
-                    }
                 });
             });
 
@@ -1137,6 +1244,9 @@
             if (document.getElementById('rankings-grid')) {
                 displayRankings();
             }
+            
+            // Initialize first load - show home section
+            showSection('home');
 
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
