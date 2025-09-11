@@ -1057,6 +1057,7 @@ footer {
       font-size: 2rem;
 }
 
+
 .star-rating input {
       position: absolute;
       opacity: 0;
@@ -1093,6 +1094,7 @@ footer {
       clip: rect(1px, 1px, 1px, 1px);
       white-space: nowrap;
 }
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
