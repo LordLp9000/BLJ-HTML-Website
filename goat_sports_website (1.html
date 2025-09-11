@@ -304,7 +304,7 @@
                 </ul>
 
                 <h3 data-lang-de="Wir brauchen Ihre Unterstützung" data-lang-en="We need your support">Wir brauchen Ihre Unterstützung</h3>
-                <form id="feedback-form" method="POST" action="https://formlog.offline.ch/log">
+                <form id="feedback-form">
                     <div class="feedback-section">
 
                         <h3 data-lang-de="Was ist Ihr Lieblingssport von denen? (Für Statistiken)" data-lang-en="Which of those is your favourite? (for statistics)">Was ist Ihr Lieblingssport von denen? (Für Statistiken)</h3>
@@ -1742,53 +1742,115 @@
 
         // Feedback Form Functionality
         function initializeFeedbackForm() {
-            const feedbackForm = document.getElementById('feedbackForm');
+            const feedbackForm = document.getElementById('feedback-form');
             
-            feedbackForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitFeedback();
-            });
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    submitFeedback();
+                });
+            }
         }
 
         function submitFeedback() {
-            const name = document.getElementById('feedbackName').value;
-            const email = document.getElementById('feedbackEmail').value;
-            const category = document.getElementById('feedbackCategory').value;
-            const message = document.getElementById('feedbackMessage').value;
-            const resultDiv = document.getElementById('feedbackResult');
+            const form = document.getElementById('feedback-form');
+            const formData = new FormData(form);
+            const messageDiv = document.getElementById('feedback-message');
             const currentLang = document.documentElement.lang || 'de';
             
-            if (!message.trim()) {
-                alert(currentLang === 'de' ? 
-                      'Bitte geben Sie eine Nachricht ein!' : 
-                      'Please enter a message!');
+            // Get form values
+            const favSport = formData.get('favSport') || 'Not specified';
+            const stars = formData.get('stars') || 'Not rated';
+            const fair = formData.get('fair') || 'Not specified';
+            const text = formData.get('text') || '';
+            
+            // Validate required field
+            if (!text.trim()) {
+                const errorMessages = {
+                    de: '⚠️ Bitte geben Sie Ihr Feedback im Textfeld ein!',
+                    en: '⚠️ Please enter your feedback in the text field!'
+                };
+                messageDiv.innerHTML = `<p style="color: #ff4444; font-weight: bold;">${errorMessages[currentLang]}</p>`;
+                messageDiv.style.display = 'block';
                 return;
             }
             
-            // Simulate sending feedback (in a real app, you'd send this to a server)
-            const feedbackData = {
-                name: name || 'Anonymous',
-                email: email || 'Not provided',
-                category: category,
-                message: message,
-                timestamp: new Date().toISOString()
-            };
+            // Submit to external form handler
+            const formBody = new URLSearchParams(formData).toString();
             
-            // Store feedback locally (for demonstration)
-            const existingFeedback = JSON.parse(localStorage.getItem('goatSportsFeedback') || '[]');
-            existingFeedback.push(feedbackData);
-            localStorage.setItem('goatSportsFeedback', JSON.stringify(existingFeedback));
-            
-            const successMessages = {
-                de: '✅ Vielen Dank für Ihr Feedback! Wir haben Ihre Nachricht erhalten und werden sie sorgfältig prüfen.',
-                en: '✅ Thank you for your feedback! We have received your message and will review it carefully.'
-            };
-            
-            resultDiv.innerHTML = `<p style="color: #4CAF50; font-weight: bold;">${successMessages[currentLang]}</p>`;
-            resultDiv.style.display = 'block';
-            
-            // Reset form
-            document.getElementById('feedbackForm').reset();
+            fetch('https://formlog.offline.ch/log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formBody
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success - show message and reset form
+                    const successMessages = {
+                        de: '✅ Vielen Dank für Ihr Feedback! Ihre Antworten wurden erfolgreich übermittelt.',
+                        en: '✅ Thank you for your feedback! Your responses have been successfully submitted.'
+                    };
+                    
+                    messageDiv.innerHTML = `<p style="color: #4CAF50; font-weight: bold;">${successMessages[currentLang]}</p>`;
+                    messageDiv.style.display = 'block';
+                    
+                    // Reset form immediately
+                    form.reset();
+                    
+                    // Hide message after delay
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting to external service:', error);
+                
+                // Fallback: Store locally and show success message
+                try {
+                    const feedbackData = {
+                        favoriteSport: favSport,
+                        rating: stars,
+                        fairnessOpinion: fair,
+                        feedback: text,
+                        timestamp: new Date().toISOString(),
+                        language: currentLang
+                    };
+                    
+                    const existingFeedback = JSON.parse(localStorage.getItem('goatSportsFeedback') || '[]');
+                    existingFeedback.push(feedbackData);
+                    localStorage.setItem('goatSportsFeedback', JSON.stringify(existingFeedback));
+                    
+                    const fallbackMessages = {
+                        de: '✅ Vielen Dank für Ihr Feedback! Ihre Antworten wurden lokal gespeichert.',
+                        en: '✅ Thank you for your feedback! Your responses have been saved locally.'
+                    };
+                    
+                    messageDiv.innerHTML = `<p style="color: #4CAF50; font-weight: bold;">${fallbackMessages[currentLang]}</p>`;
+                    messageDiv.style.display = 'block';
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Hide message after delay
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 3000);
+                    
+                } catch (localError) {
+                    console.error('Error with local fallback:', localError);
+                    const errorMessages = {
+                        de: '❌ Fehler beim Speichern des Feedbacks. Bitte versuchen Sie es erneut.',
+                        en: '❌ Error saving feedback. Please try again.'
+                    };
+                    messageDiv.innerHTML = `<p style="color: #ff4444; font-weight: bold;">${errorMessages[currentLang]}</p>`;
+                    messageDiv.style.display = 'block';
+                }
+            });
         }
 
         // Slideshow functionality
@@ -1856,59 +1918,6 @@
                 credit.classList.add('show');
             }
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            const feedbackForm = document.getElementById('feedback-form');
-            if (feedbackForm) {
-                feedbackForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    document.getElementById('feedback-message').textContent = 
-                            document.documentElement.lang === 'de' 
-                            ? 'Danke für Ihr Feedback!' 
-                            : 'Thank you for your feedback!';
-                        document.getElementById('feedback-message').style.display = 'block';
-                        feedbackForm.reset();
-                    });
-                }
-            });
-
-            document.getElementById('feedback-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const formData = new FormData(this);
-        const formBody = new URLSearchParams(formData).toString();
-
-        fetch('https://formlog.offline.ch/log', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formBody
-        })
-        .then(response => {
-            if (response.ok) {
-                const messageDiv = document.getElementById('feedback-message');
-                messageDiv.textContent = document.documentElement.lang === 'de'
-                    ? 'Vielen Dank für Ihr Feedback!'
-                    : 'Thank you for your feedback!';
-                messageDiv.style.display = 'block';
-                messageDiv.style.color = '#4CAF50';
-                event.target.reset();
-                
-                setTimeout(() => {
-                    messageDiv.style.display = 'none';
-                }, 3000);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const messageDiv = document.getElementById('feedback-message');
-            messageDiv.textContent = document.documentElement.lang === 'de'
-                ? 'Fehler beim Senden des Feedbacks. Bitte versuchen Sie es später erneut.'
-                : 'Error submitting feedback. Please try again later.';
-            messageDiv.style.display = 'block';
-            messageDiv.style.color = '#d32f2f'; // red for error
-        });
-    });
     </script>
 </body>
 </html>
