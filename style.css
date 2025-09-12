@@ -895,6 +895,38 @@ footer {
     }
 }
 
+/* Feedback Form Styles */
+.feedback-section textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border: 2px solid #6f00ff;
+    border-radius: 8px;
+    background: #1a1a1a;
+    color: white;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+}
+
+.feedback-section textarea:focus {
+    outline: none;
+    border-color: #ffbf00;
+}
+
+@media (max-width: 768px) {
+    .feedback-section textarea {
+        max-width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .feedback-section {
+        padding: 10px;
+    }
+}
+
 /* GOAT Showcase Styles */
 .goat-showcase {
     display: grid;
