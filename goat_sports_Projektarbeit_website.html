@@ -1460,15 +1460,22 @@
             const grid = document.getElementById('rankings-grid');
             if (!grid) return;
             
+            // Combine all players from all sports
+            const allPlayers = Object.entries(sportDatabases)
+                .flatMap(([sport, players]) => 
+                    players.map(p => ({ ...p, sport }))
+                )
+                .filter(player => !player.hidden); // Exclude hidden players
+            
             // Sort players by score in descending order and assign ranks
-            const sortedPlayers = players.slice().sort((a, b) => b.score - a.score);
+            const sortedPlayers = allPlayers.slice().sort((a, b) => b.score - a.score);
             sortedPlayers.forEach((player, index) => {
                 player.rank = index + 1;
             });
             
             grid.innerHTML = '';
             
-            players.forEach(player => {
+            sortedPlayers.forEach(player => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
                 playerCard.onclick = () => toggleTop50PlayerDetails(`top50-${player.rank}`);
